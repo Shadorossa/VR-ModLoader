@@ -1,0 +1,15 @@
+# Built-in list of where to get the library mods other mods `require` (VR-ModLoader.exe «Install missing…»).
+# Fill in `page` (and `download`, a direct HTTPS link to the latest .zip) when a library is published.
+# Players can add their own entries in %APPDATA%\VR-ModLoader\catalog.toml (same format).
+
+[[mod]]
+id = "vr_framework"
+name = "VR-Framework"
+page = ""
+download = ""
+
+[[mod]]
+id = "clean_hud"
+name = "Clean HUD"
+page = ""
+download = ""

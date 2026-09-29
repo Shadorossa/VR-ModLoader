@@ -1,0 +1,15 @@
+# Test ruleset "classic cup": normal halves of 5' -> extra time of 1 half -> golden goal (5') -> penalties.
+# Each phase is only played if the score is still tied.
+# [mods.match_engine] test_ruleset = "test_cup"
+id = "test_cup"
+name = "Test: cup (extra time, golden goal and penalties)"
+version = 1
+
+[time]
+half_minutes = 5
+
+[end]
+extra_time = true
+extra_time_halves = 1
+golden_goal = true
+penalties = true

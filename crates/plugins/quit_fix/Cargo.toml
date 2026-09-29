@@ -1,0 +1,19 @@
+[package]
+name = "evt-plugin-quit-fix"
+version = "1.0.0"
+edition.workspace = true
+license.workspace = true
+description = "ModLoader plugin of mod quit_fix: closing the game window always ends nie.exe, also in a match (quit_fix.dll)"
+
+[lib]
+name = "quit_fix"
+# cdylib = quit_fix.dll (the plugin); rlib = unit tests of the watcher logic
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+serde = { workspace = true }
+toml = "0.8"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Threading"] }

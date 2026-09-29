@@ -1,0 +1,14 @@
+id = "audio_engine"
+name = "Audio engine"
+version = "1.1.0"
+author = "EVT"
+description = "Audio layer of the ModLoader: voices, effects and music for mods (audio.toml with wav / ogg / flac / mp3 / .hca), built at startup on the player's PC from their own banks, with a cache; several mods without stepping on each other (per-cue merge, sound_queue_sheet, bgm_config); per-armour armour shouts; name index. Needed by voice packs and sound mods."
+priority = 0
+tags = ["Audio"]
+updated = "2026-09-29"
+# native plugin (see sdk/README.md): the ModLoader loads audio_engine.dll from this folder
+plugin = "audio_engine.dll"
+# "audio_engine" is the name other mods ask for in requires; "armed_voice" is the per-armour shout feature
+provides = ["audio_engine", "armed_voice"]
+# ModLoader with plugins (API v1)
+loader_min = "1.0.0"

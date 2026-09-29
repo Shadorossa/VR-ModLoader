@@ -1,0 +1,9 @@
+id = "test_save_mod"
+name = "Test: save engine counter"
+version = "1.0.0"
+author = "EVT"
+description = "Test of save_engine: counts title-screen visits per save slot (saved with the game's saves) and in total (global). Logs the values with [modules] debug = true."
+priority = 0
+tags = ["Test"]
+updated = "2026-09-29"
+requires = ["save_engine"]

@@ -1,0 +1,30 @@
+[package]
+name = "vr-index"
+version = "0.1.0"
+edition = "2024"
+license = "GPL-3.0-only"
+description = "GAME INDEX for VR-ModLoader Studio and the VR-Framework engines: reads the player's own Inazuma Eleven Victory Road v7.1.2 data (CPKs through cpk_list) and builds a local, searchable id <-> names (9 languages) <-> thumbnails index. Ships no Level-5 data."
+
+[lib]
+name = "vr_index"
+path = "src/lib.rs"
+
+[[bin]]
+name = "vr-index"
+path = "src/main.rs"
+
+[dependencies]
+l5-core = { path = "../l5-core" }
+l5-cpk = { path = "../l5-cpk" }
+# Read-only texture decode: no BC encoders (no C++ runtime to link).
+g4-texture = { path = "../g4-texture", default-features = false }
+cri = { path = "../cri" }
+crc32fast.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon = "1"
+rmp-serde = "1"
+flate2 = "1"
+
+[dev-dependencies]

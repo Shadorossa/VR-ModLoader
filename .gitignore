@@ -1,0 +1,26 @@
+# build output
+/target/
+**/target/
+**/dist/
+**/build/
+*.pdb
+*.dll
+*.exe
+*.lib
+*.exp
+*.obj
+
+# your own copy of the game (never commit game files): tests read <repo>/assets/v7.1.2 when it exists
+/assets/
+/dump/
+
+# local game-derived files some tools write
+**/index/audio_index.json
+**/*.vri
+
+# editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

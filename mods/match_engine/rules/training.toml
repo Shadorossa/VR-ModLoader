@@ -1,0 +1,19 @@
+# BASE ruleset: training and dribble tests (types 3 and 4: no clock, test rules).
+# Every rule is left as the match row sets it ("row"): the original game as is. A mod can replace this ruleset
+# (same id, loaded later) or assign another one to these matches in its rules\matches.toml.
+id = "training"
+name = "Training (original)"
+version = 1
+
+[time]
+half_minutes = "row"
+halves = "row"
+
+[teams]
+players = "row"
+
+[end]
+extra_time = false
+golden_goal = false
+penalties = false
+extended_vgoal = "row"

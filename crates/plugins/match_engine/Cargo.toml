@@ -1,0 +1,18 @@
+[package]
+name = "evt-plugin-match-engine"
+version = "1.0.0"
+edition.workspace = true
+license.workspace = true
+description = "ModLoader plugin of mod match_engine: rulesets (reglamentos) that decide the rules of every offline match (period, halves, players, ExRule, extra time, golden goal, penalty shootout) + the Opciones half length (match_rules) (match_engine.dll)"
+
+[lib]
+name = "match_engine"
+# cdylib = match_engine.dll (the plugin); rlib = unit tests of the pure logic
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+crc32fast = { workspace = true }
+toml = "0.8"

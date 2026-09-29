@@ -1,0 +1,220 @@
+VR-ModLoader
+Copyright (C) 2026 Shadorossa and VR-ModLoader contributors
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
+License version 3 as published by the Free Software Foundation (see LICENSE).
+
+VR-ModLoader is an unofficial fan project. It is not affiliated with, endorsed by or sponsored by LEVEL-5 Inc. or any
+of its partners. "Inazuma Eleven" and "Inazuma Eleven Victory Road" are trademarks of their respective owners. This
+repository contains no game files, no extracted game data and no copyrighted game assets: every tool reads the
+player's own, legitimately owned copy of the game at run time.
+
+Third-party components
+----------------------
+
+Binaries built from this repository statically link the Rust crates below (license as declared by each crate; full
+texts are in each crate's source distribution on crates.io). All are compatible with GPL-3.0. Development-only
+dependencies (tests) are not listed.
+
+accesskit 0.24.1: MIT OR Apache-2.0
+adler2 2.0.1: 0BSD OR MIT OR Apache-2.0
+aes 0.8.4: MIT OR Apache-2.0
+ahash 0.8.12: MIT OR Apache-2.0
+arboard 3.6.1: MIT OR Apache-2.0
+arrayvec 0.7.8: MIT OR Apache-2.0
+autocfg 1.5.1: Apache-2.0 OR MIT
+base64 0.23.1: MIT OR Apache-2.0
+bcdec_rs 0.2.0: MIT
+bitflags 1.3.2: MIT/Apache-2.0
+bitflags 2.13.2: MIT OR Apache-2.0
+block-buffer 0.10.4: MIT OR Apache-2.0
+block-padding 0.3.3: MIT OR Apache-2.0
+bumpalo 3.20.3: MIT OR Apache-2.0
+bytemuck 1.25.2: Zlib OR Apache-2.0 OR MIT
+bytemuck_derive 1.12.1: Zlib OR Apache-2.0 OR MIT
+byteorder-lite 0.1.0: Unlicense OR MIT
+bytes 1.12.1: MIT
+cbc 0.1.2: MIT OR Apache-2.0
+cc 1.5.1: MIT OR Apache-2.0
+cfg-if 1.0.5: MIT OR Apache-2.0
+cfg_aliases 0.2.2: MIT
+cipher 0.4.4: MIT OR Apache-2.0
+clipboard-win 5.4.1: BSL-1.0
+color 0.3.3: Apache-2.0 OR MIT
+core_detect 1.0.0: MIT/Apache-2.0
+cpufeatures 0.2.17: MIT OR Apache-2.0
+crc32fast 1.5.2: MIT OR Apache-2.0
+crossbeam-deque 0.8.8: MIT OR Apache-2.0
+crossbeam-epoch 0.9.21: MIT OR Apache-2.0
+crossbeam-utils 0.8.23: MIT OR Apache-2.0
+crypto-common 0.1.7: MIT OR Apache-2.0
+cursor-icon 1.2.0: MIT OR Apache-2.0 OR Zlib
+deflate64 0.1.12: MIT
+digest 0.10.7: MIT OR Apache-2.0
+displaydoc 0.2.7: MIT OR Apache-2.0
+document-features 0.2.12: MIT OR Apache-2.0
+dpi 0.1.2: Apache-2.0 AND MIT
+ecolor 0.36.2: MIT OR Apache-2.0
+eframe 0.36.2: MIT OR Apache-2.0
+egui 0.36.2: MIT OR Apache-2.0
+egui-winit 0.36.2: MIT OR Apache-2.0
+egui_glow 0.36.2: MIT OR Apache-2.0
+either 1.18.0: MIT OR Apache-2.0
+emath 0.36.2: MIT OR Apache-2.0
+encoding_rs 0.8.42: (Apache-2.0 OR MIT) AND BSD-3-Clause
+epaint 0.36.2: MIT OR Apache-2.0
+epaint_default_fonts 0.36.2: (MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0
+equivalent 1.0.2: Apache-2.0 OR MIT
+error-code 3.4.0: BSL-1.0
+euclid 0.22.14: MIT OR Apache-2.0
+extended 0.1.0: MIT
+fax 0.2.7: MIT
+fdeflate 0.3.7: MIT OR Apache-2.0
+fearless_simd 0.4.1: Apache-2.0 OR MIT
+find-msvc-tools 0.1.14: MIT OR Apache-2.0
+flate2 1.1.10: MIT OR Apache-2.0
+foldhash 0.2.0: Zlib
+font-types 0.12.5: MIT OR Apache-2.0
+generic-array 0.14.7: MIT
+getrandom 0.2.17: MIT OR Apache-2.0
+getrandom 0.4.3: MIT OR Apache-2.0
+gl_generator 0.14.0: Apache-2.0
+glifo 0.2.0: Apache-2.0 OR MIT
+glow 0.17.0: MIT OR Apache-2.0 OR Zlib
+glutin 0.32.3: Apache-2.0
+glutin-winit 0.5.0: MIT
+glutin_egl_sys 0.7.1: Apache-2.0
+glutin_wgl_sys 0.6.1: Apache-2.0
+guillotiere 0.7.0: MIT/Apache-2.0
+half 2.7.1: MIT OR Apache-2.0
+harfrust 0.12.0: MIT
+hashbrown 0.17.1: MIT OR Apache-2.0
+http 1.5.0: MIT OR Apache-2.0
+httparse 1.10.1: MIT OR Apache-2.0
+image 0.25.10: MIT OR Apache-2.0
+indexmap 2.14.2: Apache-2.0 OR MIT
+inout 0.1.4: MIT OR Apache-2.0
+intel_tex_2 0.4.0: MIT/Apache-2.0
+ispc_rt 2.0.4: MIT
+itertools 0.15.0: MIT OR Apache-2.0
+itoa 1.0.18: MIT OR Apache-2.0
+jobserver 0.1.35: MIT OR Apache-2.0
+khronos_api 3.1.0: Apache-2.0
+kurbo 0.13.1: Apache-2.0 OR MIT
+lazy_static 1.5.0: MIT OR Apache-2.0
+libc 0.2.189: MIT OR Apache-2.0
+libloading 0.8.9: ISC
+linebender_resource_handle 0.1.1: Apache-2.0 OR MIT
+litrs 1.0.0: MIT OR Apache-2.0
+lock_api 0.4.14: MIT OR Apache-2.0
+log 0.4.34: MIT OR Apache-2.0
+md-5 0.10.6: MIT OR Apache-2.0
+memchr 2.8.3: Unlicense OR MIT
+miniz_oxide 0.8.9: MIT OR Zlib OR Apache-2.0
+miniz_oxide 0.9.1: MIT OR Zlib OR Apache-2.0
+moxcms 0.8.1: BSD-3-Clause OR Apache-2.0
+multiversion_no_op 1.0.0: Apache-2.0 OR MIT
+nohash-hasher 0.2.0: Apache-2.0 OR MIT
+num-traits 0.2.19: MIT OR Apache-2.0
+num_cpus 1.17.0: MIT OR Apache-2.0
+once_cell 1.21.4: MIT OR Apache-2.0
+parking_lot 0.12.5: MIT OR Apache-2.0
+parking_lot_core 0.9.12: MIT OR Apache-2.0
+peniko 0.6.1: Apache-2.0 OR MIT
+percent-encoding 2.3.2: MIT OR Apache-2.0
+pin-project-lite 0.2.17: Apache-2.0 OR MIT
+png 0.18.1: MIT OR Apache-2.0
+polycool 0.4.0: MIT OR Apache-2.0
+proc-macro2 1.0.107: MIT OR Apache-2.0
+profiling 1.0.18: MIT OR Apache-2.0
+pxfm 0.1.30: BSD-3-Clause OR Apache-2.0
+quick-error 2.0.1: MIT/Apache-2.0
+quote 1.0.47: MIT OR Apache-2.0
+raw-window-handle 0.6.2: MIT OR Apache-2.0 OR Zlib
+rayon 1.12.0: MIT OR Apache-2.0
+rayon-core 1.13.0: MIT OR Apache-2.0
+read-fonts 0.41.0: MIT OR Apache-2.0
+rfd 0.16.0: MIT
+ring 0.17.14: Apache-2.0 AND ISC
+rmp 0.8.15: MIT
+rmp-serde 1.3.1: MIT
+rustls 0.23.45: Apache-2.0 OR ISC OR MIT
+rustls-pki-types 1.15.1: MIT OR Apache-2.0
+rustls-webpki 0.103.15: ISC
+rustversion 1.0.23: MIT OR Apache-2.0
+scopeguard 1.2.0: MIT OR Apache-2.0
+self_cell 1.3.0: Apache-2.0 OR GPL-2.0-only
+serde 1.0.229: MIT OR Apache-2.0
+serde_core 1.0.229: MIT OR Apache-2.0
+serde_derive 1.0.229: MIT OR Apache-2.0
+serde_json 1.0.151: MIT OR Apache-2.0
+serde_spanned 0.6.9: MIT OR Apache-2.0
+sha1 0.10.7: MIT OR Apache-2.0
+shlex 2.0.1: MIT OR Apache-2.0
+simd-adler32 0.3.10: MIT
+simdutf8 0.1.5: MIT OR Apache-2.0
+skrifa 0.44.0: MIT OR Apache-2.0
+smallvec 1.16.2: MIT OR Apache-2.0
+smol_str 0.2.2: MIT OR Apache-2.0
+static_assertions 1.1.0: MIT OR Apache-2.0
+subtle 2.6.1: BSD-3-Clause
+symphonia 0.5.5: MPL-2.0
+symphonia-bundle-flac 0.5.5: MPL-2.0
+symphonia-bundle-mp3 0.5.5: MPL-2.0
+symphonia-codec-adpcm 0.5.5: MPL-2.0
+symphonia-codec-pcm 0.5.5: MPL-2.0
+symphonia-codec-vorbis 0.5.5: MPL-2.0
+symphonia-core 0.5.5: MPL-2.0
+symphonia-format-ogg 0.5.5: MPL-2.0
+symphonia-format-riff 0.5.5: MPL-2.0
+symphonia-metadata 0.5.5: MPL-2.0
+symphonia-utils-xiph 0.5.5: MPL-2.0
+syn 2.0.119: MIT OR Apache-2.0
+syn 3.0.6: MIT OR Apache-2.0
+thiserror 2.0.21: MIT OR Apache-2.0
+thiserror-impl 2.0.21: MIT OR Apache-2.0
+tiff 0.11.3: MIT
+toml 0.8.23: MIT OR Apache-2.0
+toml_datetime 0.6.11: MIT OR Apache-2.0
+toml_edit 0.22.27: MIT OR Apache-2.0
+toml_write 0.1.2: MIT OR Apache-2.0
+tracing 0.1.44: MIT
+tracing-attributes 0.1.31: MIT
+tracing-core 0.1.36: MIT
+typenum 1.20.1: MIT OR Apache-2.0
+unicode-general-category 1.1.0: Apache-2.0
+unicode-ident 1.0.26: (MIT OR Apache-2.0) AND Unicode-3.0
+unicode-segmentation 1.13.3: MIT OR Apache-2.0
+untrusted 0.9.0: ISC
+ureq 3.4.2: MIT OR Apache-2.0
+ureq-proto 0.6.4: MIT OR Apache-2.0
+utf8-zero 0.8.1: MIT OR Apache-2.0
+uuid 1.26.1: Apache-2.0 OR MIT
+vello_common 0.1.0: Apache-2.0 OR MIT
+vello_cpu 0.1.0: Apache-2.0 OR MIT
+version_check 0.9.5: MIT/Apache-2.0
+web-time 1.1.0: MIT OR Apache-2.0
+webpki-roots 1.0.9: CDLA-Permissive-2.0
+weezl 0.1.12: MIT OR Apache-2.0
+windows-link 0.2.1: MIT OR Apache-2.0
+windows-sys 0.52.0: MIT OR Apache-2.0
+windows-sys 0.59.0: MIT OR Apache-2.0
+windows-sys 0.60.2: MIT OR Apache-2.0
+windows-sys 0.61.2: MIT OR Apache-2.0
+windows-targets 0.52.6: MIT OR Apache-2.0
+windows-targets 0.53.5: MIT OR Apache-2.0
+windows_x86_64_msvc 0.52.6: MIT OR Apache-2.0
+windows_x86_64_msvc 0.53.1: MIT OR Apache-2.0
+winit 0.30.13: Apache-2.0
+winnow 0.7.15: MIT
+winreg 0.55.0: MIT
+xml-rs 0.8.29: MIT
+zerocopy 0.8.59: BSD-2-Clause OR Apache-2.0 OR MIT
+zerocopy-derive 0.8.59: BSD-2-Clause OR Apache-2.0 OR MIT
+zeroize 1.9.0: Apache-2.0 OR MIT
+zip 2.4.2: MIT
+zlib-rs 0.6.8: Zlib
+zmij 1.0.23: MIT
+zopfli 0.8.3: Apache-2.0
+zune-core 0.5.3: MIT OR Apache-2.0 OR Zlib
+zune-jpeg 0.5.15: MIT OR Apache-2.0 OR Zlib

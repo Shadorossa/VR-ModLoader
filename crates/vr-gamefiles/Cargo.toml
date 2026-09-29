@@ -1,0 +1,14 @@
+[package]
+name = "vr-gamefiles"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Game file access for Inazuma Eleven Victory Road (PC): cpk_list read/write, CPK extraction and the exact install/restore of loose data files"
+
+[dependencies]
+l5-cpk = { path = "../l5-cpk" }
+crc32fast.workspace = true
+thiserror.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+rayon = "1"

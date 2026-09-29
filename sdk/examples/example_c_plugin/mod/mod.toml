@@ -1,0 +1,15 @@
+id = "example_c_plugin"
+name = "Example: C plugin"
+version = "1.0.0"
+author = "ModLoader SDK"
+description = "Native plugin written in C with sdk/evt_plugin.h: logs, reads its config, registers a Lua command and a chained hook on OpenMenu."
+priority = 0
+tags = ["Example"]
+updated = "2026-09-29"
+
+# the DLL sits in this folder (built by build.bat / CMake)
+plugin = "example_c_plugin.dll"
+# a plugin needs the plugin-capable ModLoader (API v1 = ModLoader 1.0.0)
+loader_min = "1.0.0"
+# built-in loader modules this mod needs: the Lua command bridge (switched on by the loader while the mod is active)
+loader_modules = ["lua_bridge"]

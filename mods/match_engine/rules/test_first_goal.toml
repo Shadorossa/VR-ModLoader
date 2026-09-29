@@ -1,0 +1,13 @@
+# Test ruleset: no normal halves, "first to score wins", no time limit.
+# (halves = 0: the engine's half 1 ends on its first frame; half_minutes = 0: clock stopped.)
+# [mods.match_engine] test_ruleset = "test_first_goal"
+id = "test_first_goal"
+name = "Test: first goal wins"
+version = 1
+
+[time]
+halves = 0
+half_minutes = 0
+
+[end]
+golden_goal = true

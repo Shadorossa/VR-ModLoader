@@ -1,0 +1,16 @@
+# BASE ruleset: pickup / small free match (type 2). Reproduces the original game as is.
+id = "pachanga_5v5"
+name = "Small 5-a-side match (original)"
+version = 1
+
+[time]
+half_minutes = 15          # c20 = 15 in all 204 small-match rows
+halves = 1                 # c22 = 1 in all 204: a single period (mi+0 bit 1 cleared)
+
+[teams]
+players = 5                # small match (type 2)
+
+[end]
+extra_time = false
+golden_goal = false
+penalties = false

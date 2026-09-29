@@ -1,0 +1,8 @@
+id = "example_data_only"
+name = "Example: data-only mod"
+version = "1.0.0"
+author = "ModLoader SDK"
+description = "Adds one file to the game's virtual file system through mods\\<id>\\files\\data\\. Template for texture / text replacements."
+priority = 0
+tags = ["Example"]
+updated = "2026-09-29"

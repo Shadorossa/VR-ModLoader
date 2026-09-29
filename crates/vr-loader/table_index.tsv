@@ -1,0 +1,1321 @@
+action/base_act_act_attr	ACT_ATTR		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_act_interp_act	ACT_INTERP_ACT		data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/base_act_act_interp_mot	ACT_INTERP_MOT		data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/base_act_act_jump	ACT_JUMP		data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2
+action/base_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_condition	CONDITION		data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2
+action/base_act_down_time	DOWN_TIME		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_mot_name	MOT_NAME		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_move_rot_speed	MOVE_ROT_SPEED		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_move_speed	MOVE_SPEED		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_mutl_mot_attr	MUTL_MOT_ATTR		data/common/action/base_act_*.cfg.bin	0:c0
+action/base_act_mutl_mot_name	MUTL_MOT_NAME		data/common/action/base_act_*.cfg.bin	0:c0,1:c1
+action/base_act_play_act	PLAY_ACT		data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/base_act_set_script_name	SET_SCRIPT_NAME	0	data/common/action/base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+action/base_act_set_update_time	SET_UPDATE_TIME		data/common/action/base_act_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_act_base_param_type	ACT_BASE_PARAM_TYPE		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_act_base_param_type_info	ACT_BASE_PARAM_TYPE_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2
+action/chara_act_cfg_1_03_91_00_act_inherit_info	ACT_INHERIT_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_cfg_1_03_91_00_act_multi_mot_info	ACT_MULTI_MOT_INFO	0	data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_cfg_1_03_91_00_act_multi_mot_info_add_mot	ACT_MULTI_MOT_INFO_ADD_MOT		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_act_multi_mot_info_add_mot_cond	ACT_MULTI_MOT_INFO_ADD_MOT_COND		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_cfg_1_03_91_00_act_multi_mot_info_attr	ACT_MULTI_MOT_INFO_ATTR		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_act_multi_mot_info_base_mot	ACT_MULTI_MOT_INFO_BASE_MOT		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_act_script_info	ACT_SCRIPT_INFO	0	data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+action/chara_act_cfg_1_03_91_00_action_type_info	ACTION_TYPE_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_cfg_1_03_91_00_base_act_cnt_info	BASE_ACT_CNT_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_base_act_cnt_info_mot	BASE_ACT_CNT_INFO_MOT		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_base_act_info	BASE_ACT_INFO	0	data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_base_act_info_chr	BASE_ACT_INFO_CHR		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_base_act_info_chr_mot	BASE_ACT_INFO_CHR_MOT		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_base_act_info_chr_mot_attr	BASE_ACT_INFO_CHR_MOT_ATTR		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2
+action/chara_act_cfg_1_03_91_00_base_act_info_chr_mot_cond	BASE_ACT_INFO_CHR_MOT_COND		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_cfg_1_03_91_00_interp_info	INTERP_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_interp_info_conf	INTERP_INFO_CONF		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/chara_act_cfg_1_03_91_00_knockback_info	KNOCKBACK_INFO		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_knockback_info_conf	KNOCKBACK_INFO_CONF		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/chara_act_cfg_1_03_91_00_seq_act_info	SEQ_ACT_INFO	0	data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0
+action/chara_act_cfg_1_03_91_00_seq_act_info_conf	SEQ_ACT_INFO_CONF		data/common/action/chara_act_cfg.1.03.91.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/chara_act_soccer_cfg_1_02_80_00_act_base_param_type	ACT_BASE_PARAM_TYPE		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_act_base_param_type_info	ACT_BASE_PARAM_TYPE_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2
+action/chara_act_soccer_cfg_1_02_80_00_act_inherit_info	ACT_INHERIT_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_soccer_cfg_1_02_80_00_act_multi_mot_info	ACT_MULTI_MOT_INFO	0	data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_soccer_cfg_1_02_80_00_act_multi_mot_info_add_mot	ACT_MULTI_MOT_INFO_ADD_MOT		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_act_multi_mot_info_add_mot_cond	ACT_MULTI_MOT_INFO_ADD_MOT_COND		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_soccer_cfg_1_02_80_00_act_multi_mot_info_attr	ACT_MULTI_MOT_INFO_ATTR		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_act_multi_mot_info_base_mot	ACT_MULTI_MOT_INFO_BASE_MOT		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_act_script_info	ACT_SCRIPT_INFO	0	data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+action/chara_act_soccer_cfg_1_02_80_00_action_type_info	ACTION_TYPE_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_soccer_cfg_1_02_80_00_base_act_cnt_info	BASE_ACT_CNT_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_base_act_cnt_info_mot	BASE_ACT_CNT_INFO_MOT		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_base_act_info	BASE_ACT_INFO	0	data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_base_act_info_chr	BASE_ACT_INFO_CHR		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_base_act_info_chr_mot	BASE_ACT_INFO_CHR_MOT		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_base_act_info_chr_mot_attr	BASE_ACT_INFO_CHR_MOT_ATTR		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1
+action/chara_act_soccer_cfg_1_02_80_00_base_act_info_chr_mot_cond	BASE_ACT_INFO_CHR_MOT_COND		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2
+action/chara_act_soccer_cfg_1_02_80_00_interp_info	INTERP_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_interp_info_conf	INTERP_INFO_CONF		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/chara_act_soccer_cfg_1_02_80_00_knockback_info	KNOCKBACK_INFO		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_knockback_info_conf	KNOCKBACK_INFO_CONF		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/chara_act_soccer_cfg_1_02_80_00_seq_act_info	SEQ_ACT_INFO	0	data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0
+action/chara_act_soccer_cfg_1_02_80_00_seq_act_info_conf	SEQ_ACT_INFO_CONF		data/common/action/chara_act_soccer_cfg.1.02.80.00_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/human_base_act_act_attr	ACT_ATTR		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_act_interp_act	ACT_INTERP_ACT		data/common/action/human_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/human_base_act_act_interp_mot	ACT_INTERP_MOT		data/common/action/human_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/human_base_act_act_jump	ACT_JUMP		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_act_knock_back_param	ACT_KNOCK_BACK_PARAM		data/common/action/human_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/human_base_act_act_mot_move_rate	ACT_MOT_MOVE_RATE		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_condition	CONDITION		data/common/action/human_base_act_*.cfg.bin	0:c0,1:c1,2:c2
+action/human_base_act_mot_name	MOT_NAME		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_move_rot_speed	MOVE_ROT_SPEED		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_move_speed	MOVE_SPEED		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_mutl_mot_name	MUTL_MOT_NAME		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_play_act	PLAY_ACT		data/common/action/human_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/human_base_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_set_update_time	SET_UPDATE_TIME		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_start_mot_rate	START_MOT_RATE		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_base_act_step_scale	STEP_SCALE		data/common/action/human_base_act_*.cfg.bin	0:c0
+action/human_npc_child_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_child_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_child_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/human_npc_child_act_*.cfg.bin	0:c0,1:c1
+action/human_npc_child_act_base_act_cfg	BASE_ACT_CFG		data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_child_act_mot_name	MOT_NAME	0	data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_child_act_move_speed	MOVE_SPEED		data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_child_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/human_npc_child_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/human_npc_lady_act_*.cfg.bin	0:c0,1:c1
+action/human_npc_lady_act_base_act_cfg	BASE_ACT_CFG		data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_mot_name	MOT_NAME	0	data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_move_speed	MOVE_SPEED		data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_lady_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/human_npc_lady_act_*.cfg.bin	0:c0
+action/human_npc_man_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/human_npc_man_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/human_npc_man_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/human_npc_man_act_*.cfg.bin	0:c0,1:c1
+action/human_npc_man_act_base_act_cfg	BASE_ACT_CFG		data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/human_npc_man_act_mot_name	MOT_NAME	0	data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/human_npc_man_act_move_speed	MOVE_SPEED		data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/human_npc_man_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/human_npc_man_act_*.cfg.bin	0:c0
+action/npc_act_act_attr	ACT_ATTR		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_act_interp_act	ACT_INTERP_ACT		data/common/action/npc_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/npc_act_act_jump	ACT_JUMP		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_act_mot_move_rate	ACT_MOT_MOVE_RATE		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/npc_act_*.cfg.bin	0:c0,1:c1
+action/npc_act_condition	CONDITION		data/common/action/npc_act_*.cfg.bin	0:c0,1:c1
+action/npc_act_mot_name	MOT_NAME	0	data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_move_speed	MOVE_SPEED		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_mutl_mot_attr	MUTL_MOT_ATTR		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_mutl_mot_name	MUTL_MOT_NAME		data/common/action/npc_act_*.cfg.bin	0:c0
+action/npc_act_play_act	PLAY_ACT	0	data/common/action/npc_act_*.cfg.bin	0:c0,1:c1
+action/npc_act_set_update_time	SET_UPDATE_TIME		data/common/action/npc_act_*.cfg.bin	0:c0
+action/y00110000_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_act_default_move_rot_speed	ACT_DEFAULT_MOVE_ROT_SPEED		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_base_act_cfg	BASE_ACT_CFG		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_mot_name	MOT_NAME		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_move_rot_speed	MOVE_ROT_SPEED		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_move_speed	MOVE_SPEED		data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/y00110000_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/y00110000_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_attr	ACT_ATTR		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_base_circle_base_rot	ACT_BASE_CIRCLE_BASE_ROT		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_default_interp_frame	ACT_DEFAULT_INTERP_FRAME		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_interp_act	ACT_INTERP_ACT		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/yokai_base_act_act_interp_mot	ACT_INTERP_MOT		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/yokai_base_act_act_jump	ACT_JUMP		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_knock_back_param	ACT_KNOCK_BACK_PARAM		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+action/yokai_base_act_act_mot_move_rate	ACT_MOT_MOVE_RATE		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_play_ext_mot_name	ACT_PLAY_EXT_MOT_NAME	0	data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1
+action/yokai_base_act_act_threshold_turn_walk_angle	ACT_THRESHOLD_TURN_WALK_ANGLE		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_act_turn_rot_min_angle	ACT_TURN_ROT_MIN_ANGLE		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1
+action/yokai_base_act_condition	CONDITION		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1,2:c2
+action/yokai_base_act_is_restart	IS_RESTART		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_mot_name	MOT_NAME		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_move_rot_speed	MOVE_ROT_SPEED		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_move_speed	MOVE_SPEED		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_play_act	PLAY_ACT		data/common/action/yokai_base_act_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+action/yokai_base_act_set_act_flag	SET_ACT_FLAG	0	data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_set_update_time	SET_UPDATE_TIME		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_start_mot_rate	START_MOT_RATE		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+action/yokai_base_act_step_scale	STEP_SCALE		data/common/action/yokai_base_act_*.cfg.bin	0:c0
+boost_grp/boost_player_group	BOOST_PLAYER_GRP_INFO	0	data/common/gamedata/boost_grp/boost_player_group_config_*.cfg.bin	0:id
+boost_grp/boost_player_group_config	BOOST_PLAYER_GRP_CONFIG		data/common/gamedata/boost_grp/boost_player_group_config_*.cfg.bin	0:duration_sec,1:enabled,2:table_1,3:table_2,4:table_3,5:table_4
+boost_grp/boost_player_group_spirit_table	BOOST_PLAYER_GRP_SPRIT_TABLE_INFO		data/common/gamedata/boost_grp/boost_player_group_config_*.cfg.bin	0:index,1:spirit_table
+camera/external_camera_config	EXTERNAL_CAMERA_INFO	0	data/common/camera/config/external_camera_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20
+capsule/capsule	CPSL_CONFIG_INFO	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:id,1:reserved_1,2:rank_rate,3:c3,4:c4
+capsule/capsule_data	CPSL_CONFIG_INFO_DATA	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:table_1,1:table_2,2:table_3,3:table_4,4:table_5,5:reserved_5
+capsule/capsule_prize	CPSL_PRIZE_INFO	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:id,1:prize_item,2:reserved_2,3:c3,4:c4,5:weapon_color
+capsule/capsule_prize_table	CPSL_PRIZE_TABLE_INFO	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:id
+capsule/capsule_prize_table_data	CPSL_PRIZE_TABLE_INFO_DATA		data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:prize,1:count,2:reserved_2,3:rate,4:flag_4,5:reserved_5,6:flag_6,7:flag_7,8:condition,9:flag_9
+capsule/capsule_rank_rate	CPSL_LOT_RANK_RATE_INFO	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:id
+capsule/capsule_rank_rate_data	CPSL_LOT_RANK_RATE_INFO_DATA		data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:rank,1:rate
+capsule/capsule_weapon_color	CPSL_LOT_WEAPON_COLOR_TABLE_INFO	0	data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:id
+capsule/capsule_weapon_color_data	CPSL_LOT_WEAPON_COLOR_TABLE_INFO_DATA		data/common/gamedata/capsule/capsule_config_*.cfg.bin	0:color,1:weight
+character/chara_action	CHARA_ACTION_INFO		data/common/gamedata/character/chara_action.cfg.bin	0:index,1:action_file,2:lua_file
+character/chara_action_base_path	CHARA_ACTION_BASE_PATH		data/common/gamedata/character/chara_action.cfg.bin	0:action_base,1:lua_base
+character/chara_base	CHARA_BASE_INFO	0	data/common/gamedata/character/chara_base_*.cfg.bin	0:id,1:name,2:serial_no,3:name_text,4:short_name_text,5:upper_name_text,6:model,7:motion_override,8:reserved_8,9:voice_bank,10:kind,11:gender,12:chara_class,13:academic_year,14:c14,15:series,16:team_1,17:team_2,18:team_3,19:description_text,20:age_group,21:sort_order,22:in_ie1,23:in_ie2,24:in_ie3,25:in_go1,26:in_go2,27:in_go3,28:in_ares,29:in_orion,30:in_victory_road,31:flag_31,32:flag_32,33:reserved_33
+character/chara_base_battle	CHARA_BASE_BATTLE		data/common/gamedata/character/chara_base_*.cfg.bin	0:enabled,1:c1
+character/chara_body	CHARA_BODY_INFO	0	data/common/gamedata/character/chara_model_*.cfg.bin	0:id,1:skeleton_path,2:body_mesh_path,3:motion,4:body_group,5:body_type,6:body_pose_type
+character/chara_change_awakening_power	CHARA_CHANGE_AWAKENING_POWER	0	data/common/gamedata/character/chara_change_*.cfg.bin	0:from_param,1:to_param
+character/chara_costume	CHARA_COSTUME_INFO	0	data/common/gamedata/character/chara_costume_*.cfg.bin	0:chara
+character/chara_costume_data	CHARA_COSTUME_DATA		data/common/gamedata/character/chara_costume_*.cfg.bin	0:costume_no,1:uniform
+character/chara_costume_model	CHARA_COSTUME_MODEL		data/common/gamedata/character/chara_costume_*.cfg.bin	0:variant,1:model,2:motion,3:chara
+character/chara_ex_facial_texture	EX_CHARA_FACIAL_TEXTURE_INFO	0	data/common/gamedata/character/chara_texture_*.cfg.bin	0:model
+character/chara_ex_facial_texture_resource	EX_CHARA_FACIAL_TEXTURE_RESOURCE		data/common/gamedata/character/chara_texture_*.cfg.bin	0:slot,1:texture
+character/chara_face_facial_mot_group	FACIAL_MOT_GROUP	0	data/common/gamedata/character/chara_face_*.cfg.bin	0:c0
+character/chara_face_facial_mot_group_attr	FACIAL_MOT_GROUP_ATTR		data/common/gamedata/character/chara_face_*.cfg.bin	0:c0,1:c1
+character/chara_facial_data	CHARA_FACIAL_DATA	0	data/common/gamedata/character/chara_face_*.cfg.bin	0:id,1:facial_motion,2:weight,3:blend,4:reserved_4,5:reserved_5
+character/chara_facial_lipsync_data	CHARA_FACIAL_LIPSYNC_DATA	0	data/common/gamedata/character/chara_face_*.cfg.bin	0:c0,1:c1
+character/chara_facial_motion	CHARA_FACIAL_MOTION_INFO	0	data/common/gamedata/character/chara_face_*.cfg.bin	0:id,1:index,2:motion_name,3:flag_3,4:c4
+character/chara_facial_precede_data	CHARA_FACIAL_PRECEDE_DATA	0	data/common/gamedata/character/chara_face_*.cfg.bin	0:c0,1:c1
+character/chara_mesh_change	GENERAL_LIMIT_INFO	0	data/common/gamedata/character/chara_mesh_change_config_*.cfg.bin	0:target
+character/chara_mesh_change_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/character/chara_mesh_change_config_*.cfg.bin	0:flag,1:condition
+character/chara_mesh_change_param	GENERAL_LIMIT_INFO_DATA_PARAM		data/common/gamedata/character/chara_mesh_change_config_*.cfg.bin	0:reserved_0,1:mesh_type
+character/chara_mesh_mask	MESH_MASK_INFO	0	data/common/gamedata/character/chara_mesh_mask_config.cfg.bin	0:id
+character/chara_mesh_mask_cond	MESH_MASK_COND	0	data/common/gamedata/character/chara_mesh_mask_config.cfg.bin	0:mesh,1:alpha,2:flag_2,3:c3,4:c4,5:reserved_5,6:reserved_6
+character/chara_mode_change	CHARA_MODE_CHANGE	0	data/common/gamedata/character/chara_change_*.cfg.bin	0:from_param,1:to_param
+character/chara_model	CHARA_MODEL_INFO	0	data/common/gamedata/character/chara_model_*.cfg.bin	0:id,1:skeleton_path,2:body_mesh_path,3:motion_override,4:body,5:clothes,6:shoes,7:gloves,8:parts_color,9:c9,10:head_mesh_path,11:head_texture_path,12:collar_open,13:equipment_flag_2,14:reserved_14,15:c15,16:skin_color,17:color_17,18:exmesh_1,19:exmesh_2,20:reserved_20,21:reserved_21,22:color_22,23:flag_23,24:flag_24,25:flag_25,26:color_26,27:exmesh_3,28:reserved_28,29:flag_29,30:flag_30,31:chest_size,32:c32,33:force_kit,34:custom_parts_path,35:flag_35,36:facial_motion
+character/chara_model_base_path	CHARA_MODEL_BASE_PATH		data/common/gamedata/character/chara_model_*.cfg.bin	0:base_path
+character/chara_model_change	CHARA_MDL_CHANGE_INFO	0	data/common/gamedata/character/chara_model_change_*.cfg.bin	0:chara
+character/chara_model_change_data	CHARA_MDL_CHANGE_DATA		data/common/gamedata/character/chara_model_change_*.cfg.bin	0:costume_no,1:condition
+character/chara_motion	CHARA_MOTION_INFO	0	data/common/gamedata/character/chara_motion_*.cfg.bin	0:id,1:pack_path,2:preset_1,3:preset_2,4:preset_3,5:preset_4,6:preset_5,7:preset_6,8:preset_7,9:preset_8,10:preset_9
+character/chara_motion_base_path	CHARA_MOTION_BASE_PATH		data/common/gamedata/character/chara_motion_*.cfg.bin	0:base_path
+character/chara_motion_preset	CHARA_MOTION_PRESET_INFO	0	data/common/gamedata/character/chara_motion_*.cfg.bin	0:id
+character/chara_motion_preset_data	CHARA_MOTION_PRESET_DATA		data/common/gamedata/character/chara_motion_*.cfg.bin	0:pack_path,1:condition
+character/chara_param	CHARA_PARAM_INFO	0	data/common/gamedata/character/chara_param_*.cfg.bin	0:id,1:chara,2:element,3:main_position,4:sub_position,5:build_type,6:c6,7:growth_pattern,8:play_style,9:rank,10:ability_board,11:skill_1,12:skill_1_level,13:skill_2,14:skill_2_level,15:skill_3,16:skill_3_level,17:skill_4,18:skill_4_level,19:skill_5,20:skill_5_level,21:skill_6,22:skill_6_level,23:alt_skill_1,24:alt_skill_1_level,25:alt_skill_2,26:alt_skill_2_level,27:alt_skill_3,28:alt_skill_3_level,29:mod_kick,30:mod_control,31:mod_technique,32:mod_pressure,33:mod_physical,34:mod_agility,35:mod_intelligence,36:flag_36,37:flag_37,38:flag_38,39:flag_39,40:title,41:special_rarity,42:performance_genre,43:evt_stats_version,44:evt_growth_type,45:stat_kick_lv200,46:stat_control_lv200,47:stat_technique_lv200,48:stat_pressure_lv200,49:stat_physical_lv200,50:stat_intelligence_lv200,51:stat_agility_lv200,52:stat_rapidez_lv200,53:stat_suerte_lv200,54:libertad_lv200,55:evt_recruit_mode,56:evt_moment_kit,57:evt_rogue_rarity,61:evt_own_passive_1,62:evt_own_passive_2,63:evt_own_passive_3,64:evt_own_passive_4,65:evt_own_passive_5
+character/chara_param_story_fix_skill	STORY_FIX_SKILL_INFO	0	data/common/gamedata/character/chara_param_*.cfg.bin	0:chara_param,1:reserved_1,2:reserved_2,3:reserved_3,4:fix_slot_4,5:fix_slot_5,6:fix_slot_6,7:reserved_7,8:reserved_8,9:reserved_9
+character/chara_param_type_table	TYPE_TABLE_INFO	0	data/common/gamedata/character/chara_param_*.cfg.bin	0:id
+character/chara_param_type_table_data	TYPE_TABLE_DATA		data/common/gamedata/character/chara_param_*.cfg.bin	0:value,1:weight
+character/chara_parts_clothes	CHARA_PARTS_CLOTHES_MODEL	0	data/common/gamedata/character/chara_parts_*.cfg.bin	0:id,1:name
+character/chara_parts_clothes_base_path	CHARA_PARTS_CLOTHES_BASE_PATH		data/common/gamedata/character/chara_parts_*.cfg.bin	0:base_path
+character/chara_parts_clothes_info	CHARA_PARTS_CLOTHES_INFO		data/common/gamedata/character/chara_parts_*.cfg.bin	0:upper_mesh,1:upper_texture,2:body_variant,3:lower_mesh,4:lower_texture,5:color,6:socks_mesh,7:socks_texture,8:sleeve_mesh,9:sleeve_texture,10:shoe_mesh,11:shoe_texture,12:model_override,13:c13,14:flag_14,15:flag_15,16:flag_16,17:flag_17,18:motion,19:c19,20:flag_20,21:flag_21
+character/chara_parts_color	CHARA_PARTS_COLOR	0	data/common/gamedata/character/chara_parts_*.cfg.bin	0:id,1:color_1,2:color_2,3:reserved_3
+character/chara_parts_exmesh	CHARA_PARTS_EXMESH_MODEL	0	data/common/gamedata/character/chara_parts_*.cfg.bin	0:id
+character/chara_parts_exmesh_base_path	CHARA_PARTS_EXMESH_BASE_PATH		data/common/gamedata/character/chara_parts_*.cfg.bin	0:base_path
+character/chara_parts_exmesh_info	CHARA_PARTS_EXMESH_INFO		data/common/gamedata/character/chara_parts_*.cfg.bin	0:mesh,1:texture,2:attach_type
+character/chara_parts_glove	CHARA_PARTS_GLOVE_MODEL	0	data/common/gamedata/character/chara_parts_*.cfg.bin	0:id
+character/chara_parts_glove_base_path	CHARA_PARTS_GLOVE_BASE_PATH		data/common/gamedata/character/chara_parts_*.cfg.bin	0:base_path
+character/chara_parts_glove_info	CHARA_PARTS_GLOVE_INFO		data/common/gamedata/character/chara_parts_*.cfg.bin	0:mesh,1:texture,2:body_variant
+character/chara_parts_shoes	CHARA_PARTS_SHOES_MODEL	0	data/common/gamedata/character/chara_parts_*.cfg.bin	0:id
+character/chara_parts_shoes_base_path	CHARA_PARTS_SHOES_BASE_PATH		data/common/gamedata/character/chara_parts_*.cfg.bin	0:base_path
+character/chara_parts_shoes_info	CHARA_PARTS_SHOES_INFO		data/common/gamedata/character/chara_parts_*.cfg.bin	0:mesh,1:texture,2:body_variant
+character/chara_texture_base_path	CHARA_TEXTURE_BASE_PATH		data/common/gamedata/character/chara_texture_*.cfg.bin	0:base_path
+character/mob_npc_personality	MOB_NPC_PERSONALITY_INFO	0	data/common/gamedata/character/mob_npc_type_config_*.cfg.bin	0:id
+character/mob_npc_personality_event	MOB_NPC_PERSONALITY_INFO_EVENT		data/common/gamedata/character/mob_npc_type_config_*.cfg.bin	0:event,1:enabled,2:talk_1,3:talk_2,4:talk_3,5:reserved_5,6:c6
+character/mob_npc_type	MOB_NPC_TYPE_INFO	0	data/common/gamedata/character/mob_npc_type_config_*.cfg.bin	0:id,1:personality,2:reserved_2,3:talk,4:gender
+character/mob_npc_type_model	MOB_NPC_TYPE_INFO_REF		data/common/gamedata/character/mob_npc_type_config_*.cfg.bin	0:model,1:motion,2:reserved_2,3:motion_group
+character/mob_npc_type_preset	MOB_NPC_TYPE_PRESET_INFO	0	data/common/gamedata/character/mob_npc_type_preset_config_*.cfg.bin	0:id
+character/mob_npc_type_preset_types	MOB_NPC_TYPE_PRESET_INFO_TYPES	0	data/common/gamedata/character/mob_npc_type_preset_config_*.cfg.bin	0:mob_type,1:weight
+character/seasonal_chara_param	SEASONAL_CHARA_PARAM_DATA	0	data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:chara_param,1:build_type,2:season
+character/seasonal_chara_param_table	SEASONAL_CHARA_PARAM_TABLE		data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:table_no
+character/seasonal_fix_team_passive_build_type	SEASONAL_FIX_TEAM_PASSIVE_BUILD_TYPE		data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:build_type
+character/seasonal_fix_team_passive_main_pos	SEASONAL_FIX_TEAM_PASSIVE_MAIN_POS		data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:main_position
+character/seasonal_fix_team_passive_passive	SEASONAL_FIX_TEAM_PASSIVE_PASSIVE		data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:passive
+character/seasonal_fix_team_passive_table	SEASONAL_FIX_TEAM_PASSIVE_TABLE		data/common/gamedata/character/seasonal_chara_param_*.cfg.bin	0:table_no
+character/vehicle_param	VEHICLE_PARAM_INFO	0	data/common/gamedata/character/vehicle_config.cfg.bin	0:id,1:c1,2:speed,3:reserved_3,4:c4,5:reserved_5,6:reserved_6,7:name
+character/vehicle_param_bone	VEHICLE_PARAM_INFO_BONE		data/common/gamedata/character/vehicle_config.cfg.bin	0:bone,1:seat
+command/chara_cmd_event_common	CHARA_ACTION_CMD_DATA	0	data/common/gamedata/command/chara_cmd_event_common_*.cfg.bin	0:c0
+command/rpg_cmd_action	CMD_ACTION_INFO	0	data/common/gamedata/command/rpg_cmd_action_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+command/rpg_cmd_event_all_cmd_event_info	ALL_CMD_EVENT_INFO	0	data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2
+command/rpg_cmd_event_chara_cmd_event_func	CHARA_CMD_EVENT_FUNC		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+command/rpg_cmd_event_cmd_event_data	CMD_EVENT_DATA		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+command/rpg_cmd_event_cmd_event_info	CMD_EVENT_INFO	0	data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0
+command/rpg_cmd_event_cmd_event_length	CMD_EVENT_LENGTH		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0
+command/rpg_cmd_event_cmd_event_size	CMD_EVENT_SIZE		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0
+command/rpg_cmd_event_cmd_event_timing	CMD_EVENT_TIMING		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0,1:c1
+command/rpg_cmd_event_cmd_event_type	CMD_EVENT_TYPE		data/common/gamedata/command/rpg_cmd_event_*.cfg.bin	0:c0
+command/soccer_cmd_action	CMD_ACTION_INFO	0	data/common/gamedata/command/soccer_cmd_action_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+command/soccer_cmd_event_all_cmd_event_info	ALL_CMD_EVENT_INFO	0	data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2
+command/soccer_cmd_event_chara_cmd_event_func	CHARA_CMD_EVENT_FUNC		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+command/soccer_cmd_event_cmd_event_data	CMD_EVENT_DATA		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+command/soccer_cmd_event_cmd_event_info	CMD_EVENT_INFO	0	data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0
+command/soccer_cmd_event_cmd_event_length	CMD_EVENT_LENGTH		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0
+command/soccer_cmd_event_cmd_event_size	CMD_EVENT_SIZE		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0
+command/soccer_cmd_event_cmd_event_timing	CMD_EVENT_TIMING		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0,1:c1
+command/soccer_cmd_event_cmd_event_type	CMD_EVENT_TYPE		data/common/gamedata/command/soccer_cmd_event_*.cfg.bin	0:c0
+common/npc_common_act_type	ACT_TYPE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1
+common/npc_common_act_type_num	ACT_TYPE_NUM		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0
+common/npc_common_create_range	CREATE_RANGE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1
+common/npc_common_delete_range	DELETE_RANGE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1
+common/npc_common_hearing_range	HEARING_RANGE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1
+common/npc_common_near_range	NEAR_RANGE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1,2:c2
+common/npc_common_point	POINT		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+common/npc_common_point_max	POINT_MAX		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0
+common/npc_common_route_type	ROUTE_TYPE		data/common/gamedata/common/npc_common_*.cfg.bin	0:c0
+craft/craft_obj	CRAFT_OBJ_INFO	0	data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:id,1:category,2:sub_category,3:c3,4:c4,5:c5,6:reserved_6,7:reserved_7,8:reserved_8,9:flag_9,10:size_x,11:reserved_11,12:size_z,13:shop,14:c14,15:series,16:c16,17:flag_17,18:flag_18,19:offset_x,20:offset_y,21:offset_z,22:c22,23:c23,24:c24,25:c25,26:c26,27:cost
+craft/craft_obj_category	CRAFT_OBJ_CATEGORY_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:category,1:max_count
+craft/craft_obj_interest_chara	CRAFT_OBJ_INTERREST_LOTTERY_UNIQUE_CHARA_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:chara,1:weight
+craft/craft_obj_interest_socket	CRAFT_OBJ_INTERREST_SOCKET_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:c0,1:reserved_1,2:radius,3:reserved_3
+craft/craft_obj_npc_point	CRAFT_OBJ_NPC_STICK_POINT_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:x,1:reserved_1,2:z,3:rot_y,4:reserved_4,5:reserved_5
+craft/craft_obj_visual	CRAFT_OBJ_VISUAL_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:model,1:effect,2:weight
+craft/craft_obj_visual_group	CRAFT_OBJ_VISUAL_GROUP_INFO		data/common/gamedata/craft/craft_obj_config_*.cfg.bin	0:group
+craft/craft_theme	CRAFT_THEME_INFO	0	data/common/gamedata/craft/craft_theme_config_*.cfg.bin	0:id,1:name_text,2:c2
+craft/craft_theme_type	CRAFT_THEME_TYPE_INFO		data/common/gamedata/craft/craft_theme_config_*.cfg.bin	0:name_text,1:name_text_2,2:desc_text,3:map,4:condition,5:c5
+debug/map_route_cfg	MAP_ROUTE_CFG	0	data/common/gamedata/debug/map/map_route_config_dbg_*.cfg.bin	0:c0,1:c1
+debug/map_route_info	MAP_ROUTE_INFO		data/common/gamedata/debug/map/map_route_config_dbg_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+dungeon/gimmick_system_num_dungeon_num_system_info	DUNGEON_NUM_SYSTEM_INFO	0	data/common/gamedata/dungeon/gimmick_system_num_config_*.cfg.bin	0:c0,1:c1
+dungeon/gimmick_system_num_dungeon_num_system_info_group	DUNGEON_NUM_SYSTEM_INFO_GROUP	0	data/common/gamedata/dungeon/gimmick_system_num_config_*.cfg.bin	0:c0,1:c1
+dungeon/gimmick_system_num_dungeon_num_table_group	DUNGEON_NUM_TABLE_GROUP	0	data/common/gamedata/dungeon/gimmick_system_num_config_*.cfg.bin	0:c0
+dungeon/gimmick_system_num_dungeon_num_table_group_data	DUNGEON_NUM_TABLE_GROUP_DATA		data/common/gamedata/dungeon/gimmick_system_num_config_*.cfg.bin	0:c0,1:c1,2:c2
+dungeon/z01_debug_gimmick_layout_layout_base	LAYOUT_BASE	0	data/common/gamedata/dungeon/z01_debug/z01_debug_gimmick_layout_*.cfg.bin	0:c0
+dungeon/z01_debug_gimmick_layout_layout_base_point	LAYOUT_BASE_POINT		data/common/gamedata/dungeon/z01_debug/z01_debug_gimmick_layout_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+dungeon/z01_debug_gimmick_layout_layout_base_shape	LAYOUT_BASE_SHAPE		data/common/gamedata/dungeon/z01_debug/z01_debug_gimmick_layout_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+event/bustup_talk_config	EV_BUSTUP_TALK_DATA_CONFIG	0	data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0
+event/event_assign_snd_tag_word_replace_info	EVENT_ASSIGN_SND_TAG_WORD_REPLACE_INFO	0	data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0
+event/event_assign_snd_tag_word_replace_target	EVENT_ASSIGN_SND_TAG_WORD_REPLACE_TARGET	0	data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0,1:c1
+event/event_assign_tag_word_replace_info	EVENT_ASSIGN_TAG_WORD_REPLACE_INFO	0	data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0
+event/event_assign_tag_word_replace_target	EVENT_ASSIGN_TAG_WORD_REPLACE_TARGET		data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0,1:c1
+event/event_bustup_talk_data_ev_bustup_talk_data_body	EV_BUSTUP_TALK_DATA_BODY		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_1	EV_BUSTUP_TALK_DATA_CHR_1		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_2	EV_BUSTUP_TALK_DATA_CHR_2		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_3	EV_BUSTUP_TALK_DATA_CHR_3		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_4	EV_BUSTUP_TALK_DATA_CHR_4		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_5	EV_BUSTUP_TALK_DATA_CHR_5		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_chr_6	EV_BUSTUP_TALK_DATA_CHR_6		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_1	EV_BUSTUP_TALK_DATA_FR_EFF_1		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_2	EV_BUSTUP_TALK_DATA_FR_EFF_2		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_3	EV_BUSTUP_TALK_DATA_FR_EFF_3		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_4	EV_BUSTUP_TALK_DATA_FR_EFF_4		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_5	EV_BUSTUP_TALK_DATA_FR_EFF_5		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_6	EV_BUSTUP_TALK_DATA_FR_EFF_6		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_fr_eff_7	EV_BUSTUP_TALK_DATA_FR_EFF_7		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+event/event_bustup_talk_data_ev_bustup_talk_data_full_eff	EV_BUSTUP_TALK_DATA_FULL_EFF		data/common/gamedata/event/event_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+event/event_bustup_talk_ev_bustup_light_base_path	EV_BUSTUP_LIGHT_BASE_PATH		data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0
+event/event_bustup_talk_ev_bustup_light_info	EV_BUSTUP_LIGHT_INFO	0	data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1
+event/event_bustup_talk_ev_bustup_talk_eff_place_info	EV_BUSTUP_TALK_EFF_PLACE_INFO	0	data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+event/event_bustup_talk_ev_bustup_talk_preset_chara	EV_BUSTUP_TALK_PRESET_CHARA		data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49,50:c50
+event/event_bustup_talk_ev_bustup_talk_preset_info	EV_BUSTUP_TALK_PRESET_INFO	0	data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1
+event/event_bustup_talk_ev_bustup_talk_win_eff_def	EV_BUSTUP_TALK_WIN_EFF_DEF	0	data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+event/event_bustup_talk_ev_bustup_talk_win_eff_detail_info	EV_BUSTUP_TALK_WIN_EFF_DETAIL_INFO		data/common/gamedata/event/event_bustup_talk_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+event/event_bustup_talk_sound_data_ev_bustup_talk_sound_data_body	EV_BUSTUP_TALK_SOUND_DATA_BODY		data/common/gamedata/event/event_bustup_talk_sound_data_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12
+event/event_bustup_talk_sound_data_ev_bustup_talk_sound_data_config	EV_BUSTUP_TALK_SOUND_DATA_CONFIG	0	data/common/gamedata/event/event_bustup_talk_sound_data_config_*.cfg.bin	0:c0,1:c1,2:c2
+event/event_cam_preset_anim_config	EVENT_CAM_PRESET_ANIM_CONFIG	0	data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0
+event/event_cam_preset_anim_config_param	EVENT_CAM_PRESET_ANIM_CONFIG_PARAM		data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+event/event_cam_preset_config	EVENT_CAM_PRESET_CONFIG	0	data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+event/event_cam_preset_config_param	EVENT_CAM_PRESET_CONFIG_PARAM		data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+event/event_cmnd_ev_cmnd_info_data	EV_CMND_INFO_DATA	0	data/common/gamedata/event/event_cmnd_config_*.cfg.bin	0:c0
+event/event_cmnd_ev_cmnd_info_data_attr	EV_CMND_INFO_DATA_ATTR		data/common/gamedata/event/event_cmnd_config_*.cfg.bin	0:c0
+event/event_env_quest	EVENT_ENV_CONFIG		data/common/gamedata/event/event_env_config_quest_*.cfg.bin	0:id,1:name,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:bgm,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:se_ambient,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:map_tag,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49,50:c50,51:c51,52:c52,53:soccer_bgm_set,54:c54
+event/event_env_scenario	EVENT_ENV_CONFIG		data/common/gamedata/event/event_env_config_scenario_*.cfg.bin	0:id,1:name,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:bgm,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:se_ambient,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:map_tag,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49,50:c50,51:c51,52:c52,53:soccer_bgm_set,54:c54
+event/event_env_soccer_demo	EVENT_ENV_CONFIG		data/common/gamedata/event/event_env_config_soccer_demo_*.cfg.bin	0:id,1:name,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:bgm,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:se_ambient,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:map_tag,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49,50:c50,51:c51,52:c52,53:soccer_bgm_set,54:c54
+event/event_fld_def	EVENT_FLD_DEF		data/common/gamedata/event/event_fld_def_*.cfg.bin	0:c0,1:c1
+event/event_general_bustup_talk_data_ev_general_bustup_talk_data_config	EV_GENERAL_BUSTUP_TALK_DATA_CONFIG	0	data/common/gamedata/event/event_general_bustup_talk_data_config_{chapter}.cfg.bin	0:c0
+event/event_general_bustup_talk_data_ev_general_bustup_talk_data_config_team_a	EV_GENERAL_BUSTUP_TALK_DATA_CONFIG_TEAM_A		data/common/gamedata/event/event_general_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+event/event_general_bustup_talk_data_ev_general_bustup_talk_data_config_team_b	EV_GENERAL_BUSTUP_TALK_DATA_CONFIG_TEAM_B		data/common/gamedata/event/event_general_bustup_talk_data_config_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+event/event_model_ev_mdl_def_data	EV_MDL_DEF_DATA	0	data/common/gamedata/event/event_model_config_*.cfg.bin	0:c0,1:c1
+event/event_model_ev_mdl_def_data_info	EV_MDL_DEF_DATA_INFO	0	data/common/gamedata/event/event_model_config_*.cfg.bin	0:c0,1:c1
+event/event_offset_anim_def_param	EVENT_OFFSET_ANIM_DEF_PARAM	0	data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0
+event/event_offset_anim_def_param_data	EVENT_OFFSET_ANIM_DEF_PARAM_DATA		data/common/gamedata/event/event_cam_preset_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+event/event_subtitle	EV_SUBTITLE_DATA		data/common/gamedata/event/subtitle/{lang}/{subtitle}.cfg.bin	0:text,1:start,2:c2,3:end,4:c4
+event/event_timezone_detail_timezone_data	DETAIL_TIMEZONE_DATA		data/common/gamedata/event/event_timezone_config_*.cfg.bin	0:c0,1:c1,2:c2
+event/event_timezone_ev_timezone_data	EV_TIMEZONE_DATA		data/common/gamedata/event/event_timezone_config_*.cfg.bin	0:c0,1:c1
+event/event_variation_tag_word_replace_info	EVENT_VARIATION_TAG_WORD_REPLACE_INFO	0	data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0
+event/event_variation_tag_word_replace_target	EVENT_VARIATION_TAG_WORD_REPLACE_TARGET		data/common/gamedata/event/event_tag_word_replace_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+event_cfg/table_ev_li_chara_light	EV_LI_CHARA_LIGHT		data/common/event_cfg/other/light/{event}/light_list.cfg.bin	0:c0,1:c1,2:c2
+event_cfg/table_ev_li_map_light	EV_LI_MAP_LIGHT		data/common/event_cfg/other/light/{event}/light_list.cfg.bin	0:c0,1:c1,2:c2
+event_cfg/table_prop_param	PROP_PARAM		data/common/event_cfg/other/light/{event}/{name}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+font/code_sort	ZH_CODE_SORT_KEY		data/common/gamedata/font/{lang}/code_sort.cfg.bin	0:c0,1:c1
+font/font_style_bill	FONT_STYLE_BILL	0	data/common/font/font_style/*/font_style.cfg_*.bin	0:id
+font/font_style_main	FONT_STYLE_MAIN	0	data/common/font/font_style/*/font_style.cfg_*.bin	0:id,1:size_x,2:size_y,3:color_r,4:color_g,5:color_b,6:color_a,7:font
+help/help_list_image	HELP_LIST_IMAGE		data/common/gamedata/help/help_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+help/help_list_info	HELP_LIST_INFO	0	data/common/gamedata/help/help_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14
+help/help_operation_guide_info	HELP_OPERATION_GUIDE_INFO	0	data/common/gamedata/help/help_list_config_*.cfg.bin	0:c0,1:c1
+help/help_operation_guide_layout	HELP_OPERATION_GUIDE_LAYOUT		data/common/gamedata/help/help_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+input/dbg_input_ctrl_input_cmd_opt	INPUT_CMD_OPT		data/common/input/dbg_input_ctrl_*.cfg.bin	0:c0
+input/dbg_input_ctrl_input_ctrl_opt	INPUT_CTRL_OPT		data/common/input/dbg_input_ctrl_*.cfg.bin	0:c0
+input/dbg_input_ctrl_input_keyboard_info	INPUT_KEYBOARD_INFO		data/common/input/dbg_input_ctrl_*.cfg.bin	0:c0,1:c1
+input/dbg_input_ctrl_input_mouse_info	INPUT_MOUSE_INFO		data/common/input/dbg_input_ctrl_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+input/dbg_input_ctrl_input_pad_info	INPUT_PAD_INFO		data/common/input/dbg_input_ctrl_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+input/input_arias_name	INPUT_ARIAS_NAME		data/common/input/input_ctrl_*.cfg.bin	0:c0
+input/input_cmd_opt	INPUT_CMD_OPT		data/common/input/input_ctrl_*.cfg.bin	0:c0
+input/input_ctrl_opt	INPUT_CTRL_OPT		data/common/input/input_ctrl_*.cfg.bin	0:c0
+input/input_keyboard_info	INPUT_KEYBOARD_INFO		data/common/input/input_ctrl_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+input/input_mouse_info	INPUT_MOUSE_INFO		data/common/input/input_ctrl_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+input/input_pad_info	INPUT_PAD_INFO		data/common/input/input_ctrl_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+input/input_tap_default_time	INPUT_TAP_DEFAULT_TIME		data/common/input/input_ctrl_*.cfg.bin	0:c0,1:c1
+input/key_assign_input_key_assign_info	INPUT_KEY_ASSIGN_INFO		data/common/input/key_assign_*.cfg.bin	0:c0,1:c1
+input/key_assign_input_keyboard_info	INPUT_KEYBOARD_INFO		data/common/input/key_assign_*.cfg.bin	0:c0,1:c1
+input/key_assign_input_mouse_info	INPUT_MOUSE_INFO		data/common/input/key_assign_*.cfg.bin	0:c0,1:c1
+input/key_assign_input_pad_info	INPUT_PAD_INFO		data/common/input/key_assign_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+item/common_item_table	ITBL_BASE	0	data/common/gamedata/item/common_item_table_*.cfg.bin	0:id
+item/common_item_table_items	ITBL_ITEMS		data/common/gamedata/item/common_item_table_*.cfg.bin	0:item,1:count,2:weight,3:condition,4:reserved_4
+item/item_accessory	ITEM_ACCESSORY_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:reserved_17,18:reserved_18
+item/item_accessory_stats	ITEM_ACCESSORY_INFO_REGULAR_UNIQUE_BASE		data/common/gamedata/item/item_config_*.cfg.bin	0:kick,1:control,2:technique,3:pressure,4:physical,5:agility,6:intelligence,7:reserved_7,8:reserved_8,9:reserved_9
+item/item_animal	ITEM_ANIMAL_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked,17:icon_name
+item/item_boost_effect	ITEM_BOOST_EFFECT_INFO		data/common/gamedata/item/item_config_*.cfg.bin	0:index,1:rate,2:c2,3:c3,4:c4,5:c5
+item/item_chara_select_box	CHARA_SELECT_BOX_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:box_item
+item/item_chara_select_box_chara	CHARA_SELECT_BOX_INFO_CHARA	0	data/common/gamedata/item/item_config_*.cfg.bin	0:chara_param,1:rank
+item/item_compensation	ITEM_COMPENSATION_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id
+item/item_compensation_data	ITEM_COMPENSATION_DATA	0	data/common/gamedata/item/item_config_*.cfg.bin	0:item,1:token_item,2:amount
+item/item_consume	ITEM_CONSUME_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:battle_command,17:value
+item/item_costume	ITEM_COSTUME_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:c17,18:uniform
+item/item_craft_obj	ITEM_CRAFT_OBJ_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:category_text,14:base_item,15:icon_index,16:linked
+item/item_emblem	ITEM_EMBLEM_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index
+item/item_emblem_series	ITEM_EMBLEM_INFO_SERIES		data/common/gamedata/item/item_config_*.cfg.bin	0:series_1,1:series_2,2:series_3,3:series_4,4:series_5,5:series_6,6:series_7,7:series_8,8:series_9
+item/item_equip_cond	ITEM_EQUIP_COND		data/common/gamedata/item/item_config_*.cfg.bin	0:index,1:c1,2:flag_2,3:flag_3,4:flag_4
+item/item_equip_cond_chara	ITEM_EQUIP_COND_CHARA	0	data/common/gamedata/item/item_config_*.cfg.bin	0:chara
+item/item_fashion	ITEM_FASHION_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:const_17,18:uniform
+item/item_fashion_series	ITEM_FASHION_INFO_SERIES		data/common/gamedata/item/item_config_*.cfg.bin	0:series_1,1:series_2,2:series_3,3:series_4,4:series_5,5:series_6,6:series_7,7:series_8,8:series_9
+item/item_formation	ITEM_FORMATION_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_important	ITEM_IMPORTANT_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_important_cond	ITEM_IMPORTANT_CND_ARY		data/common/gamedata/item/item_config_*.cfg.bin	0:cond_name,1:condition
+item/item_kizuna_link	ITEM_KIZUNA_LINK_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index
+item/item_misanga	ITEM_MISANGA_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:reserved_17,18:uniform
+item/item_misanga_stats	ITEM_MISANGA_INFO_REGULAR_UNIQUE_BASE		data/common/gamedata/item/item_config_*.cfg.bin	0:kick,1:control,2:technique,3:pressure,4:physical,5:agility,6:intelligence,7:reserved_7,8:reserved_8,9:reserved_9
+item/item_name_plate	ITEM_NAME_PLATE_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_performance	ITEM_PERFORMANCE_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_rare_change	ITEM_RARE_CHANGE_INFO		data/common/gamedata/item/item_config_*.cfg.bin	0:rarity
+item/item_rare_change_data	ITEM_RARE_CHANGE_INFO_DATA		data/common/gamedata/item/item_config_*.cfg.bin	0:rarity,1:rate
+item/item_select_box	ITEM_SELECT_BOX_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:box_item
+item/item_select_box_item	ITEM_SELECT_BOX_INFO_ITEM	0	data/common/gamedata/item/item_config_*.cfg.bin	0:item,1:count
+item/item_shoes	ITEM_SHOES_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:flag_17,18:uniform
+item/item_shoes_stats	ITEM_SHOES_INFO_REGULAR_UNIQUE_BASE		data/common/gamedata/item/item_config_*.cfg.bin	0:kick,1:control,2:technique,3:pressure,4:physical,5:agility,6:intelligence,7:reserved_7,8:reserved_8,9:reserved_9
+item/item_special	ITEM_SPECIAL_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:reserved_16,17:reserved_17,18:reserved_18
+item/item_special_skill	ITEM_SPECIAL_SKILL_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:skill_kind,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked,17:flag_17
+item/item_special_stats	ITEM_SPECIAL_INFO_REGULAR_UNIQUE_BASE		data/common/gamedata/item/item_config_*.cfg.bin	0:kick,1:control,2:technique,3:pressure,4:physical,5:agility,6:intelligence,7:reserved_7,8:reserved_8,9:reserved_9
+item/item_special_tactics	ITEM_SPECIAL_TACTICS_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_super_tactics	ITEM_SUPER_TACTICS_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_synergy_flag	ITEM_SYNERGY_FLAG_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/item_title	ITEM_TITLE_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index
+item/item_user_title	ITEM_USER_TITLE_INFO	0	data/common/gamedata/item/item_config_*.cfg.bin	0:id,1:reserved_1,2:name_text,3:desc_text,4:catalog_no,5:category,6:sub_category,7:max_stack,8:reserved_8,9:reserved_9,10:reserved_10,11:key,12:rarity,13:reserved_13,14:base_item,15:icon_index,16:linked
+item/win_treasure_lot_table	ITBL_BASE	0	data/common/gamedata/item/win_treasure_lot_table_config_*.cfg.bin	0:id
+item/win_treasure_lot_table_items	ITBL_ITEMS		data/common/gamedata/item/win_treasure_lot_table_config_*.cfg.bin	0:item,1:count,2:weight,3:condition,4:reserved_4
+light/light_overwrite_info	LIGHT_OVERWRITE_INFO	0	data/common/gamedata/light/light_overwrite_config_*.cfg.bin	0:c0
+light/light_overwrite_param	LIGHT_OVERWRITE_PARAM		data/common/gamedata/light/light_overwrite_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+live2d/live2d_res	L2D_RES_INFO	0	data/common/gamedata/live2d/live2d_res_info_*.cfg.bin	0:id,1:l2da_path,2:l2df_path,3:motion_1,4:motion_2,5:motion_3,6:motion_4,7:motion_5,8:motion_6,9:motion_7,10:motion_8,11:motion_9,12:motion_10,13:motion_11,14:motion_12,15:motion_13,16:motion_14,17:motion_15,18:motion_16,19:reserved_19,20:reserved_20,21:reserved_21,22:reserved_22,23:reserved_23
+live2d/live2d_res_base_path	L2D_RES_BASE_PATH		data/common/gamedata/live2d/live2d_res_info_*.cfg.bin	0:base_path
+map/col_mesh_flag_config_col_mesh_flag_base	COL_MESH_FLAG_BASE		data/common/gamedata/map/{map}/{map}_col_mesh_flag_config.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/encount_btl_area	ENCOUNT_BTL_AREA		data/common/gamedata/map/encount_config_*.cfg.bin	0:c0,1:c1
+map/encount_config_encount_config	ENCOUNT_CONFIG	0	data/common/gamedata/map/encount_config_*.cfg.bin	0:c0
+map/encount_config_encount_config_2	ENCOUNT_CONFIG		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0
+map/encount_config_info	ENCOUNT_CONFIG_INFO		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25
+map/encount_config_info_btl_area	ENCOUNT_CONFIG_INFO_BTL_AREA		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1
+map/encount_config_info_growth	ENCOUNT_CONFIG_INFO_GROWTH		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1,2:c2
+map/encount_config_info_param	ENCOUNT_CONFIG_INFO_PARAM		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+map/encount_config_info_param1	ENCOUNT_CONFIG_INFO_PARAM1	0	data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1
+map/encount_config_info_param2	ENCOUNT_CONFIG_INFO_PARAM2	0	data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1
+map/encount_config_info_param3	ENCOUNT_CONFIG_INFO_PARAM3	0	data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1
+map/encount_config_info_party_param	ENCOUNT_CONFIG_INFO_PARTY_PARAM		data/common/gamedata/map/{map}/{map}_encount_config.cfg.bin	0:c0,1:c1,2:c2
+map/encount_growth	ENCOUNT_GROWTH		data/common/gamedata/map/encount_config_*.cfg.bin	0:c0,1:c1,2:c2
+map/encount_info	ENCOUNT_INFO	0	data/common/gamedata/map/encount_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33
+map/encount_param	ENCOUNT_PARAM		data/common/gamedata/map/encount_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12
+map/encount_parent_config	ENCOUNT_PARENT_CONFIG	0	data/common/gamedata/map/encount_config_*.cfg.bin	0:c0
+map/encount_parent_difficulty	ENCOUNT_PARENT_DIFFICULTY		data/common/gamedata/map/encount_config_*.cfg.bin	0:c0,1:c1
+map/enemy_placement_base_config	ENEMY_PLACEMENT_BASE_CONFIG		data/common/gamedata/map/{map}/{map}_enemy_placement.cfg.bin	0:c0,1:c1,2:c2
+map/enemy_placement_config	ENEMY_PLACEMENT_CONFIG		data/common/gamedata/map/{map}/{map}_enemy_placement.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17
+map/enemy_placement_config_param	ENEMY_PLACEMENT_CONFIG_PARAM		data/common/gamedata/map/{map}/{map}_enemy_placement.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+map/flag_by_id_encount_id_flag	ENCOUNT_ID_FLAG_LIST		data/common/gamedata/map/flag_by_id_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/flag_by_id_encount_id_flag_info	ENCOUNT_ID_FLAG_INFO	0	data/common/gamedata/map/flag_by_id_config_*.cfg.bin	0:c0
+map/flag_info	FLAG_INFO		data/common/gamedata/map/{map}/{map}_flag_config.cfg.bin	0:c0
+map/function_point	OP_FUNC		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:id,1:layout_point,2:cond,3:c3,4:c4,5:name,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:linked_id
+map/item_spot_mdl_config_item_spot_mdl_data	ITEM_SPOT_MDL_DATA		data/common/gamedata/map/item_spot_mdl_config_*.cfg.bin	0:c0
+map/item_spot_mdl_config_item_spot_mdl_data_2	ITEM_SPOT_MDL_DATA		data/common/map/item_spot_mdl_config_*.cfg.bin	0:c0
+map/item_spot_mdl_config_item_spot_mdl_info	ITEM_SPOT_MDL_INFO		data/common/gamedata/map/item_spot_mdl_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+map/item_spot_mdl_config_item_spot_mdl_info_2	ITEM_SPOT_MDL_INFO		data/common/map/item_spot_mdl_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+map/item_table_itbl_base	ITBL_BASE	0	data/common/gamedata/map/{map}/{map}_item_table_config.cfg.bin	0:c0
+map/item_table_itbl_items	ITBL_ITEMS		data/common/gamedata/map/{map}/{map}_item_table_config.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+map/layout_base_point	LAYOUT_BASE_POINT		data/common/gamedata/map/{map}/{map}_layout_config.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/layout_base_shape	LAYOUT_BASE_SHAPE		data/common/gamedata/map/{map}/{map}_layout_config.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/layout_point	LAYOUT_BASE		data/common/gamedata/map/{map}/{map}_layout_config.cfg.bin	0:id
+map/line_path_info	LINE_PATH_INFO		data/common/gamedata/map/{map}/{map}_line_path.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13
+map/line_path_info_attr_dir	LINE_PATH_INFO_ATTR_DIR		data/common/gamedata/map/{map}/{map}_line_path.cfg.bin	0:c0
+map/line_path_info_attr_signal	LINE_PATH_INFO_ATTR_SIGNAL		data/common/gamedata/map/{map}/{map}_line_path.cfg.bin	0:c0,1:c1
+map/line_path_link_info	LINE_PATH_LINK_INFO		data/common/gamedata/map/{map}/{map}_line_path.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+map/line_path_stop_path_info	STOP_PATH_INFO		data/common/gamedata/map/{map}/{map}_line_path.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/map_caption_cfg	MAP_CAPTION_CFG	0	data/common/gamedata/map/map_caption_config_*.cfg.bin	0:c0
+map/map_caption_exe	MAP_CAPTION_EXE		data/common/gamedata/map/map_caption_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+map/map_col_shape_type	COL_SHAPE_TYPE_INFO	0	data/common/map/map_col_shape_type_*.cfg.bin	0:c0,1:c1
+map/map_door_door_base	DOOR_BASE		data/common/gamedata/map/{map}/{map}_map_door_config.cfg.bin	0:c0,1:c1
+map/map_door_door_temp	DOOR_TEMP		data/common/gamedata/map/{map}/{map}_map_door_config.cfg.bin	0:c0,1:c1,2:c2
+map/map_door_type_config	MAP_DOOR_TYPE_INFO		data/common/map/map_door_type_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+map/map_flag	FLAG_INFO_PARAM		data/common/gamedata/map/{map}/{map}_flag_config.cfg.bin	0:index,1:id
+map/map_model_chara_model_base_path	CHARA_MODEL_BASE_PATH		data/common/gamedata/map/map_model_*.cfg.bin	0:c0
+map/map_model_chara_model_info	CHARA_MODEL_INFO	0	data/common/gamedata/map/map_model_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15
+map/map_route	MAP_ROUTE_CFG		data/common/gamedata/map/map_route_config_*.cfg.bin	0:map
+map/map_route_block	MAP_ROUTE_BLOCK		data/common/gamedata/map/map_route_config_*.cfg.bin	0:c0,1:c1,2:c2
+map/map_route_info	MAP_ROUTE_INFO		data/common/gamedata/map/map_route_config_*.cfg.bin	0:id,1:c1,2:dest_map,3:dest_point,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:name_text
+map/map_shop_conf	MAP_SHOP_CONF	0	data/common/gamedata/map/{map}/{map}_map_shop_config.cfg.bin	0:c0
+map/map_shop_conf_data	MAP_SHOP_CONF_DATA	0	data/common/gamedata/map/{map}/{map}_map_shop_config.cfg.bin	0:c0,1:c1
+map/map_shop_conf_data_talk_info	MAP_SHOP_CONF_DATA_TALK_INFO		data/common/gamedata/map/{map}/{map}_map_shop_config.cfg.bin	0:c0,1:c1
+map/map_trigger	DATA_ITEM		data/common/gamedata/map/{map}/{map}_map_trigger.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+map/map_trigger_count	DATA_COUNT		data/common/gamedata/map/{map}/{map}_map_trigger.cfg.bin	0:count
+map/mob_npc_area_density_info	AREA_DENSITY_INFO	0	data/common/gamedata/map/{map}/{map}_mob_npc_config.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+map/mob_npc_base_talk_base_talk_config	BASE_TALK_CONFIG		data/common/gamedata/map/{map}/{map}_mob_npc_base_talk.cfg.bin	0:c0,1:c1,2:c2
+map/mob_npc_base_talk_base_talk_info	BASE_TALK_INFO	0	data/common/gamedata/map/{map}/{map}_mob_npc_base_talk.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+map/mob_npc_purpose_line_info	PURPOSE_LINE_INFO	0	data/common/gamedata/map/{map}/{map}_mob_npc_config.cfg.bin	0:c0,1:c1,2:c2
+map/mob_npc_purpose_line_info_data	PURPOSE_LINE_INFO_DATA		data/common/gamedata/map/{map}/{map}_mob_npc_config.cfg.bin	0:c0
+map/npc_appear	NPC_APPAER		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:script,1:c1,2:cond,3:c3,4:c4,5:c5,6:c6,7:npc_cfg
+map/npc_base	NPC_BASE		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:id,1:character,2:c2,3:c3,4:c4,5:name_override_text,6:costume,7:name_text_2,8:uniform,9:c9,10:c10,11:c11,12:c12
+map/npc_cfg	NPC_CFG		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48
+map/npc_cfg_act_type	NPC_CFG_ACT_TYPE		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2
+map/npc_cfg_act_type_act_type_mot	NPC_CFG_ACT_TYPE_ACT_TYPE_MOT		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1
+map/npc_cfg_chr_attach	NPC_CFG_CHR_ATTACH		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+map/npc_cfg_effect_attach	NPC_CFG_EFFECT_ATTACH		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1
+map/npc_cfg_load_motion	NPC_CFG_LOAD_MOTION		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0
+map/npc_cfg_point	NPC_CFG_POINT		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12
+map/npc_cfg_point_point_attr	NPC_CFG_POINT_POINT_ATTR		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0
+map/npc_cfg_set_flag	NPC_CFG_SET_FLAG		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31
+map/npc_cfg_warp_wait_info	NPC_CFG_WARP_WAIT_INFO		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+map/npc_group	NPC_GROUP		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1
+map/npc_group_cell	NPC_GROUP_CELL		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1
+map/npc_group_cell_cell_npc	NPC_GROUP_CELL_CELL_NPC		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0
+map/npc_present	NPC_PRESENT	0	data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0
+map/npc_present_presents	NPC_PRESENT_PRESENTS	0	data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0,1:c1,2:c2
+map/npc_present_presents_items	NPC_PRESENT_PRESENTS_ITEMS		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:c0
+map/npc_preset	NPC_PRESET		data/common/gamedata/map/{map}/{map}_npc_setting.cfg.bin	0:id,1:name
+map/npc_script_	﻿		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script__2	/		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_act_ignore_default_mot	ACT_IGNORE_DEFAULT_MOT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	
+map/npc_script_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_act_type_num	ACT_TYPE_NUM		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_ignore_collision	ADD_PT_IGNORE_COLLISION		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_range	ADD_PT_RANGE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_script	ADD_PT_SCRIPT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_add_pt_time	ADD_PT_TIME		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_add_pt_traffic	ADD_PT_TRAFFIC		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	
+map/npc_script_add_pt_wait_tag	ADD_PT_WAIT_TAG		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_ai_type	AI_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_base_state	BASE_STATE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_chr_attach	CHR_ATTACH		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+map/npc_script_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_effect_attach	EFFECT_ATTACH		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_hearing_range	HEARING_RANGE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_idoling_time	IDOLING_TIME		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_load_motion	LOAD_MOTION		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/npc_script_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/npc_script_point	POINT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+map/npc_script_point_max	POINT_MAX		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_route_max	ROUTE_MAX		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_route_option	ROUTE_OPTION		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2
+map/npc_script_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_set_ai_guide_id	SET_AI_GUIDE_ID		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_contact_use_hit_collision	SET_CONTACT_USE_HIT_COLLISION		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_facial	SET_FACIAL		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1
+map/npc_script_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_is_disable_npc_state_ai	SET_IS_DISABLE_NPC_STATE_AI		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_look_at	SET_LOOK_AT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2
+map/npc_script_set_npc_dlod_type	SET_NPC_DLOD_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_scale	SET_SCALE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_trace_wait_time	SET_TRACE_WAIT_TIME		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_train_movement	SET_TRAIN_MOVEMENT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_signal_type	SIGNAL_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_start_act_type_random	START_ACT_TYPE_RANDOM		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/npc_script_use_act_type	USE_ACT_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+map/npc_script_warp_wait_info	WARP_WAIT_INFO		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0,1:c1,2:c2
+map/npc_shop_conf	NPC_SHOP_CONF	0	data/common/gamedata/map/{map}/{map}_npc_shop_config.cfg.bin	0:c0
+map/npc_shop_conf_data	NPC_SHOP_CONF_DATA		data/common/gamedata/map/{map}/{map}_npc_shop_config.cfg.bin	0:c0,1:c1
+map/npc_shop_conf_data_talk_info	NPC_SHOP_CONF_DATA_TALK_INFO		data/common/gamedata/map/{map}/{map}_npc_shop_config.cfg.bin	0:c0,1:c1
+map/npc_talk	TALK_INFO		data/common/gamedata/map/{map}/{map}_npc_talk.cfg.bin	0:npc
+map/npc_talk_line	TALK_TALK		data/common/gamedata/map/{map}/{map}_npc_talk.cfg.bin	0:c0,1:priority,2:cond,3:text,4:action_cond,5:c5,6:c6,7:event_text_file,8:c8,9:c9,10:encounter,11:c11
+map/npc_type	NPC_TYPE		data/common/gamedata/map/{map}/{npc_script}.cfg.bin	0:c0
+map/oneplace_setting_ball_chest_ghost	BALL_CHEST_GHOST		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/oneplace_setting_ball_chest_info	BALL_CHEST_INFO		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0
+map/oneplace_setting_ball_chest_type	BALL_CHEST_TYPE		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:c2
+map/oneplace_setting_collision_col	COLLISION_COL	0	data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/oneplace_setting_op_checkeye	OP_CHECKEYE		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/oneplace_setting_op_effect_cfg	OP_EFFECT_CFG	0	data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/qsb010700_01_point	POINT		data/common/gamedata/map/{map}/{map}_qsb010700_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/qsb010700_01_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_qsb010700_01.cfg.bin	0:c0
+map/qsb010700_01_set_flag	SET_FLAG	0	data/common/gamedata/map/{map}/{map}_qsb010700_01.cfg.bin	0:c0,1:c1
+map/qsb010700_ball_point	POINT		data/common/gamedata/map/{map}/{map}_qsb010700_ball.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/qsb010700_ball_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_qsb010700_ball.cfg.bin	0:c0
+map/qsb010700_ball_set_flag	SET_FLAG	0	data/common/gamedata/map/{map}/{map}_qsb010700_ball.cfg.bin	0:c0,1:c1
+map/rpg_btl_area_config	RPG_BTL_AREA_CONFIG	0	data/common/gamedata/map/{map}/{map}_rpg_battle_area_config.cfg.bin	0:c0
+map/rpg_btl_area_config_info	RPG_BTL_AREA_CONFIG_INFO	0	data/common/gamedata/map/{map}/{map}_rpg_battle_area_config.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+map/sound_obj_oneplace_op_sound_multi	OP_SOUND_MULTI		data/common/gamedata/map/{map}/{map}_sound_obj_oneplace.cfg.bin	0:c0,1:c1
+map/sound_obj_oneplace_op_sound_multi_se	OP_SOUND_MULTI_SE		data/common/gamedata/map/{map}/{map}_sound_obj_oneplace.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+map/sound_obj_oneplace_op_sound_new	OP_SOUND_NEW		data/common/gamedata/map/{map}/{map}_sound_obj_oneplace.cfg.bin	0:c0,1:c1
+map/sound_obj_oneplace_op_sound_new_se	OP_SOUND_NEW_SE		data/common/gamedata/map/{map}/{map}_sound_obj_oneplace.cfg.bin	0:c0,1:c1
+map/train_01_act_ignore_default_mot	ACT_IGNORE_DEFAULT_MOT		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	
+map/train_01_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_add_pt_script	ADD_PT_SCRIPT		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_add_pt_time	ADD_PT_TIME		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_01_night_act_ignore_default_mot	ACT_IGNORE_DEFAULT_MOT		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	
+map/train_01_night_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_add_pt_script	ADD_PT_SCRIPT		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_add_pt_time	ADD_PT_TIME		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_01_night_point	POINT		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_01_night_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1,2:c2
+map/train_01_night_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0,1:c1
+map/train_01_night_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_night_set_train_movement	SET_TRAIN_MOVEMENT		data/common/gamedata/map/{map}/{map}_train_01_night.cfg.bin	0:c0
+map/train_01_point	POINT		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_01_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1,2:c2
+map/train_01_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0,1:c1
+map/train_01_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_01_set_train_movement	SET_TRAIN_MOVEMENT		data/common/gamedata/map/{map}/{map}_train_01.cfg.bin	0:c0
+map/train_02_act_ignore_default_mot	ACT_IGNORE_DEFAULT_MOT		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	
+map/train_02_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_add_pt_script	ADD_PT_SCRIPT		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_add_pt_time	ADD_PT_TIME		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_02_night_act_ignore_default_mot	ACT_IGNORE_DEFAULT_MOT		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	
+map/train_02_night_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_add_pt_script	ADD_PT_SCRIPT		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_add_pt_time	ADD_PT_TIME		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_02_night_point	POINT		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_02_night_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1,2:c2
+map/train_02_night_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0,1:c1
+map/train_02_night_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_night_set_train_movement	SET_TRAIN_MOVEMENT		data/common/gamedata/map/{map}/{map}_train_02_night.cfg.bin	0:c0
+map/train_02_point	POINT		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/train_02_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1,2:c2
+map/train_02_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0,1:c1
+map/train_02_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/train_02_set_train_movement	SET_TRAIN_MOVEMENT		data/common/gamedata/map/{map}/{map}_train_02.cfg.bin	0:c0
+map/treasure_box	OP_TBOX		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:id,1:layout_point,2:cond,3:flag_index,4:c4,5:name,6:c6
+map/treasure_box_content	OP_TBOX_DATA		data/common/gamedata/map/{map}/{map}_oneplace_setting.cfg.bin	0:c0,1:c1,2:loot_table
+map/vehicle_01_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_01_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_01_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_01_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_01_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_01_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_01_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_01_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0,1:c1
+map/vehicle_01_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_01_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_01.cfg.bin	0:c0
+map/vehicle_02_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_02_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_02_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_02_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0,1:c1
+map/vehicle_02_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_02_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_02.cfg.bin	0:c0
+map/vehicle_03_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_03_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_03_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0,1:c1
+map/vehicle_03_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_03_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_03.cfg.bin	0:c0
+map/vehicle_04_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_04_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_04_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_04_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_04_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_04_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_04_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_04_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0,1:c1
+map/vehicle_04_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_04_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_04.cfg.bin	0:c0
+map/vehicle_05_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_05_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_05_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_05_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_05_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_05_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_05_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_05_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0,1:c1
+map/vehicle_05_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_05_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_05.cfg.bin	0:c0
+map/vehicle_06_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_06_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_06_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_06_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0,1:c1
+map/vehicle_06_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_06_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_06.cfg.bin	0:c0
+map/vehicle_07_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_07_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_07_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_07_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0,1:c1
+map/vehicle_07_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_07_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_07.cfg.bin	0:c0
+map/vehicle_08_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_08_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_08_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0,1:c1
+map/vehicle_08_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_08_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_08.cfg.bin	0:c0
+map/vehicle_09_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_09_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_09_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_09_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_09_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_09_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_09_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0,1:c1
+map/vehicle_09_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_09_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_09.cfg.bin	0:c0
+map/vehicle_10_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_10_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_10_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_10_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0,1:c1
+map/vehicle_10_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_10_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_10.cfg.bin	0:c0
+map/vehicle_11_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_11_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_11_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_11_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0,1:c1
+map/vehicle_11_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_11_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_11.cfg.bin	0:c0
+map/vehicle_12_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_12_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_12_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0,1:c1
+map/vehicle_12_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_12_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_12.cfg.bin	0:c0
+map/vehicle_13_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_add_pt_attr	ADD_PT_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_add_pt_signal	ADD_PT_SIGNAL		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_13_point	POINT		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vehicle_13_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1,2:c2
+map/vehicle_13_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0,1:c1
+map/vehicle_13_set_ignore_collision	SET_IGNORE_COLLISION		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vehicle_13_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vehicle_13.cfg.bin	0:c0
+map/vision01_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_create_range	CREATE_RANGE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_delete_range	DELETE_RANGE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_move_speed	MOVE_SPEED		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_near_range	NEAR_RANGE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vision01_point	POINT		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vision01_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0
+map/vision01_route_attr	ROUTE_ATTR		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0
+map/vision01_route_start_end_fade	ROUTE_START_END_FADE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1,2:c2
+map/vision01_route_type	ROUTE_TYPE		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0
+map/vision01_route_warp_interval	ROUTE_WARP_INTERVAL		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_set_col_hit_skip	SET_COL_HIT_SKIP		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0
+map/vision01_set_flag	SET_FLAG	0	data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0,1:c1
+map/vision01_set_vehicle_movement	SET_VEHICLE_MOVEMENT		data/common/gamedata/map/{map}/{map}_vision01.cfg.bin	0:c0
+map/vision06_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0,1:c1
+map/vision06_load_motion	LOAD_MOTION		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0
+map/vision06_point	POINT		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vision06_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0
+map/vision06_set_facial	SET_FACIAL		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0
+map/vision06_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vision06.cfg.bin	0:c0,1:c1
+map/vision07_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vision07.cfg.bin	0:c0,1:c1
+map/vision07_load_motion	LOAD_MOTION		data/common/gamedata/map/{map}/{map}_vision07.cfg.bin	0:c0
+map/vision07_point	POINT		data/common/gamedata/map/{map}/{map}_vision07.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vision07_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vision07.cfg.bin	0:c0
+map/vision07_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vision07.cfg.bin	0:c0,1:c1
+map/vision_01_act_type	ACT_TYPE		data/common/gamedata/map/{map}/{map}_vision_01.cfg.bin	0:c0,1:c1
+map/vision_01_point	POINT		data/common/gamedata/map/{map}/{map}_vision_01.cfg.bin	0:c0,1:c1,2:c2,3:c3
+map/vision_01_point_max	POINT_MAX		data/common/gamedata/map/{map}/{map}_vision_01.cfg.bin	0:c0
+map/vision_01_set_flag	SET_FLAG		data/common/gamedata/map/{map}/{map}_vision_01.cfg.bin	0:c0,1:c1
+menu/GroupCaptureConfig_group_capture_custom_group	GROUP_CAPTURE_CUSTOM_GROUP	0	data/common/gamedata/menu/GroupCapture/GroupCaptureConfig_*.cfg.bin	0:c0,1:c1
+menu/GroupCaptureConfig_group_capture_custom_param	GROUP_CAPTURE_CUSTOM_PARAM		data/common/gamedata/menu/GroupCapture/GroupCaptureConfig_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+menu/GroupCaptureConfig_group_layout_custom_group	GROUP_LAYOUT_CUSTOM_GROUP	0	data/common/gamedata/menu/CustomLayout/GroupCaptureConfig_*.cfg.bin	0:c0,1:c1
+menu/GroupCaptureConfig_group_layout_custom_param	GROUP_LAYOUT_CUSTOM_PARAM		data/common/gamedata/menu/CustomLayout/GroupCaptureConfig_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+menu/GroupChrLayoutConfig_group_layout_custom_group	GROUP_LAYOUT_CUSTOM_GROUP	0	data/common/gamedata/menu/CustomLayout/GroupChrLayoutConfig_*.cfg.bin	0:c0,1:c1
+menu/GroupChrLayoutConfig_group_layout_custom_param	GROUP_LAYOUT_CUSTOM_PARAM		data/common/gamedata/menu/CustomLayout/GroupChrLayoutConfig_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13
+menu/chara_menu_resource_base_path	CHARA_MENU_RESOURCE_BASE_PATH		data/common/gamedata/menu/chara_menu_resource_*.cfg.bin	0:c0
+menu/chara_menu_resource_info	CHARA_MENU_RESOURCE_INFO	0	data/common/gamedata/menu/chara_menu_resource_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17
+menu/cmd_tag_info	CMD_TAG_INFO	0	data/common/gamedata/menu/cmd_tag_config_*.cfg.bin	0:c0,1:c1,2:c2
+menu/cmd_tag_keyboard_mouse	CMD_TAG_KEYBOARD_MOUSE		data/common/gamedata/menu/cmd_tag_config_*.cfg.bin	0:c0,1:c1,2:c2
+menu/cmd_tag_pad	CMD_TAG_PAD		data/common/gamedata/menu/cmd_tag_config_*.cfg.bin	0:c0,1:c1
+menu/menu_cmd	MENU_CMD_INFO		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:layer,1:input_cmd,2:action,3:target,4:param,5:c5
+menu/menu_create_info	MENU_CREATE_INFO		data/common/gamedata/menu/menu_create_setting_*.cfg.bin	0:name,1:c1,2:create_on_demand,3:priority,4:group,5:resident_kind,6:scene_mask,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13
+menu/menu_focus_base	MENU_FOCUS_BASE_INFO		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:focus_name,1:layer_group,2:c2
+menu/menu_focus_group	MENU_FOCUS_GROUP		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:layer,1:c1,2:c2,3:c3
+menu/menu_focus_shift	MENU_FOCUS_SHIFT		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:layer
+menu/menu_focus_shift_base	MENU_FOCUS_SHIFT_BASE_INFO		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:input,1:from_index,2:to_layer,3:to_index,4:c4,5:c5
+menu/menu_group_capture_group_capture_cfg	GROUP_CAPTURE_CFG	0	data/common/gamedata/menu/menu_group_capture_config_*.cfg.bin	0:c0,1:c1
+menu/menu_group_capture_group_capture_info	GROUP_CAPTURE_INFO		data/common/gamedata/menu/menu_group_capture_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+menu/menu_icon_cfg	MENU_ICON_CFG	0	data/common/gamedata/menu/menu_icon_manage_config_*.cfg.bin	0:c0,1:c1
+menu/menu_icon_filename	MENU_ICON_FILENAME		data/common/gamedata/menu/menu_icon_manage_config_*.cfg.bin	0:c0,1:c1
+menu/menu_icon_idprefix	MENU_ICON_IDPREFIX		data/common/gamedata/menu/menu_icon_manage_config_*.cfg.bin	0:c0
+menu/menu_icon_path	MENU_ICON_PATH		data/common/gamedata/menu/menu_icon_manage_config_*.cfg.bin	0:c0
+menu/menu_icon_type	MENU_ICON_TYPE		data/common/gamedata/menu/menu_icon_manage_config_*.cfg.bin	0:c0,1:c1,2:c2
+menu/menu_layer	MENU_LAYER_INFO		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:id,1:name,2:objbin,3:draw_order,4:c4,5:anchor,6:c6,7:c7,8:alpha_or_flag,9:c9
+menu/menu_layer_group	MENU_LAYER_GROUP		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:id,1:name,2:c2,3:c3
+menu/menu_layer_group_base	MENU_LAYER_GROUP_BASE		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:layer,1:c1,2:visible_on_open,3:c3,4:c4,5:c5,6:c6
+menu/menu_pop_manage_config	MENU_POPUP_INFO		data/common/gamedata/menu/menu_pop_manage_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+menu/menu_pos_info	MENU_POS_INFO	0	data/common/gamedata/menu/menu_map_pos_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+menu/menu_pos_map_data	MENU_POS_MAP_DATA		data/common/gamedata/menu/menu_map_pos_config_*.cfg.bin	0:c0
+menu/menu_res	MENU_RES		data/common/gamedata/menu/cfg/{menu_setting}.cfg.bin	0:path,1:kind
+menu/menu_res_path	MENU_RES_PATH_INFO		data/common/gamedata/menu/menu_create_setting_*.cfg.bin	0:id,1:path
+menu/menu_talk_icon_idx	MENU_TALK_ICON_IDX_LIST		data/common/gamedata/menu/menu_talk_icon_config_*.cfg.bin	0:c0,1:c1
+menu/menu_talk_icon_info	MENU_TALK_ICON_INFO	0	data/common/gamedata/menu/menu_talk_icon_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+menu/menu_talk_line_line	MENU_TALK_LINE_LINE	0	data/common/gamedata/menu/menu_talk_icon_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18
+menu/menu_talk_line_mesh	MENU_TALK_LINE_MESH		data/common/gamedata/menu/menu_talk_icon_config_*.cfg.bin	0:c0
+mission/mission	MISSION_CONFIG_INFO		data/common/gamedata/mission/mission_config_*.cfg.bin	0:id,1:name,2:map,3:c3,4:c4,5:start_point,6:c6,7:c7,8:c8,9:title_text,10:desc_text,11:reward_table,12:c12,13:c13,14:c14,15:c15
+mission/mission_trigger	DATA_ITEM		data/common/gamedata/mission/msa999999_trigger_*.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+mission/mission_trigger_count	DATA_COUNT		data/common/gamedata/mission/msa999999_trigger_*.cfg.bin	0:count
+music_app/music_app_info	MUSIC_APP_INFO		data/common/gamedata/music_app/music_app_config_*.cfg.bin	0:c0
+music_app/music_app_info_item	MUSIC_APP_INFO_ITEM		data/common/gamedata/music_app/music_app_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+nfc/nfc_lottery	NFC_LOTTERY_INFO		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:index
+nfc/nfc_lottery_item	NFC_LOTTERY_INFO_TABLE_ITEM		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:prize,1:reserved_1,2:weight
+nfc/nfc_lottery_table	NFC_LOTTERY_INFO_TABLE		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:quantity
+nfc/nfc_medal	NFC_INFO		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:medal_no,1:medal_no_2,2:quantity,3:flag_3,4:quantity_2,5:reserved_5,6:quantity_3,7:c7,8:flag_8,9:c9,10:reserved_10,11:reserved_11,12:reserved_12,13:reserved_13,14:reserved_14,15:rarity,16:c16,17:name_text,18:flag_18
+nfc/nfc_medal_texture	NFC_INFO_TEX		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:texture
+nfc/nfc_quantity	NFC_QUANTITY_INFO	0	data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:id
+nfc/nfc_quantity_type	NFC_QUANTITY_INFO_TYPE		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:type
+nfc/nfc_quantity_value	NFC_QUANTITY_INFO_TYPE_QUANTITY		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:count,1:weight
+nfc/nfc_texture_path	NFC_TEX_PATH		data/common/gamedata/nfc/nfc_lottery_config.cfg.bin	0:base_path
+party/ctrl_chara	CTRL_CHR_INFO	0	data/common/gamedata/party/ctrl_chara_config_*.cfg.bin	0:id,1:condition,2:c2,3:rpg_party
+party/ctrl_chara_data	CTRL_CHR_DATA		data/common/gamedata/party/ctrl_chara_config_*.cfg.bin	0:chara,1:mode,2:reserved_2
+party/guest_limit	GENERAL_LIMIT_INFO	0	data/common/gamedata/party/guest_limit_config.cfg.bin	0:chara
+party/guest_limit_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/party/guest_limit_config.cfg.bin	0:reserved_0,1:condition
+phase/chapter_trigger	DATA_ITEM		data/common/gamedata/phase/{chapter}/{chapter}_trigger.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+phase/chapter_trigger_count	DATA_COUNT		data/common/gamedata/phase/{chapter}/{chapter}_trigger.cfg.bin	0:count
+phase/phase_purpose_pos	PURPOSE_POS_ITEM		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:map,1:target_npc,2:cond,3:marker_type,4:c4,5:c5,6:c6,7:layout_point,8:c8
+phase/phase_purpose_text	PURPOSE_TEXT_ITEM		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:text,1:cond
+phase/phase_set_data_count	DATA_COUNT		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:c0
+phase/phase_set_item	DATA_ITEM		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:chapter,1:step,2:debug_name,3:start_map,4:pos_x,5:pos_y,6:pos_z,7:rot_y,8:party_preset,9:cond,10:c10
+phase/phase_set_layout_layout_base	LAYOUT_BASE	0	data/common/gamedata/phase/phase_set_layout_{chapter}.cfg.bin	0:c0
+phase/phase_set_layout_layout_base_point	LAYOUT_BASE_POINT		data/common/gamedata/phase/phase_set_layout_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3
+phase/phase_set_layout_layout_base_shape	LAYOUT_BASE_SHAPE		data/common/gamedata/phase/phase_set_layout_{chapter}.cfg.bin	0:c0,1:c1,2:c2,3:c3
+phase/phase_set_purpose_pos_count	PURPOSE_POS_COUNT		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:c0
+phase/phase_set_purpose_sub_text_count	PURPOSE_SUB_TEXT_COUNT		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:c0
+phase/phase_set_purpose_text_count	PURPOSE_TEXT_COUNT		data/common/gamedata/phase/phase_set_{chapter}.cfg.bin	0:c0
+phase/phase_title	PHASE_TITLE_CFG		data/common/gamedata/phase/phase_title_config_*.cfg.bin	0:chapter,1:title_text
+phase/phase_title_texture	PHASE_TITLE_TEX_INFO		data/common/gamedata/phase/phase_title_config_*.cfg.bin	0:id,1:mesh_name,2:texture
+post/delivery_list	DELIVERY_INFO	0	data/common/gamedata/post/delivery_list_config.cfg.bin	0:id,1:title,2:c2,3:condition,4:c4,5:aoc,6:c6,7:order,8:order_2,9:c9
+post/delivery_list_data	DELIVERY_INFO_DATA		data/common/gamedata/post/delivery_list_config.cfg.bin	0:prize,1:count,2:c2
+property/bone_target	INFO_PARAM		data/common/property/chara/bone_target_*.cfg.bin	0:c0,1:c1
+property/camera_ctrl_property_info_info_param	INFO_PARAM		data/common/property/camera/camera_ctrl_property_info_*.cfg.bin	0:c0,1:c1
+property/chara_ctrl_action_info_param	INFO_PARAM		data/common/property/chara/chara_ctrl_action_*.cfg.bin	0:c0,1:c1
+property/chara_look_at_info_param	INFO_PARAM		data/common/property/chara/chara_look_at_*.cfg.bin	0:c0,1:c1
+property/common_property_info_info_param	INFO_PARAM		data/common/property/common/common_property_info_*.cfg.bin	0:c0,1:c1
+property/debug_win_property_info_param	INFO_PARAM		data/common/property/debug/debug_win_property_*.cfg.bin	0:c0,1:c1
+property/model_ik_info_param	INFO_PARAM		data/common/property/chara/model_ik_*.cfg.bin	0:c0,1:c1
+property/property_file_list	PATH		data/common/property/property_file_list_*.cfg.bin	0:c0,1:c1
+quest/quest	QUEST_DATA_CFG		data/common/gamedata/quest/quest_config_*.cfg.bin	0:id,1:sort_key,2:chapter_no,3:title_text,4:c4,5:unlock_cond,6:order,7:category,8:recommended_level,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:thumbnail_name,17:thumbnail_file,18:prerequisite_quest,19:c19
+quest/quest_data_pps_info	QUEST_DATA_PPS_INFO		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1
+quest/quest_data_pps_text_info	QUEST_DATA_PPS_TEXT_INFO		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1
+quest/quest_data_reward_item	QUEST_DATA_REWARD_ITEM		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1
+quest/quest_phase	QUEST_DATA_PHASE		data/common/gamedata/quest/quest_config_*.cfg.bin	0:phase_no,1:purpose_text,2:cond
+quest/quest_progress	QUEST_DATA_PROG_INFO		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:flag,2:c2,3:flag_2,4:c4
+quest/quest_purpose	QUEST_PURPOSE_CFG		data/common/gamedata/quest/quest_config_*.cfg.bin	0:id,1:map,2:c2,3:c3,4:target_point,5:c5,6:c6,7:area_text,8:c8,9:c9,10:c10
+quest/quest_story_quest_recommend_training_cfg	STORY_QUEST_RECOMMEND_TRAINING_CFG	0	data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0
+quest/quest_story_quest_recommend_training_detail_data	STORY_QUEST_RECOMMEND_TRAINING_DETAIL_DATA		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1
+quest/quest_story_soccer_data_norma_info	STORY_SOCCER_DATA_NORMA_INFO		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+quest/quest_story_soccer_data_norma_show_info	STORY_SOCCER_DATA_NORMA_SHOW_INFO		data/common/gamedata/quest/quest_config_*.cfg.bin	0:c0,1:c1,2:c2
+quest/quest_trigger	DATA_ITEM		data/common/gamedata/quest/{quest}_trigger.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+quest/quest_trigger_count	DATA_COUNT		data/common/gamedata/quest/{quest}_trigger.cfg.bin	0:count
+quest/story_soccer_data	STORY_SOCCER_DATA_CFG		data/common/gamedata/quest/quest_config_*.cfg.bin	0:quest,1:game,2:c2,3:c3,4:c4
+record/record	RECORD_INFO	0	data/common/gamedata/record/record_config.cfg.bin	0:id,1:c1,2:flag_2,3:font_style,4:c4,5:c5,6:flag_6,7:order,8:condition
+roguelite/roguelite_team	ROGUE_TEAM_INFO		data/common/gamedata/roguelite/roguelite_team.cfg.bin	0:no,1:team,2:team_key,3:name,4:game,5:game_key,6:tier,7:stadium,8:emblem,9:uniform,10:formation,11:element,12:power,13:template_game
+roguelite/roguelite_team_difficulty	ROGUE_TEAM_DIFFICULTY		data/common/gamedata/roguelite/roguelite_team.cfg.bin	0:team_no,1:difficulty,2:level
+roguelite/roguelite_team_header	ROGUE_TEAM_HEADER		data/common/gamedata/roguelite/roguelite_team.cfg.bin	0:version,1:seed,2:teams,3:members_per_team
+roguelite/roguelite_team_member	ROGUE_TEAM_MEMBER		data/common/gamedata/roguelite/roguelite_team.cfg.bin	0:team_no,1:slot,2:chara_param,3:position,4:element,5:rogue_rarity,6:name
+rpg_battle/rpg_battle_cmd_event_config	RPG_BTL_CMD_EVENT_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_event_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_cmd_obj_config	RPG_BTL_CMD_OBJ_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_obj_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_dance_battle_dance_info	DANCE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_dance_battle_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+rpg_battle/rpg_battle_dance_battle_dance_notes	DANCE_NOTES	0	data/common/gamedata/rpg_battle/rpg_battle_dance_battle_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_dance_battle_dance_turn	DANCE_TURN		data/common/gamedata/rpg_battle/rpg_battle_dance_battle_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_dance_battle_notes_data	NOTES_DATA		data/common/gamedata/rpg_battle/rpg_battle_dance_battle_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_battle_dance_battle_notes_info	NOTES_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_dance_battle_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_food_body_type_info	BODY_TYPE_INFO		data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+rpg_battle/rpg_battle_food_food_chara_info	FOOD_CHARA_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_food_food_chara_mot_effect_offset	FOOD_CHARA_MOT_EFFECT_OFFSET		data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_food_food_chara_offset_param	FOOD_CHARA_OFFSET_PARAM		data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_food_offset_param_info	OFFSET_PARAM_INFO		data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_food_offset_param_offset	OFFSET_PARAM_OFFSET		data/common/gamedata/rpg_battle/rpg_battle_food_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+rpg_battle/rpg_battle_reaction_config	RPG_BTL_REACTION_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_reaction_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+rpg_battle/rpg_battle_special_training_chara_chase_camera_cam	CHARA_CHASE_CAMERA_CAM		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+rpg_battle/rpg_battle_special_training_chara_chase_camera_info	CHARA_CHASE_CAMERA_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_food_model_effect_cmd_eff_motion	FOOD_MODEL_EFFECT_CMD_EFF_MOTION		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_battle_special_training_food_model_effect_effect	FOOD_MODEL_EFFECT_EFFECT		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_special_training_food_model_effect_info	FOOD_MODEL_EFFECT_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_food_model_effect_standard_eff_motion	FOOD_MODEL_EFFECT_STANDARD_EFF_MOTION		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_food_training_info	FOOD_TRAINING_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15
+rpg_battle/rpg_battle_special_training_food_training_motions	FOOD_TRAINING_MOTIONS		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_manager_chara_info	MANAGER_CHARA_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_manager_chara_mot	MANAGER_CHARA_MOT	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_practice_match_bgm_info	PRACTICE_MATCH_BGM_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_training_bgm_info	TRAINING_BGM_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_training_camera_schedule_cam	TRAINING_CAMERA_SCHEDULE_CAM		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13
+rpg_battle/rpg_battle_special_training_training_camera_schedule_info	TRAINING_CAMERA_SCHEDULE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_special_training_training_difficulty_level_info	TRAINING_DIFFICULTY_LEVEL_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49,50:c50,51:c51,52:c52,53:c53,54:c54,55:c55,56:c56,57:c57,58:c58,59:c59,60:c60,61:c61,62:c62,63:c63,64:c64,65:c65,66:c66,67:c67,68:c68,69:c69,70:c70,71:c71,72:c72,73:c73,74:c74,75:c75,76:c76,77:c77,78:c78,79:c79,80:c80,81:c81,82:c82,83:c83,84:c84,85:c85,86:c86,87:c87,88:c88,89:c89,90:c90
+rpg_battle/rpg_battle_special_training_training_mob_chara	TRAINING_MOB_CHARA		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+rpg_battle/rpg_battle_special_training_training_mob_info	TRAINING_MOB_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_training_mob_sync_model	TRAINING_MOB_SYNC_MODEL		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_training_model_body_type	TRAINING_MODEL_BODY_TYPE		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_training_model_chara_mot	TRAINING_MODEL_CHARA_MOT		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+rpg_battle/rpg_battle_special_training_training_model_info	TRAINING_MODEL_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_training_model_sync_model	TRAINING_MODEL_SYNC_MODEL		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_special_training_training_model_sync_model_mot	TRAINING_MODEL_SYNC_MODEL_MOT		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_training_param_border	TRAINING_PARAM_BORDER		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_special_training_training_param_chara	TRAINING_PARAM_CHARA		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11
+rpg_battle/rpg_battle_special_training_training_param_info	TRAINING_PARAM_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+rpg_battle/rpg_battle_special_training_training_param_manager	TRAINING_PARAM_MANAGER		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_battle_special_training_training_param_swap_command	TRAINING_PARAM_SWAP_COMMAND		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_battle_tire_training_tire_info	TIRE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_tire_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+rpg_battle/rpg_battle_tire_training_tire_rate	TIRE_RATE		data/common/gamedata/rpg_battle/rpg_battle_tire_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_battle_tire_training_tire_training_info	TIRE_TRAINING_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_tire_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_battle_tire_training_tire_training_shoot	TIRE_TRAINING_SHOOT		data/common/gamedata/rpg_battle/rpg_battle_tire_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+rpg_battle/rpg_battle_tire_training_tire_training_tire	TIRE_TRAINING_TIRE		data/common/gamedata/rpg_battle/rpg_battle_tire_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_add_status_info	RPG_BTL_ADD_STATUS_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_add_status_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_add_status_info_attr	RPG_BTL_ADD_STATUS_INFO_ATTR		data/common/gamedata/rpg_battle/rpg_battle_add_status_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35
+rpg_battle/rpg_btl_add_status_info_param	RPG_BTL_ADD_STATUS_INFO_PARAM		data/common/gamedata/rpg_battle/rpg_battle_add_status_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14
+rpg_battle/rpg_btl_add_status_type_info	RPG_BTL_ADD_STATUS_TYPE_INFO		data/common/gamedata/rpg_battle/rpg_battle_add_status_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+rpg_battle/rpg_btl_cmd_hit_result_info	RPG_BTL_CMD_HIT_RESULT_INFO		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+rpg_battle/rpg_btl_cmd_info	RPG_BTL_CMD_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30
+rpg_battle/rpg_btl_cmd_part_voice_table_data	RPG_BTL_CMD_PART_VOICE_TABLE_DATA		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_cmd_part_voice_table_info	RPG_BTL_CMD_PART_VOICE_TABLE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_cmd_part_voice_table_play_info	RPG_BTL_CMD_PART_VOICE_TABLE_PLAY_INFO		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_btl_cmd_set_cmd_data	RPG_BTL_CMD_SET_CMD_DATA		data/common/gamedata/rpg_battle/rpg_battle_cmd_set_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_cmd_set_info	RPG_BTL_CMD_SET_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_set_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_cmd_skillful_chara_group_info	RPG_BTL_CMD_SKILLFUL_CHARA_GROUP_INFO		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_cmd_skillful_chara_group_personality_type_data	RPG_BTL_CMD_SKILLFUL_CHARA_GROUP_PERSONALITY_TYPE_DATA		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_encount_cmd_link_chara	RPG_BTL_ENCOUNT_CMD_LINK_CHARA		data/common/gamedata/rpg_battle/rpg_battle_cmd_set_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_encount_cmd_link_cmd_set	RPG_BTL_ENCOUNT_CMD_LINK_CMD_SET		data/common/gamedata/rpg_battle/rpg_battle_cmd_set_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_encount_cmd_link_info	RPG_BTL_ENCOUNT_CMD_LINK_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_set_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_formation_info	RPG_BTL_FORMATION_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_formation_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_formation_placement_data	RPG_BTL_FORMATION_PLACEMENT_DATA		data/common/gamedata/rpg_battle/rpg_battle_formation_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6
+rpg_battle/rpg_btl_party_disable_action_unique_info	RPG_BTL_PARTY_DISABLE_ACTION_UNIQUE_INFO		data/common/gamedata/rpg_battle/rpg_battle_party_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_party_info	RPG_BTL_PARTY_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_party_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_result_info	RPG_BTL_RESULT_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_result_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_result_lose_data_info	RPG_BTL_RESULT_LOSE_DATA_INFO		data/common/gamedata/rpg_battle/rpg_battle_result_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_btl_result_lose_data_info_assign_member_info	RPG_BTL_RESULT_LOSE_DATA_INFO_ASSIGN_MEMBER_INFO		data/common/gamedata/rpg_battle/rpg_battle_result_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_result_win_data_info	RPG_BTL_RESULT_WIN_DATA_INFO		data/common/gamedata/rpg_battle/rpg_battle_result_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_btl_result_win_data_info_assign_member_info	RPG_BTL_RESULT_WIN_DATA_INFO_ASSIGN_MEMBER_INFO		data/common/gamedata/rpg_battle/rpg_battle_result_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_scramble_camera_overwrite_cond_chara_info	RPG_BTL_SCRAMBLE_CAMERA_OVERWRITE_COND_CHARA_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_camera_overwrite_info	RPG_BTL_SCRAMBLE_CAMERA_OVERWRITE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+rpg_battle/rpg_btl_scramble_competition_pos_cond_chara_body_type	RPG_BTL_SCRAMBLE_COMPETITION_POS_COND_CHARA_BODY_TYPE		data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_competition_pos_info	RPG_BTL_SCRAMBLE_COMPETITION_POS_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+rpg_battle/rpg_btl_scramble_motion_ex_param_core_cond_motion_info	RPG_BTL_SCRAMBLE_MOTION_EX_PARAM_CORE_COND_MOTION_INFO		data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_motion_ex_param_core_info	RPG_BTL_SCRAMBLE_MOTION_EX_PARAM_CORE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+rpg_battle/rpg_btl_scramble_motion_ex_param_info	RPG_BTL_SCRAMBLE_MOTION_EX_PARAM_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_motion_table_cond_chara_info	RPG_BTL_SCRAMBLE_MOTION_TABLE_COND_CHARA_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_motion_table_info	RPG_BTL_SCRAMBLE_MOTION_TABLE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_btl_scramble_motion_table_miracle_slide_damage_move_motion_info	RPG_BTL_SCRAMBLE_MOTION_TABLE_MIRACLE_SLIDE_DAMAGE_MOVE_MOTION_INFO		data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_scramble_motion_table_miracle_slide_move_motion_info	RPG_BTL_SCRAMBLE_MOTION_TABLE_MIRACLE_SLIDE_MOVE_MOTION_INFO		data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0
+rpg_battle/rpg_btl_scramble_motion_table_move_motion_info	RPG_BTL_SCRAMBLE_MOTION_TABLE_MOVE_MOTION_INFO		data/common/gamedata/rpg_battle/rpg_battle_scramble_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_btl_sp_eff_info	RPG_BTL_SP_EFF_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_btl_var_data	RPG_BTL_VAR_DATA		data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+rpg_battle/rpg_btl_var_info	RPG_BTL_VAR_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_cmd_config_*.cfg.bin	0:c0
+rpg_battle/rpg_dribble_battle_info	RPG_DRIBBLE_BATTLE_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_dribble_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13
+rpg_battle/rpg_dribble_battle_note	RPG_DRIBBLE_BATTLE_NOTE		data/common/gamedata/rpg_battle/rpg_battle_dribble_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_dribble_battle_note_position_info	RPG_DRIBBLE_BATTLE_NOTE_POSITION_INFO	0	data/common/gamedata/rpg_battle/rpg_battle_dribble_training_config_*.cfg.bin	0:c0
+rpg_battle/rpg_dribble_battle_note_position_position	RPG_DRIBBLE_BATTLE_NOTE_POSITION_POSITION		data/common/gamedata/rpg_battle/rpg_battle_dribble_training_config_*.cfg.bin	0:c0,1:c1
+rpg_battle/rpg_sp_training_type	RPG_SP_TRAINING_TYPE	0	data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21
+rpg_battle/rpg_sp_training_type_chr_limit	RPG_SP_TRAINING_TYPE_CHR_LIMIT		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+rpg_battle/rpg_sp_training_type_encount	RPG_SP_TRAINING_TYPE_ENCOUNT		data/common/gamedata/rpg_battle/rpg_battle_special_training_config_*.cfg.bin	0:c0,1:c1,2:c2
+search_word/search_word	SEARCH_WORD_INFO	0	data/common/gamedata/search_word/search_word_config.cfg.bin	0:bookmark,1:order,2:word_text
+setting_menu/setting_info	SETTING_INFO		data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+setting_menu/setting_list_explanation_text_list_info	EXPLANATION_TEXT_LIST_INFO	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_list_explanation_text_list_text_data	EXPLANATION_TEXT_LIST_TEXT_DATA	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_list_keyconfig_mapping_list_info	KEYCONFIG_MAPPING_LIST_INFO	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_list_keyconfig_mapping_list_mapping_data	KEYCONFIG_MAPPING_LIST_MAPPING_DATA		data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+setting_menu/setting_list_keyconfig_setting_info	KEYCONFIG_SETTING_INFO		data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+setting_menu/setting_list_pad_groupkey_list_data	PAD_GROUPKEY_LIST_DATA		data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_list_pad_groupkey_list_info	PAD_GROUPKEY_LIST_INFO	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_obj_data	SETTING_OBJ_DATA		data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_obj_info	SETTING_OBJ_INFO	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0
+setting_menu/setting_platform_type_info	SETTING_PLATFORM_TYPE_INFO	0	data/common/gamedata/setting_menu/setting_list_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+shop/shop	SHOP_INFO	0	data/common/gamedata/shop/shop_config_*.cfg.bin	0:id,1:name_text,2:reserved_2,3:reserved_3,4:c4,5:map,6:pos_x,7:pos_y,8:pos_z,9:rot_y,10:reserved_10,11:reserved_11,12:reserved_12,13:reserved_13,14:reserved_14,15:reserved_15,16:reserved_16,17:token_group,18:banner_texture,19:banner_key
+shop/shop_basara_group	SHOP_BASARA_GROUP		data/common/gamedata/shop/shop_config_*.cfg.bin	0:build_type
+shop/shop_basara_spirit	SHOP_BASARA_SPIRIT		data/common/gamedata/shop/shop_config_*.cfg.bin	0:slot,1:param_1,2:rarity_1,3:count_1,4:param_2,5:rarity_2,6:count_2,7:param_3,8:rarity_3,9:count_3,10:param_4,11:rarity_4,12:count_4
+shop/shop_base_texture_path	SHOP_BASE_TEXTURE_PATH		data/common/gamedata/shop/shop_config_*.cfg.bin	0:base_path
+shop/shop_item	SHOP_INFO_ITEM		data/common/gamedata/shop/shop_config_*.cfg.bin	0:id,1:reserved_1,2:item,3:reserved_3,4:reserved_4,5:stock,6:order,7:price_token_1,8:price_token_2,9:price_token_3,10:price_token_4,11:price_token_5,12:price_token_6,13:price_token_7,14:price_token_8,15:price_token_9,16:reserved_16,17:reserved_17,18:reserved_18,19:reserved_19,20:reserved_20,21:reserved_21,22:condition,23:order_2,24:spirit_param,25:spirit_rarity,26:c26
+shop/shop_item_condition	SHOP_INFO_ITEM_CONDITION		data/common/gamedata/shop/shop_config_*.cfg.bin	0:chara_param,1:level,2:rarity
+shop/shop_item_consume	SHOP_INFO_ITEM_CONSUME		data/common/gamedata/shop/shop_config_*.cfg.bin	0:spirit_param,1:rarity,2:count
+shop/shop_token_group	SHOP_TOKEN_GROUP	0	data/common/gamedata/shop/shop_config_*.cfg.bin	0:id
+shop/shop_token_group_token	SHOP_TOKEN_GROUP_TOKEN		data/common/gamedata/shop/shop_config_*.cfg.bin	0:token_item
+skill/ability_back_passive	ABILITY_LEARNING_BACK_PASSIVE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:build_type
+skill/ability_back_passive_skill	ABILITY_LEARNING_BACK_PASSIVE_SKILL		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:slot,1:passive,2:passive_2,3:passive_3
+skill/ability_beans	ABILITY_LEARNING_BEANS_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:stat,1:bean_1,2:bean_2,3:bean_3
+skill/ability_board	ABILITY_LEARNING_BOARD_INFO	0	data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:id,1:shape
+skill/ability_board_effect	ABILITY_LEARNING_BOARD_EFFECT		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:reward,1:flag_1,2:required_level,3:reserved_3,4:c4,5:reserved_5
+skill/ability_board_shape	ABILITY_LEARNING_BOARD_SHAPE_INFO	0	data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:id
+skill/ability_board_shape_piece_dir	ABILITY_LEARNING_BOARD_SHAPE_PIECE_DIR		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:piece_no,1:cell_01,2:cell_02,3:cell_03,4:cell_04,5:cell_05,6:cell_06,7:cell_07,8:cell_08,9:cell_09,10:cell_10,11:cell_11,12:cell_12,13:cell_13,14:cell_14,15:cell_15,16:cell_16,17:cell_17,18:cell_18,19:cell_19,20:cell_20,21:cell_21,22:cell_22
+skill/ability_board_shape_piece_eff	ABILITY_LEARNING_BOARD_SHAPE_PIECE_EFF		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:piece_no,1:cell_01,2:cell_02,3:cell_03,4:cell_04,5:cell_05,6:cell_06,7:cell_07,8:cell_08,9:cell_09,10:cell_10,11:cell_11,12:cell_12,13:cell_13,14:cell_14,15:cell_15,16:cell_16,17:cell_17,18:cell_18,19:cell_19,20:cell_20,21:cell_21,22:cell_22
+skill/ability_front_passive	ABILITY_LEARNING_FRONT_PASSIVE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:main_position
+skill/ability_front_passive_grow	ABILITY_LEARNING_FRONT_PASSIVE_GROW		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:growth_pattern
+skill/ability_front_passive_skill	ABILITY_LEARNING_FRONT_PASSIVE_SKILL		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:play_style,1:passive,2:passive_upgraded
+skill/ability_front_passive_sub	ABILITY_LEARNING_FRONT_PASSIVE_SUB		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:sub_position
+skill/ability_lock_level	ABILITY_LEARNING_LOCK_LEVEL_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:index,1:level,2:level_2
+skill/ability_lot_back_passive	ABILITY_LEARNING_LOT_BACK_PASSIVE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:index
+skill/ability_lot_back_passive_build	ABILITY_LEARNING_LOT_BACK_PASSIVE_BUILD		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:build_type
+skill/ability_lot_back_passive_skill	ABILITY_LEARNING_LOT_BACK_PASSIVE_SKILL		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:passive
+skill/ability_lot_front_passive_growth	ABILITY_LEARNING_LOT_FRONT_PASSIVE_GROWTH		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:growth_pattern
+skill/ability_lot_front_passive_info	ABILITY_LEARNING_LOT_FRONT_PASSIVE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:index
+skill/ability_lot_front_passive_main	ABILITY_LEARNING_LOT_FRONT_PASSIVE_MAIN		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:main_position
+skill/ability_lot_front_passive_skill	ABILITY_LEARNING_LOT_FRONT_PASSIVE_SKILL		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:passive
+skill/ability_lot_front_passive_style	ABILITY_LEARNING_LOT_FRONT_PASSIVE_STYLE		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:play_style
+skill/ability_lot_front_passive_sub	ABILITY_LEARNING_LOT_FRONT_PASSIVE_SUB		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:sub_position
+skill/ability_lot_passive_lv	ABILITY_LEARNING_LOT_PASSIVE_LV_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:rank,1:min_level,2:max_level
+skill/ability_main_param_up_data	ABILITY_LEARNING_MAIN_PARAM_UP_TABLE_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:passive_1,1:passive_2,2:passive_3,3:passive_4
+skill/ability_main_param_up_info	ABILITY_LEARNING_MAIN_PARAM_UP_TABLE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:stat
+skill/ability_param_up_data	ABILITY_LEARNING_PARAM_UP_TABLE_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:passive_1,1:passive_2,2:passive_3,3:passive_4
+skill/ability_param_up_info	ABILITY_LEARNING_PARAM_UP_TABLE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:stat
+skill/ability_param_up_sub	ABILITY_LEARNING_PARAM_UP_TABLE_SUB_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:stat
+skill/ability_shape_table	ABILITY_LEARNING_SHAPE_TABLE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:weight,1:shape
+skill/ability_skill_set	ABILITY_LEARNING_SKILL_SET_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:c0
+skill/ability_skill_set_data	ABILITY_LEARNING_SKILL_SET_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:c0,1:skill_1,2:skill_2,3:skill_3,4:skill_4,5:skill_5,6:skill_6,7:skill_7,8:skill_8,9:skill_9
+skill/ability_skill_set_main	ABILITY_LEARNING_SKILL_SET_MAIN_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:main_position
+skill/ability_skill_set_sub	ABILITY_LEARNING_SKILL_SET_SUB_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:sub_position
+skill/ability_skill_set_table	ABILITY_LEARNING_SKILL_SET_TABLE	0	data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:id
+skill/ability_sub_param_up_data	ABILITY_LEARNING_SUB_PARAM_UP_TABLE_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:passive_1,1:passive_2,2:passive_3,3:passive_4
+skill/ability_sub_param_up_info	ABILITY_LEARNING_SUB_PARAM_UP_TABLE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:stat
+skill/ability_supporter_passive	ABILITY_LEARNING_SUPPORTER_PASSIVE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:kind
+skill/ability_supporter_passive_build	ABILITY_LEARNING_SUPPORTER_PASSIVE_BUILD		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:build_type
+skill/ability_supporter_passive_set	ABILITY_LEARNING_SUPPORTER_PASSIVE_SET		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:level,1:passive_1,2:passive_2,3:passive_3,4:passive_4,5:passive_5
+skill/ability_table	ABILITY_LEARNING_TABLE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:id
+skill/ability_table_build	ABILITY_LEARNING_TABLE_BUILD		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:build_type
+skill/ability_table_data	ABILITY_LEARNING_TABLE_DATA		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:board,1:enabled
+skill/ability_table_main	ABILITY_LEARNING_TABLE_MAIN		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:main_position
+skill/ability_table_sub	ABILITY_LEARNING_TABLE_SUB		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:sub_position
+skill/ability_type	ABILITY_LEARNING_TYPE_INFO		data/common/gamedata/skill/ability_learning_config_*.cfg.bin	0:index,1:main_position,2:sub_position,3:build_type
+skill/aura_skill	AURA_CMD_INFO	0	data/common/gamedata/skill/aura_skill_config_*.cfg.bin	0:id,1:key,2:name_text,3:desc_text,4:power_min,5:power_max,6:linked_skill,7:aura_chara,8:c8,9:c9,10:c10,11:c11,12:event,13:chara_param,14:reserved_14,15:reserved_15,16:order,17:flag_17,18:flag_18
+skill/aura_skill_chara	AURA_CMD_CHARA		data/common/gamedata/skill/aura_skill_config_*.cfg.bin	0:chara
+skill/aura_skill_effect	AURA_CMD_EFFECT		data/common/gamedata/skill/aura_skill_config_*.cfg.bin	0:effect,1:param_1,2:param_2,3:param_3,4:param_4,5:param_5,6:param_6,7:param_7,8:param_8
+skill/aura_skill_unique_effect	AURA_CMD_UNIQUE_EFFECT		data/common/gamedata/skill/aura_skill_config_*.cfg.bin	0:effect,1:param_1,2:param_2,3:param_3,4:param_4,5:param_5,6:param_6,7:param_7,8:param_8
+skill/passive_skill	PASSIVE_SKILL_INFO	0	data/common/gamedata/skill/passive_skill_config_*.cfg.bin	0:id,1:desc_text,2:c2,3:c3,4:c4,5:flag_5,6:key
+skill/passive_skill_buff_icon	PASSIVE_SKILL_BUFF_ICON		data/common/gamedata/skill/passive_skill_config_*.cfg.bin	0:icon_index
+skill/passive_skill_effect	PASSIVE_SKILL_EFFECT		data/common/gamedata/skill/passive_skill_config_*.cfg.bin	0:effect,1:value,2:param_1,3:param_2,4:param_3,5:param_4,6:param_5,7:param_6,8:param_7
+skill/special_tactics	SPECIAL_TACTICS_INFO	0	data/common/gamedata/skill/special_tactics_config_*.cfg.bin	0:id,1:key,2:name_text,3:desc_text,4:duration,5:c5,6:c6,7:event_start,8:event_end,9:geoglyph,10:flag_10,11:condition,12:flag_12,13:c13,14:flag_14,15:c15,16:c16
+skill/special_tactics_cond	SPECIAL_TACTICS_COND_ID		data/common/gamedata/skill/special_tactics_config_*.cfg.bin	0:cond_id,1:condition
+skill/special_tactics_effect	SPECIAL_TACTICS_EFFECT		data/common/gamedata/skill/special_tactics_config_*.cfg.bin	0:effect,1:add_status,2:formation,3:param_1,4:param_2,5:param_3,6:param_4,7:param_5,8:param_6
+skill/special_tactics_success_cond	SPECIAL_TACTICS_SUCCESS_COND_ID		data/common/gamedata/skill/special_tactics_config_*.cfg.bin	0:cond_id,1:condition
+skill/super_tactics	SUPER_TACTICS_INFO	0	data/common/gamedata/skill/super_tactics_config_*.cfg.bin	0:id,1:name_text,2:desc_text,3:c3,4:duration,5:c5
+skill/super_tactics_effect	SUPER_TACTICS_EFFECT		data/common/gamedata/skill/super_tactics_config_*.cfg.bin	0:effect,1:param_1,2:param_2,3:param_3,4:param_4,5:param_5,6:param_6,7:param_7,8:param_8
+skill/synergy_flag	SYNERGY_FLAG_INFO	0	data/common/gamedata/skill/synergy_flag_config_*.cfg.bin	0:id
+skill/synergy_flag_effect	SYNERGY_FLAG_EFFECT		data/common/gamedata/skill/synergy_flag_config_*.cfg.bin	0:effect,1:value,2:param_1,3:param_2,4:param_3,5:param_4,6:param_5,7:param_6,8:param_7,9:flag_9
+skill/synergy_flag_exec_cond	SYNERGY_FLAG_EXEC_COND		data/common/gamedata/skill/synergy_flag_config_*.cfg.bin	0:cond_type,1:chara,2:param_1,3:param_2,4:param_3,5:param_4,6:param_5,7:param_6,8:param_7
+skill/synergy_flag_exec_cond_info	SYNERGY_FLAG_EXEC_COND_INFO	0	data/common/gamedata/skill/synergy_flag_config_*.cfg.bin	0:id,1:c1,2:reserved_2
+skill/team_build	TEAM_BUILD_INFO		data/common/gamedata/skill/team_build_config_*.cfg.bin	0:build_type,1:c1
+skill/team_build_down	TEAM_BUILD_DOWN_DATA		data/common/gamedata/skill/team_build_config_*.cfg.bin	0:c0,1:param_1,2:param_2,3:param_3,4:param_4,5:desc_text,6:c6
+skill/team_build_effect_data	TEAM_BUILD_EFFECT_DATA		data/common/gamedata/skill/team_build_config_*.cfg.bin	0:effect,1:value_1,2:value_2,3:param_1,4:param_2,5:param_3,6:param_4,7:param_5,8:param_6
+skill/team_build_effect_info	TEAM_BUILD_EFFECT_INFO		data/common/gamedata/skill/team_build_config_*.cfg.bin	0:level
+skill/team_build_up	TEAM_BUILD_UP_DATA		data/common/gamedata/skill/team_build_config_*.cfg.bin	0:c0,1:param_1,2:param_2,3:param_3,4:param_4,5:desc_text,6:c6
+soccer/cpu_beans_rate_info	CPU_BEANS_RATE_INFO		data/common/gamedata/soccer/soccer_game_config.cfg.bin	0:difficulty,1:rate
+soccer/passive_skill_effect_info	PASSIVE_SKILL_EFFECT_INFO	0	data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+soccer/passive_skill_effect_info_effect_data	PASSIVE_SKILL_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/passive_skill_effect_info_exec_data	PASSIVE_SKILL_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/passive_skill_effect_info_exec_data_exec_cond_data	PASSIVE_SKILL_EFFECT_INFO_EXEC_DATA_EXEC_COND_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/passive_skill_effect_info_exec_timing_data	PASSIVE_SKILL_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0
+soccer/passive_skill_effect_info_exec_timing_data_exec_timing_cond_data	PASSIVE_SKILL_EFFECT_INFO_EXEC_TIMING_DATA_EXEC_TIMING_COND_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/passive_skill_effect_info_grand_total_info	PASSIVE_SKILL_EFFECT_INFO_GRAND_TOTAL_INFO	0	data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/passive_skill_effect_info_grand_total_info_buff_icon_data	PASSIVE_SKILL_EFFECT_INFO_GRAND_TOTAL_INFO_BUFF_ICON_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0
+soccer/passive_skill_effect_info_grand_total_info_build_type_icon_data	PASSIVE_SKILL_EFFECT_INFO_GRAND_TOTAL_INFO_BUILD_TYPE_ICON_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0
+soccer/passive_skill_effect_info_target_data	PASSIVE_SKILL_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0
+soccer/passive_skill_effect_info_target_data_target_cond_data	PASSIVE_SKILL_EFFECT_INFO_TARGET_DATA_TARGET_COND_DATA		data/common/gamedata/soccer/passive_skill_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_add_status_add_status_info	ADD_STATUS_INFO	0	data/common/gamedata/soccer/soccer_add_status_*.cfg.bin	0:c0
+soccer/soccer_add_status_add_status_info_attr	ADD_STATUS_INFO_ATTR		data/common/gamedata/soccer/soccer_add_status_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39
+soccer/soccer_add_status_add_status_info_func	ADD_STATUS_INFO_FUNC		data/common/gamedata/soccer/soccer_add_status_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14
+soccer/soccer_add_status_add_status_info_param	ADD_STATUS_INFO_PARAM		data/common/gamedata/soccer/soccer_add_status_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14
+soccer/soccer_add_status_add_status_type_info	ADD_STATUS_TYPE_INFO		data/common/gamedata/soccer/soccer_add_status_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+soccer/soccer_command_effect_sc_command_effect_info	SC_COMMAND_EFFECT_INFO	0	data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_command_effect_sc_command_effect_info_effect_data	SC_COMMAND_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/soccer_command_effect_sc_command_effect_info_exec_data	SC_COMMAND_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_command_effect_sc_command_effect_info_exec_data_exec_cond_data	SC_COMMAND_EFFECT_INFO_EXEC_DATA_EXEC_COND_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_command_effect_sc_command_effect_info_exec_timing_data	SC_COMMAND_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0
+soccer/soccer_command_effect_sc_command_effect_info_target_data	SC_COMMAND_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0
+soccer/soccer_command_effect_sc_command_effect_info_target_data_target_cond_data	SC_COMMAND_EFFECT_INFO_TARGET_DATA_TARGET_COND_DATA		data/common/gamedata/soccer/soccer_command_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_common_trigger	DATA_ITEM		data/common/gamedata/soccer/soccer_common_trigger_*.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+soccer/soccer_common_trigger_count	DATA_COUNT		data/common/gamedata/soccer/soccer_common_trigger_*.cfg.bin	0:count
+soccer/soccer_game_config_plus_soccer_game_difficulty	SOCCER_GAME_DIFFICULTY		data/common/gamedata/soccer/soccer_game_config_plus_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26,27:c27,28:c28,29:c29,30:c30,31:c31,32:c32,33:c33,34:c34,35:c35,36:c36,37:c37,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:c44,45:c45,46:c46,47:c47,48:c48,49:c49
+soccer/soccer_game_config_plus_soccer_game_info	SOCCER_GAME_INFO	0	data/common/gamedata/soccer/soccer_game_config_plus_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+soccer/soccer_game_difficulty	SOCCER_GAME_DIFFICULTY		data/common/gamedata/soccer/soccer_game_config.cfg.bin	0:difficulty,1:opponent_team,2:opponent_level,3:c3,4:opponent_ai,5:own_team_override,6:own_team_level,7:c7,8:reward_table,9:reward_money,10:nice_play_exp,11:bean_reward_1,12:bean_reward_2,13:bean_reward_3,14:bean_reward_4,15:growth,16:c16,17:c17,18:bgm_setting,19:caster_setting,20:match_minutes,21:c21,22:c22,23:c23,24:special_rules,25:game_quest,26:game_quest_2,27:c27,28:c28,29:spirit_chara_table,30:item_drop_table,31:spirit_drop_table,32:lottery_num,33:spirit_drop_table_2,34:first_clear_reward,35:sort_no,36:item_table_decide,37:lottery_num_2,38:c38,39:c39,40:c40,41:c41,42:c42,43:c43,44:spirit_chara_table_2,45:spirit_drop_table_3,46:lottery_num_3,47:lottery_num_4,48:chronicle_team_group,49:bgm_override
+soccer/soccer_game_info	SOCCER_GAME_INFO		data/common/gamedata/soccer/soccer_game_config.cfg.bin	0:id,1:name,2:game_type,3:stadium_map,4:title_text,5:map_environment,6:flag_6,7:c7,8:flag_8,9:flag_9
+soccer/soccer_game_info_ref_difficulty	SOCCER_GAME_INFO_REF_DIFFICULTY		data/common/gamedata/soccer/soccer_game_config.cfg.bin	0:start,1:count
+soccer/soccer_game_phase_set	DATA_ITEM		data/common/gamedata/soccer/game/{game}_phase_set.cfg.bin	0:c0,1:soccer_phase,2:cond
+soccer/soccer_game_phase_set_count	DATA_COUNT		data/common/gamedata/soccer/game/{game}_phase_set.cfg.bin	0:count
+soccer/soccer_game_trigger	DATA_ITEM		data/common/gamedata/soccer/game/{game}_trigger.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+soccer/soccer_game_trigger_count	DATA_COUNT		data/common/gamedata/soccer/game/{game}_trigger.cfg.bin	0:count
+soccer/soccer_option_bgm_info	SOCCER_OPTION_BGM_INFO	0	data/common/gamedata/soccer/soccer_game_option*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_option_commentator_info	SOCCER_OPTION_COMMENTATOR_INFO	0	data/common/gamedata/soccer/soccer_game_option*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_option_field_info	SOCCER_OPTION_FIELD_INFO	0	data/common/gamedata/soccer/soccer_game_option*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5
+soccer/soccer_prize_itbl_base	ITBL_BASE	0	data/common/gamedata/soccer/soccer_prize_config_*.cfg.bin	0:c0
+soccer/soccer_prize_itbl_items	ITBL_ITEMS		data/common/gamedata/soccer/soccer_prize_config_*.cfg.bin	0:item,1:count,2:c2,3:c3,4:c4
+soccer/soccer_quick_action_sc_qa_act_behavior_info	SC_QA_ACT_BEHAVIOR_INFO	0	data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0
+soccer/soccer_quick_action_sc_qa_act_behavior_info_act	SC_QA_ACT_BEHAVIOR_INFO_ACT		data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_quick_action_sc_qa_act_behavior_info_act_cmd_info	SC_QA_ACT_BEHAVIOR_INFO_ACT_CMD_INFO	0	data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0
+soccer/soccer_quick_action_sc_qa_cmd_behavior_seq_info	SC_QA_CMD_BEHAVIOR_SEQ_INFO	0	data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0
+soccer/soccer_quick_action_sc_qa_cmd_behavior_seq_info_seq	SC_QA_CMD_BEHAVIOR_SEQ_INFO_SEQ		data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0
+soccer/soccer_quick_action_sc_qa_cmd_behavior_seq_info_seq_unit	SC_QA_CMD_BEHAVIOR_SEQ_INFO_SEQ_UNIT		data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_quick_action_sc_qa_cmd_behavior_seq_info_seq_unit_generic	SC_QA_CMD_BEHAVIOR_SEQ_INFO_SEQ_UNIT_GENERIC		data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_quick_action_sc_qa_icon_info	SC_QA_ICON_INFO	0	data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_quick_action_sc_qa_quick_action_info	SC_QA_QUICK_ACTION_INFO	0	data/common/gamedata/soccer/soccer_quick_action_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_rankmatch_prize_itbl_base	ITBL_BASE	0	data/common/gamedata/soccer/soccer_rankmatch_prize_config_*.cfg.bin	0:c0
+soccer/soccer_rankmatch_prize_itbl_items	ITBL_ITEMS	0	data/common/gamedata/soccer/soccer_rankmatch_prize_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_studium_gimmick_stadium_gimmick_menu_setting_info	STADIUM_GIMMICK_MENU_SETTING_INFO	0	data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/soccer_studium_gimmick_studium_gimmick_effect_effect	STUDIUM_GIMMICK_EFFECT_EFFECT		data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/soccer_studium_gimmick_studium_gimmick_effect_info	STUDIUM_GIMMICK_EFFECT_INFO	0	data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_studium_gimmick_studium_gimmick_gimmick	STUDIUM_GIMMICK_GIMMICK		data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+soccer/soccer_studium_gimmick_studium_gimmick_info	STUDIUM_GIMMICK_INFO	0	data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0
+soccer/soccer_studium_gimmick_studium_gimmick_limit	STUDIUM_GIMMICK_LIMIT		data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0
+soccer/soccer_studium_gimmick_studium_gimmick_place_table_info	STUDIUM_GIMMICK_PLACE_TABLE_INFO	0	data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0
+soccer/soccer_studium_gimmick_studium_gimmick_place_table_placement	STUDIUM_GIMMICK_PLACE_TABLE_PLACEMENT		data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/soccer_studium_gimmick_studium_gimmick_timing_table_info	STUDIUM_GIMMICK_TIMING_TABLE_INFO	0	data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+soccer/soccer_studium_gimmick_studium_gimmick_timing_table_timing	STUDIUM_GIMMICK_TIMING_TABLE_TIMING		data/common/gamedata/soccer/soccer_studium_gimmick_config_*.cfg.bin	0:c0
+soccer/special_tactics_effect_info	SPECIAL_TACTICS_EFFECT_INFO	0	data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/special_tactics_effect_info_effect_data	SPECIAL_TACTICS_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/special_tactics_effect_info_exec_data	SPECIAL_TACTICS_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/special_tactics_effect_info_exec_data_exec_cond_data	SPECIAL_TACTICS_EFFECT_INFO_EXEC_DATA_EXEC_COND_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/special_tactics_effect_info_exec_timing_data	SPECIAL_TACTICS_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0
+soccer/special_tactics_effect_info_exec_timing_data_exec_timing_cond_data	SPECIAL_TACTICS_EFFECT_INFO_EXEC_TIMING_DATA_EXEC_TIMING_COND_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/special_tactics_effect_info_target_data	SPECIAL_TACTICS_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0
+soccer/special_tactics_effect_info_target_data_target_cond_data	SPECIAL_TACTICS_EFFECT_INFO_TARGET_DATA_TARGET_COND_DATA		data/common/gamedata/soccer/special_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/studium_gimmick_effect_info	STUDIUM_GIMMICK_EFFECT_INFO	0	data/common/gamedata/soccer/studium_gimmick_effect_config_*.cfg.bin	0:c0
+soccer/studium_gimmick_effect_info_effect_data	STUDIUM_GIMMICK_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/studium_gimmick_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/studium_gimmick_effect_info_exec_data	STUDIUM_GIMMICK_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/studium_gimmick_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/studium_gimmick_effect_info_exec_timing_data	STUDIUM_GIMMICK_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/studium_gimmick_effect_config_*.cfg.bin	0:c0
+soccer/studium_gimmick_effect_info_target_data	STUDIUM_GIMMICK_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/studium_gimmick_effect_config_*.cfg.bin	0:c0
+soccer/super_tactics_effect_info	SUPER_TACTICS_EFFECT_INFO	0	data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0
+soccer/super_tactics_effect_info_effect_data	SUPER_TACTICS_EFFECT_INFO_EFFECT_DATA	0	data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/super_tactics_effect_info_end_timing_data	SUPER_TACTICS_EFFECT_INFO_END_TIMING_DATA		data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0
+soccer/super_tactics_effect_info_end_timing_data_end_timing_cond_data	SUPER_TACTICS_EFFECT_INFO_END_TIMING_DATA_END_TIMING_COND_DATA		data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/super_tactics_effect_info_exec_data	SUPER_TACTICS_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/super_tactics_effect_info_exec_timing_data	SUPER_TACTICS_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0
+soccer/super_tactics_effect_info_target_data	SUPER_TACTICS_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/super_tactics_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info	SYNERGY_FLAG_EFFECT_INFO	0	data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info_effect_data	SYNERGY_FLAG_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/synergy_flag_effect_info_exec_data	SYNERGY_FLAG_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/synergy_flag_effect_info_exec_data_exec_cond_data	SYNERGY_FLAG_EFFECT_INFO_EXEC_DATA_EXEC_COND_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/synergy_flag_effect_info_exec_timing_data	SYNERGY_FLAG_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info_grand_total_info	SYNERGY_FLAG_EFFECT_INFO_GRAND_TOTAL_INFO	0	data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/synergy_flag_effect_info_grand_total_info_buff_icon_data	SYNERGY_FLAG_EFFECT_INFO_GRAND_TOTAL_INFO_BUFF_ICON_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info_grand_total_info_build_type_icon_data	SYNERGY_FLAG_EFFECT_INFO_GRAND_TOTAL_INFO_BUILD_TYPE_ICON_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info_target_data	SYNERGY_FLAG_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0
+soccer/synergy_flag_effect_info_target_data_target_cond_data	SYNERGY_FLAG_EFFECT_INFO_TARGET_DATA_TARGET_COND_DATA		data/common/gamedata/soccer/synergy_flag_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/team_build_effect_info	TEAM_BUILD_EFFECT_INFO	0	data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0,1:c1,2:c2
+soccer/team_build_effect_info_effect_data	TEAM_BUILD_EFFECT_INFO_EFFECT_DATA		data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+soccer/team_build_effect_info_exec_data	TEAM_BUILD_EFFECT_INFO_EXEC_DATA		data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+soccer/team_build_effect_info_exec_timing_data	TEAM_BUILD_EFFECT_INFO_EXEC_TIMING_DATA		data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0
+soccer/team_build_effect_info_target_data	TEAM_BUILD_EFFECT_INFO_TARGET_DATA		data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0
+soccer/team_build_effect_info_target_data_target_cond_data	TEAM_BUILD_EFFECT_INFO_TARGET_DATA_TARGET_COND_DATA		data/common/gamedata/soccer/team_build_effect_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+system/activity_config	ACTIVITY_CONFIG	0	data/common/gamedata/system/activity_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4
+system/ai_ai_info	AI_AI_INFO	0	data/common/gamedata/system/ai_type_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/ai_hoby	AI_HOBY		data/common/gamedata/system/ai_type_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/autosave_info_chara_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/autosave_info_chara_limit_config_*.cfg.bin	0:c0
+system/autosave_info_chara_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/autosave_info_chara_limit_config_*.cfg.bin	0:c0,1:c1
+system/autosave_info_chara_limit_general_limit_info_data_param	GENERAL_LIMIT_INFO_DATA_PARAM		data/common/gamedata/system/autosave_info_chara_limit_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/behavior_ai_info	BEHAVIOR_AI_INFO		data/common/gamedata/system/behavior_trigger_common_*.cfg.bin	0:c0,1:c1
+system/behavior_ai_info_target	BEHAVIOR_AI_INFO_TARGET		data/common/gamedata/system/behavior_trigger_common_*.cfg.bin	0:c0,1:c1,2:c2
+system/behavior_ai_info_target_exe_type	BEHAVIOR_AI_INFO_TARGET_EXE_TYPE		data/common/gamedata/system/behavior_trigger_common_*.cfg.bin	0:c0,1:c1
+system/behavior_ai_info_target_exe_type_event	BEHAVIOR_AI_INFO_TARGET_EXE_TYPE_EVENT		data/common/gamedata/system/behavior_trigger_common_*.cfg.bin	0:c0
+system/common_area_info	COMMON_AREA_INFO	0	data/common/gamedata/system/common_sosimen_club_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10
+system/common_sosimen_club_conditional_type_type	CONDITIONAL_TYPE_TYPE	0	data/common/gamedata/system/common_sosimen_club_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/common_sosimen_club_conditional_variant_info	CONDITIONAL_VARIANT_INFO	0	data/common/gamedata/system/common_sosimen_club_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+system/common_trigger	DATA_ITEM		data/common/gamedata/system/common_trigger_*.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+system/common_trigger_count	DATA_COUNT		data/common/gamedata/system/common_trigger_*.cfg.bin	0:count
+system/dungeon_gimmick_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/dungeon_gimmick_limit_config_*.cfg.bin	0:c0
+system/dungeon_gimmick_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/dungeon_gimmick_limit_config_*.cfg.bin	0:c0,1:c1
+system/extend_story_setting_none_id_flag_info	NONE_ID_FLAG_INFO		data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:c0
+system/extend_story_setting_none_id_flag_info_data	NONE_ID_FLAG_INFO_DATA		data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:c0,1:c1
+system/extend_story_setting_story_flag_info	STORY_FLAG_INFO		data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:c0
+system/extend_story_setting_tbox_flag_info	TBOX_FLAG_INFO	0	data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:c0
+system/extend_story_setting_tbox_flag_info_data	TBOX_FLAG_INFO_DATA		data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:c0,1:c1
+system/flag	FLAG_INFO_PARAM	1	data/common/gamedata/system/flag_config_*.cfg.bin	0:index,1:id
+system/flag_bank	FLAG_INFO		data/common/gamedata/system/flag_config_*.cfg.bin	0:bank
+system/flag_map_door_info	FLAG_MAP_DOOR_INFO		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0
+system/flag_map_door_info_param	FLAG_MAP_DOOR_INFO_PARAM		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0,1:c1
+system/flag_tbox_info	FLAG_TBOX_INFO		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0
+system/flag_tbox_info_param	FLAG_TBOX_INFO_PARAM		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/flag_tbox_repop_info	FLAG_TBOX_REPOP_INFO		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0
+system/flag_tbox_repop_info_param	FLAG_TBOX_REPOP_INFO_PARAM		data/common/gamedata/system/flag_config_*.cfg.bin	0:c0,1:c1,2:c2
+system/follower_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/follower_limit_config_*.cfg.bin	0:c0
+system/follower_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/follower_limit_config_*.cfg.bin	0:c0,1:c1
+system/follower_set_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/follower_set_config_*.cfg.bin	0:c0
+system/follower_set_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/follower_set_config_*.cfg.bin	0:c0,1:c1
+system/follower_set_general_limit_info_data_param	GENERAL_LIMIT_INFO_DATA_PARAM	0	data/common/gamedata/system/follower_set_config_*.cfg.bin	0:c0
+system/general_condition	GENERAL_CONDITION_INFO		data/common/gamedata/system/common_limit_config_*.cfg.bin	0:id
+system/general_condition_data	GENERAL_CONDITION_DATA		data/common/gamedata/system/common_limit_config_*.cfg.bin	0:mode,1:cond
+system/map_name_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/map_name_limit_config_*.cfg.bin	0:c0
+system/map_name_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/map_name_limit_config_*.cfg.bin	0:c0,1:c1
+system/map_name_limit_general_limit_info_data_param	GENERAL_LIMIT_INFO_DATA_PARAM	0	data/common/gamedata/system/map_name_limit_config_*.cfg.bin	0:c0
+system/map_name_world_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/map_name_world_limit_config_*.cfg.bin	0:c0
+system/map_name_world_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/map_name_world_limit_config_*.cfg.bin	0:c0,1:c1
+system/menu_disclosure	MENU_DISCLOSURE_CFG		data/common/gamedata/system/common_limit_config_*.cfg.bin	0:id
+system/menu_disclosure_data	MENU_DISCLOSURE_DATA		data/common/gamedata/system/common_limit_config_*.cfg.bin	0:mode,1:cond
+system/safe_pos_setting	SAFE_POS_INFO		data/common/gamedata/system/safe_pos_setting_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7
+system/situation_talk_talk_info	TALK_INFO	0	data/common/gamedata/system/situation_talk_*.cfg.bin	0:c0
+system/situation_talk_talk_talk	TALK_TALK		data/common/gamedata/system/situation_talk_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8
+system/situation_talk_talk_talk_id	TALK_TALK_ID		data/common/gamedata/system/situation_talk_*.cfg.bin	0:c0,1:c1,2:c2
+system/story_flag	STORY_FLAG_INFO_DATA		data/common/gamedata/system/extend_story_setting_*.cfg.bin	0:flag,1:index
+system/tbox_look_change_limit_general_limit_info	GENERAL_LIMIT_INFO	0	data/common/gamedata/system/tbox_look_change_limit_config_*.cfg.bin	0:c0
+system/tbox_look_change_limit_general_limit_info_data	GENERAL_LIMIT_INFO_DATA		data/common/gamedata/system/tbox_look_change_limit_config_*.cfg.bin	0:c0,1:c1
+system/tbox_look_change_limit_general_limit_info_data_param	GENERAL_LIMIT_INFO_DATA_PARAM		data/common/gamedata/system/tbox_look_change_limit_config_*.cfg.bin	0:c0,1:c1,2:c2
+system_common/add_content_config	AOC_INFO	0	data/common/system/add_content_config_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9
+system_common/add_content_equip_config	STRUCT_INFO_MEMBER		data/common/system/add_content_equip_config_*.cfg.bin	0:c0,1:c1
+team/chronicle_team_group	CHRONICLE_TEAM_GROUP_INFO	0	data/common/gamedata/team/team_config_*.cfg.bin	0:id
+team/chronicle_team_group_team	CHRONICLE_TEAM_GROUP_TEAM	0	data/common/gamedata/team/team_config_*.cfg.bin	0:game,1:reserved_1,2:reserved_2
+team/enjoy_mode_team	ENJOY_MODE_TEAM_INFO	0	data/common/gamedata/team/enjoy_mode_team_config_*.cfg.bin	0:team,1:leader,2:c2,3:order,4:stadium_map,5:image,6:image_name,7:condition,8:bgm_set,9:unlock_text,10:c10,11:c11
+team/team	SOCCER_TEAM_INFO	0	data/common/gamedata/team/team_config_*.cfg.bin	0:id,1:key,2:desc_text,3:name_text,4:formation,5:uniform,6:emblem,7:c7,8:level,9:reserved_9
+team/team_member	SOCCER_TEAM_MEMBER		data/common/gamedata/team/team_config_*.cfg.bin	0:chara_param,1:c1,2:skill_config,3:shoes,4:equip_2,5:equip_3,6:equip_4,7:title,8:slot,9:flag_9,10:kit_number,11:captain,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:rate_1,21:rate_2,22:rate_3,23:rate_4,24:rate_5,25:rate_6,26:rate_7,27:rate_8
+team/team_member_role	SOCCER_TEAM_MEMBER_ROLE		data/common/gamedata/team/team_config_*.cfg.bin	0:role_1,1:role_2,2:role_3,3:role_4
+team/team_member_skill_config	TEAM_MEMBER_SKILL_CONFIG_INFO	0	data/common/gamedata/team/team_config_*.cfg.bin	0:id,1:skill_1,2:skill_2,3:skill_3,4:skill_4,5:skill_5,6:skill_6,7:skill_1_level,8:skill_2_level,9:skill_3_level,10:skill_4_level,11:skill_5_level,12:skill_6_level
+team/team_metamorphose_member	SOCCER_TEAM_METAMORPHOSE_MEMBER		data/common/gamedata/team/team_config_*.cfg.bin	0:chara_param,1:skill_config,2:reserved_2,3:reserved_3,4:reserved_4,5:reserved_5,6:reserved_6,7:reserved_7
+team/team_skill	SOCCER_TEAM_SKILL		data/common/gamedata/team/team_config_*.cfg.bin	0:skill
+team/team_tactics	SOCCER_TEAM_TACTICS		data/common/gamedata/team/team_config_*.cfg.bin	0:tactics
+trophy/season_reward	SEASON_REWARD_SETTING_SEASON_REWARD	0	data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:item,1:count
+trophy/season_reward_setting	SEASON_REWARD_SETTING_INFO	0	data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:tournament
+trophy/season_reward_setting_data	SEASON_REWARD_SETTING_DATA		data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:rank
+trophy/trophy	TROPHY_INFO		data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:category,1:number,2:id,3:key,4:name_text,5:debug_name,6:desc_text,7:reserved_7,8:condition,9:hint_text,10:photo_id,11:note_id,12:sort_no,13:c13,14:photo_texture,15:note_texture,16:has_photo,17:flag_17,18:flag_18,19:flag_19
+trophy/trophy_beta_title_text	TROPHY_VROAD_BETA_TITLE_TEXT_INFO	0	data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:trophy,1:text
+trophy/trophy_reward	TROPHY_REWARD		data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:item,1:count
+trophy/trophy_texture_base_path	TEXTURE_BASE_PATH		data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:base_path
+trophy/trophy_tier	TROPHY_TIER		data/common/gamedata/trophy/trophy_config_*.cfg.bin	0:tier,1:number,2:target,3:reserved_3,4:c4,5:c5,6:c6,7:c7
+vsroute/vs_route_trigger	DATA_ITEM		data/common/gamedata/vsroute/chronicle_vs_route_trigger_*.cfg.bin	0:type,1:target,2:sub,3:cond,4:parent,5:c5,6:lua_index
+vsroute/vs_route_trigger_count	DATA_COUNT		data/common/gamedata/vsroute/chronicle_vs_route_trigger_*.cfg.bin	0:count
+w17/tgs_npc_talk_00_01_point	POINT		data/common/gamedata/w17/tgs_npc_talk_00_01_*.cfg.bin	0:c0,1:c1,2:c2,3:c3
+w17/tgs_npc_talk_00_01_point_max	POINT_MAX		data/common/gamedata/w17/tgs_npc_talk_00_01_*.cfg.bin	0:c0
+weather/weather_region_info	WEATHER_REGION_INFO		data/common/gamedata/weather/weather_schedule_*.cfg.bin	0:c0,1:c1,2:c2
+weather/weather_schedule_info	WEATHER_SCHEDULE_INFO	0	data/common/gamedata/weather/weather_schedule_*.cfg.bin	0:c0
+weather/weather_schedule_info_data	WEATHER_SCHEDULE_INFO_DATA	0	data/common/gamedata/weather/weather_schedule_*.cfg.bin	0:c0,1:c1,2:c2,3:c3,4:c4,5:c5,6:c6,7:c7,8:c8,9:c9,10:c10,11:c11,12:c12,13:c13,14:c14,15:c15,16:c16,17:c17,18:c18,19:c19,20:c20,21:c21,22:c22,23:c23,24:c24,25:c25,26:c26

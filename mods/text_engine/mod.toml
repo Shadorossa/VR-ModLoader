@@ -1,0 +1,15 @@
+id = "text_engine"
+name = "Text engine"
+version = "1.0.0"
+author = "EVT"
+description = "Game texts for mods, by readable keys in the 9 languages: rename characters, change any menu / system / skill / item text, add new strings with stable ids. Every mod's texts are merged at start (the mod that loads later wins a conflict), with language fallback. Lua: CMND_EVT_TEXT_ID / CMND_EVT_TEXT_GET. Mods that use it put requires = [\"text_engine\"]. ModLoader plugin (text_engine.dll)."
+priority = 0
+updated = "2026-09-29"
+# native plugin (see sdk/README.md): the ModLoader loads text_engine.dll from this folder
+plugin = "text_engine.dll"
+# the name other mods ask for in requires
+provides = ["text_engine"]
+# CMND_EVT_TEXT_ID / CMND_EVT_TEXT_GET need the Lua bridge
+loader_modules = ["lua_bridge"]
+# ModLoader with plugins (API v1)
+loader_min = "1.0.0"

@@ -1,0 +1,8 @@
+id = "example_lua_only"
+name = "Example: Lua-only mod"
+version = "1.0.0"
+author = "ModLoader SDK"
+description = "A Lua patch on the retail title menu that logs one line. Template for menu / script patches."
+priority = 0
+tags = ["Example"]
+updated = "2026-09-29"

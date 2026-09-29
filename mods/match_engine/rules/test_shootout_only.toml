@@ -1,0 +1,12 @@
+# Test ruleset: the match is only a penalty shootout (no normal halves, starts 0-0).
+# [mods.match_engine] test_ruleset = "test_shootout_only"
+id = "test_shootout_only"
+name = "Test: penalties only"
+version = 1
+
+[time]
+halves = 0
+
+[end]
+penalties = true
+penalties_kicks = 5

@@ -1,0 +1,24 @@
+[package]
+name = "evt-plugin-save-engine"
+version = "1.0.0"
+edition.workspace = true
+license.workspace = true
+description = "ModLoader plugin of mod save_engine: per-mod persistent data kept apart from the retail save, following the player's save slot (save_engine.dll)"
+
+[lib]
+name = "save_engine"
+# cdylib = save_engine.dll (the plugin); rlib = unit tests of the store, the slot layout and the event codec
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = "0.8"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Com", "Win32_System_Registry", "Win32_UI_Shell"] }
+
+[dev-dependencies]
+# Lua 5.2 harness of tests/lua_helper.rs: the EvtSave helper and the test mod run in a real VM against the store
+mlua = { version = "0.9", features = ["lua52", "vendored"] }

@@ -1,0 +1,13 @@
+[package]
+name = "evt-mod"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Command-line tool for VR-ModLoader mod folders: new, check, list, pack"
+
+[[bin]]
+name = "evt-mod"
+path = "src/main.rs"
+
+[dependencies]
+evt-modfmt = { path = "../evt-modfmt" }

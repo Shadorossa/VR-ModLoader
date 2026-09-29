@@ -1,0 +1,28 @@
+# save_engine defaults (example). Put your own values in <game>\evt_loader\config.toml under [mods.save_engine]:
+# that section survives updates of this mod.
+
+# "on_save": slot data is written when the game saves the slot (default). "immediate": every change is written at once.
+commit = "on_save"
+# mods whose slot data is always written at once (the others follow `commit`)
+immediate_mods = []
+# worker period in ms (slot events, global / immediate writes)
+flush_ms = 250
+# folders kept in <storage>\trash (data of deleted / replaced slots)
+trash_keep = 30
+
+[storage]
+# "profile" (default): %USERPROFILE%\AppData\LocalLow\LEVEL5 Inc_\INAZUMA ELEVEN Victory Road\modloader_saves\
+#   (next to the game's own user data; survives a reinstall of the game)
+# "game": <game>\evt_loader\saves\
+location = "profile"
+# absolute folder that overrides `location` ("" = none)
+path = ""
+
+[slots]
+# Design only in 1.0.0: the engine does not manage the save slots yet. These values describe the layout it will
+# manage once it takes over.
+count = 3          # player slots, the locked one included
+lock = true        # one slot holds the untouched vanilla save: read / duplicate only
+locked_slot = 1
+reserved = [4]     # slots owned by a mode
+takeover = false   # must stay false in 1.0.0

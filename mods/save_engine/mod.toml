@@ -1,0 +1,14 @@
+id = "save_engine"
+name = "Save engine"
+version = "1.0.0"
+author = "EVT"
+description = "Per-mod save data kept apart from the game's save and tied to the player's save slot: a mod stores numbers, strings and flags that are saved when the game saves, follow slot copies / deletions and never touch the retail save file. Lua commands CMND_EVT_SAVE_* and the EvtSave helper."
+priority = 0
+tags = ["Engine"]
+updated = "2026-09-29"
+# native plugin (see sdk/README.md): the ModLoader loads save_engine.dll from this folder
+plugin = "save_engine.dll"
+# the name other mods put in `requires`. The engine does not take over the save slots yet (see [slots] in config.toml)
+provides = ["save_engine"]
+# ModLoader with plugins (API v1)
+loader_min = "1.0.0"

@@ -1,0 +1,19 @@
+[package]
+name = "g4-texture"
+version = "0.1.0"
+edition = "2024"
+description = "Level-5 G4TX texture containers, the shared G4 header / hash tables and DDS/BCn codecs for Inazuma Eleven Victory Road"
+license.workspace = true
+
+[dependencies]
+thiserror = { workspace = true }
+crc32fast = { workspace = true }
+bcdec_rs = "0.2"
+intel_tex_2 = { version = "0.4", optional = true }
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[features]
+default = ["encode"]
+# BC1/3/4/5/7 block-compression encoders (Intel ISPC kernels, needs a C++ runtime to link).
+# Without it `dds::encode_surface` refuses block-compressed formats; everything else works.
+encode = ["dep:intel_tex_2"]

@@ -1,0 +1,3 @@
+This file exists only inside the virtual file system of the ModLoader.
+The game never asks for it; it is here so `evt-mod check` and loader.log have something to show.
+To replace a real game file, put your version at the same logical path under files\data\ (see README.md).

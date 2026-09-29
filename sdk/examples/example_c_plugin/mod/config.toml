@@ -1,0 +1,5 @@
+# Defaults shipped with the mod. Users override them in <game>\evt_loader\config.toml (survives mod updates):
+#
+#   [mods.example_c_plugin]
+#   log_first_menus = 20
+log_first_menus = 5

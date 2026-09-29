@@ -1,0 +1,13 @@
+id = "quit_fix"
+name = "Proper game exit"
+version = "1.1.0"
+author = "EVT"
+description = "Closing the window (X / Alt+F4) really closes nie.exe, even during a match: the process no longer stays alive in the background (Steam stops showing \"Playing\"). It never cuts a save short. Native ModLoader plugin (quit_fix.dll); SDK test / example plugin, since the loader now has the same fix built in."
+priority = 0
+updated = "2026-09-29"
+# native plugin (see sdk/README.md): the ModLoader loads quit_fix.dll from this folder
+plugin = "quit_fix.dll"
+# the loader's built-in `quit_fix` module yields to this plugin when it is installed and loads correctly
+provides = ["quit_fix"]
+# ModLoader with plugins (API v1)
+loader_min = "1.0.0"

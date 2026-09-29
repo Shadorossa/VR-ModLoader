@@ -1,0 +1,19 @@
+# Test ruleset: draw at the end -> extra time of 2 halves of 5' (short, for testing) -> if still tied, a shootout
+# of 5 kicks + sudden death.
+# Ships with the match_engine mod. To try it in every free match, in evt_loader\config.toml:
+#   [mods.match_engine]
+#   test_ruleset = "test_et_pens"
+id = "test_et_pens"
+name = "Test: extra time + penalties"
+version = 2
+
+[end]
+extra_time = true
+extra_time_halves = 2
+extra_time_minutes = 5
+penalties = true
+penalties_kicks = 5
+penalties_sudden_death = true
+penalties_order = "forwards_first"
+penalties_first = "user"
+penalties_final_score = "winner_plus_one"

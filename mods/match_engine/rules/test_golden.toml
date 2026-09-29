@@ -1,0 +1,12 @@
+# Test ruleset: normal match and, on a draw, one golden-goal period (lasts as long as each half,
+# half_minutes; here 5' to test quickly). If nobody scores: draw.
+# [mods.match_engine] test_ruleset = "test_golden"
+id = "test_golden"
+name = "Test: golden goal after a draw"
+version = 2
+
+[time]
+half_minutes = 5
+
+[end]
+golden_goal = true

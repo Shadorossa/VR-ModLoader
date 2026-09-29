@@ -1,0 +1,18 @@
+# Audio engine settings (defaults). To change them without touching the mod: section [mods.audio_engine]
+# of evt_loader\config.toml (it survives updates), e.g.
+#   [mods.audio_engine.armed_voice]
+#   enabled = false
+
+[armed_voice]
+# Per-armour armour shout: <bank>_<armour id> (was00630...) before the retail <bank>_armed.
+enabled = true
+
+[queue_sheet]
+# At startup, register the new banks (the [[bank]] entries of the audio.toml files and the ones the audio engine
+# creates) in sound_queue_sheet.
+merge = true
+
+[build]
+# At startup, build the [[voice]] / [[sfx]] / [[music]] entries of the mods' audio.toml files (cache in
+# evt_loader\cache\audio_engine; a mod that ships its banks already built is not rebuilt).
+enabled = true

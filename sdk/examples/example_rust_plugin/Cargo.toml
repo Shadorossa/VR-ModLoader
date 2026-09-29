@@ -1,0 +1,27 @@
+[package]
+name = "evt-example-rust-plugin"
+version = "1.0.0"
+edition = "2021"
+description = "Example ModLoader plugin in Rust: log, config, a Lua command and a chained hook on CMenuController::OpenMenu"
+publish = false
+
+[lib]
+# the DLL is named after the lib: example_rust_plugin.dll (mod.toml: plugin = "example_rust_plugin.dll")
+name = "example_rust_plugin"
+crate-type = ["cdylib"]
+
+[dependencies]
+# In a mod of your own, point this at wherever you keep the SDK (path, git or the registry once published).
+evt-plugin-sdk = { path = "../../../crates/evt-plugin-sdk" }
+toml = "0.8"
+
+# Own workspace root: this example lives inside the repository but is NOT a member of the main workspace
+# (the root Cargo.toml only takes crates/* and app/src-tauri), so `cargo build` at the repo root ignores it.
+[workspace]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+panic = "unwind"   # keep unwind: the SDK catches panics at the plugin boundary (catch_unwind)

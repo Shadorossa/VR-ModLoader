@@ -1,0 +1,8 @@
+# Defaults shipped with the mod (the plugin also has them in code). Users override them WITHOUT touching this file,
+# in <game>\evt_loader\config.toml, so mod updates keep their settings:
+#
+#   [mods.example_rust_plugin]
+#   greeting = "hola"
+#   log_first_menus = 20
+greeting = "hello from Rust"
+log_first_menus = 5

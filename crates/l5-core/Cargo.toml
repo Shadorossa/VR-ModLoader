@@ -1,0 +1,16 @@
+[package]
+name = "l5-core"
+version = "0.1.0"
+edition = "2024"
+description = "Level-5 core formats for Inazuma Eleven Victory Road: CRC-32 name hashes and byte-exact T2B / RDBN cfg.bin read/write"
+license.workspace = true
+
+[dependencies]
+crc32fast = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }
+encoding_rs = "0.8"
+
+[dev-dependencies]
+serde_json = { workspace = true }
+rayon = "1"

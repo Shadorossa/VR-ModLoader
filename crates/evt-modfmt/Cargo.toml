@@ -1,0 +1,10 @@
+[package]
+name = "evt-modfmt"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Mod folder format (mod.toml, enabled.toml, data deltas), validation, conflicts and load plan; pure Rust, shared by vr-loader, evt-installer, the manager and evt-mod"
+
+[dependencies]
+serde.workspace = true
+toml = "0.8"

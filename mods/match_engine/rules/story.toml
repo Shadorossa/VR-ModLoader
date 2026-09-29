@@ -1,0 +1,19 @@
+# BASE ruleset: story mode. Each match carries its own duration, halves and V-goal (9 matches go to a golden goal after a draw) in its row and in its scripts.
+# Every rule is left as the match row sets it ("row"): the original game as is. A mod can replace this ruleset
+# (same id, loaded later) or assign another one to these matches in its rules\matches.toml.
+id = "story"
+name = "Story (original)"
+version = 1
+
+[time]
+half_minutes = "row"
+halves = "row"
+
+[teams]
+players = "row"
+
+[end]
+extra_time = false
+golden_goal = false
+penalties = false
+extended_vgoal = "row"

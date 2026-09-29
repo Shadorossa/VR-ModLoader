@@ -1,0 +1,15 @@
+[package]
+name = "l5-cpk"
+version = "0.1.0"
+edition = "2024"
+license.workspace = true
+description = "CRI CPK archives, @UTF tables, CRILAYLA and the Level-5 filename XOR / cpk_list AES layers used by Inazuma Eleven Victory Road (PC)"
+
+[dependencies]
+crc32fast = { workspace = true }
+thiserror = { workspace = true }
+aes = "0.8"
+cbc = { version = "0.1", features = ["alloc", "block-padding"] }
+
+[dev-dependencies]
+tempfile = "3"

@@ -1,0 +1,54 @@
+[package]
+name = "vr-loader"
+version = "0.1.0"
+edition = "2021"
+license.workspace = true
+description = "VR-ModLoader: winmm.dll proxy mod loader for Inazuma Eleven Victory Road PC v7.1.2 (mod folders, file overlay, data deltas, Lua patches, native plugins, console)"
+build = "build.rs"
+
+[lib]
+# cdylib = the proxy DLL (copied/renamed to winmm.dll); rlib = so tests/ can use the pure-logic modules.
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = "0.8"
+sha1 = "0.10"
+crc32fast = { workspace = true }
+# T2B read / write of the data deltas (module `mods`).
+l5-core = { path = "../l5-core" }
+# cpk_list + CPK extraction of the base files the data deltas apply to, schema glob helpers (module `mods`).
+vr-gamefiles = { path = "../vr-gamefiles" }
+# Module `mods`: mod folder format, validation and load plan.
+evt-modfmt = { path = "../evt-modfmt" }
+# Native mod plugins: the C ABI of plugin API v1 (types only; module `plugins`).
+evt-plugin-sdk = { path = "../evt-plugin-sdk" }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    # module console: AllocConsole / ReadConsoleW / SetConsoleCtrlHandler
+    "Win32_System_Console",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Diagnostics_Debug",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_ProcessStatus",
+    "Win32_System_SystemInformation",
+    "Win32_System_SystemServices",
+    "Win32_System_Threading",
+    # hang watchdog (debug::watchdog): GetThreadContext / RtlVirtualUnwind types, window ping
+    "Win32_System_Kernel",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[dev-dependencies]
+# Lua 5.2 harness of tests/lua_patch.rs: the fingerprint probes and the patch files run in real VMs.
+mlua = { version = "0.9", features = ["lua52", "vendored"] }
+
+[build-dependencies]
+cc = "1"
+# module mods: T2B table index generated from schemas/ (data deltas)
+toml = "0.8"

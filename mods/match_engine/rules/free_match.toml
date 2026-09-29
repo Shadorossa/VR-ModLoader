@@ -1,0 +1,19 @@
+# BASE ruleset: free 11-a-side match (VS CPU, friendlies). Reproduces the original game as is.
+# Another mod can change the rules of all free matches by shipping its own free_match.toml
+# (the one that loads later wins) or by assigning another ruleset to the "free" mode in its rules\matches.toml.
+id = "free_match"
+name = "Free match (original)"
+version = 1
+
+[time]
+half_minutes = 30          # c20 = 30 in all 2018 full-match rows (VS CPU 6-9 included)
+halves = "row"             # 2 halves in 2012 of the 2022 full rows (c22 = 0): the row's own value is kept
+
+[teams]
+players = 11               # full match (type 1)
+
+[end]
+extra_time = false         # a draw stays a draw
+golden_goal = false
+penalties = false
+extended_vgoal = "row"     # the story V-goal is decided by the row (no free match has one)

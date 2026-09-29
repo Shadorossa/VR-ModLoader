@@ -1,0 +1,15 @@
+id = "match_engine"
+name = "Match engine"
+version = "1.0.0"
+author = "EVT"
+description = "Match engine: the rules of every offline match (duration, halves, players on the pitch, ExRule, extra time, golden goal, penalty shootout) come from a ruleset. The base rulesets reproduce the original game; other mods add rulesets in their rules/ folder and assign them by mode, match or opposing team. Also includes the per-half duration option from Options. Native ModLoader plugin (match_engine.dll)."
+priority = 5
+updated = "2026-09-29"
+# native plugin (see sdk/README.md): the ModLoader loads match_engine.dll from this folder
+plugin = "match_engine.dll"
+# provides the `match_engine` and `match_rules` names; mods that use rulesets put requires = ["match_engine>=1.0"]
+provides = ["match_engine", "match_rules"]
+# the CMND_EVT_MATCH_ENGINE_* / CMND_EVT_MATCH_RULES_* commands need the Lua bridge
+loader_modules = ["lua_bridge"]
+# ModLoader with plugins (API v1)
+loader_min = "1.0.0"

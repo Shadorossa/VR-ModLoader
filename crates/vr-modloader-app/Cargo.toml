@@ -1,0 +1,42 @@
+[package]
+name = "vr-modloader-app"
+version = "0.1.0"
+edition.workspace = true
+license = "GPL-3.0-only"
+description = "VR-ModLoader.exe: public mod manager (and future Studio) for the VR-ModLoader of Inazuma Eleven Victory Road v7.1.2"
+build = "build.rs"
+
+[[bin]]
+name = "VR-ModLoader"
+path = "src/main.rs"
+
+[lib]
+name = "vr_modloader_app"
+path = "src/lib.rs"
+
+[dependencies]
+# mod.toml, enabled.toml, load_order.toml, profiles, load plan + conflicts (shared with the loader's in-game menu).
+evt-modfmt = { path = "../evt-modfmt" }
+# Game detection, v7.1.2 check, ModLoader component install / update / remove (with backups).
+evt-installer = { path = "../evt-installer" }
+serde.workspace = true
+serde_json.workspace = true
+toml = "0.8"
+# Studio: the local index of the player's own game data (ids <-> names <-> thumbnails), built on demand.
+vr-index = { path = "../vr-index" }
+# GUI (OpenGL backend only: smaller than wgpu).
+eframe = { version = "0.36", default-features = false, features = ["default_fonts", "glow"] }
+# Native file / folder pickers.
+rfd = "0.16"
+# Mod archives (read; write only in tests).
+zip = { version = "2", default-features = false, features = ["deflate", "deflate64"] }
+# 1-click downloads (HTTPS only).
+ureq = "3"
+# Mod preview pictures (preview.png).
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+# HKCU registration of the vrmodloader: link type, only when the player asks for it.
+winreg = "0.55"
+
+[features]
+# Dev only: EFRAME_SCREENSHOT_TO=<file.png> renders the second frame to a PNG and exits (doc screenshots).
+screenshot = ["eframe/__screenshot"]

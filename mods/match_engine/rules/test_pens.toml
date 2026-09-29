@@ -1,0 +1,10 @@
+# Test ruleset: draw at the end -> direct shootout (no extra time), 3 kicks + sudden death.
+# [mods.match_engine] test_ruleset = "test_pens"
+id = "test_pens"
+name = "Test: direct penalties"
+version = 2
+
+[end]
+penalties = true
+penalties_kicks = 3
+penalties_sudden_death = true

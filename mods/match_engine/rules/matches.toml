@@ -1,0 +1,16 @@
+# BASE assignment table of the match engine: match mode -> ruleset (see the match_engine README).
+# It is the last resort: any mod that uses the engine overrides it with its own rules\matches.toml
+# ([games] match, [teams] opposing team, [modes] mode, [default] its matches). Modes come from the engine itself
+# (game-mode byte + match type), without Lua. Type 2 (small match) = suffix _small.
+[modes]
+free = "free_match"                 # VS CPU, friendlies, free matches (type 1: 11 vs 11)
+free_small = "pachanga_5v5"         # pickup games / small free matches (type 2: 5 vs 5)
+story = "story"                     # Story (each row decides its V-goal and its duration)
+story_small = "story"
+chronicle = "chronicle"             # Chronicle
+chronicle_small = "chronicle"
+kizuna = "kizuna"                   # Kizuna City
+kizuna_small = "kizuna"
+victory_road = "victory_road"       # Victory Road
+victory_road_small = "victory_road"
+training = "training"               # training and dribble tests (types 3 and 4)

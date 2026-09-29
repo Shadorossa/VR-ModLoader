@@ -1,0 +1,19 @@
+[package]
+name = "evt-plugin-clean-hud"
+version = "1.0.0"
+edition.workspace = true
+license.workspace = true
+description = "ModLoader plugin of mod clean_hud («Interfaz limpia» / Clean HUD): no team editor between the VS screen and the walk-in in offline matches (clean_hud.dll; port of the built-in module prematch)"
+
+[lib]
+name = "clean_hud"
+# cdylib = clean_hud.dll (the plugin); rlib = unit tests of the patch logic
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+serde = { workspace = true }
+toml = "0.8"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Diagnostics_Debug", "Win32_System_Memory", "Win32_System_Threading"] }

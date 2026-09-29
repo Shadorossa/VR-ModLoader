@@ -1,0 +1,72 @@
+[workspace]
+resolver = "2"
+# crates/plugins/<name>: VR-Framework engines, the clean_hud plugin and the quit_fix SDK test plugin (one crate each,
+# cdylib -> <name>.dll).
+members = [
+    "crates/cri",
+    "crates/evt-installer",
+    "crates/evt-mod",
+    "crates/evt-modfmt",
+    "crates/evt-plugin-sdk",
+    "crates/g4-texture",
+    "crates/l5-core",
+    "crates/l5-cpk",
+    "crates/vr-index",
+    "crates/vr-loader",
+    "crates/vr-gamefiles",
+    "crates/vr-modloader-app",
+    "crates/plugins/audio_engine",
+    "crates/plugins/clean_hud",
+    "crates/plugins/match_engine",
+    "crates/plugins/quit_fix",
+    "crates/plugins/save_engine",
+    "crates/plugins/text_engine",
+]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+license = "GPL-3.0-only"
+
+[workspace.dependencies]
+crc32fast = "1"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+strip = true
+
+# vr-loader (winmm.dll): keep function names in its PDB so the hang watchdog (debug::watchdog) can name loader
+# frames (dbghelp finds vr_loader.pdb through the DLL's debug directory). The DLL code is unchanged.
+[profile.release.package.vr-loader]
+strip = "none"
+debug = "line-tables-only"
+
+# Fast rebuild loop for the loader: no LTO, 16 codegen units, incremental. Package overrides are not inherited by a
+# custom profile, so vr-loader's PDB settings are repeated here.
+[profile.loader-fast]
+inherits = "release"
+lto = "off"
+codegen-units = 16
+incremental = true
+
+[profile.loader-fast.package.vr-loader]
+strip = "none"
+debug = "line-tables-only"
+
+# Parsers are hot paths; keep them fast in dev builds too.
+[profile.dev.package."*"]
+opt-level = 2
+
+[profile.dev.package.l5-core]
+opt-level = 3
+[profile.dev.package.l5-cpk]
+opt-level = 3
+[profile.dev.package.g4-texture]
+opt-level = 3
+[profile.dev.package.vr-gamefiles]
+opt-level = 3

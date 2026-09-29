@@ -1,0 +1,14 @@
+[package]
+name = "cri"
+version.workspace = true
+edition = "2021"
+license.workspace = true
+description = "CRI ADX2 formats for Inazuma Eleven Victory Road: @UTF tables (ACB / ACF), AFS2 archives (AWB), HCA decoder and encoder, bank editing (cue audio replace / add, new banks), loose-file XOR"
+
+[dependencies]
+thiserror.workspace = true
+serde.workspace = true
+crc32fast.workspace = true
+md-5 = "0.10"
+
+[dev-dependencies]

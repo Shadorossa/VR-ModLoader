@@ -1,0 +1,29 @@
+[package]
+name = "evt-plugin-audio-engine"
+version = "1.1.0"
+edition.workspace = true
+license.workspace = true
+description = "ModLoader plugin of mod audio_engine: boot-time audio build of the mods' audio.toml (voices, SE, music; Rust HCA encoder, cached, served with file_serve), sound_queue_sheet / bgm_config merge, per-armour shouts (audio_engine.dll) + the audio_build pack-time tool"
+
+[lib]
+name = "audio_engine"
+# cdylib = audio_engine.dll (the plugin); rlib = unit tests + the audio_build tool
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "audio_build"
+path = "src/bin/audio_build.rs"
+
+[dependencies]
+evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+l5-core = { path = "../../l5-core" }
+cri = { path = "../../cri" }
+crc32fast = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = "0.8"
+md-5 = "0.10"
+symphonia = { version = "0.5", default-features = false, features = ["wav", "pcm", "flac", "mp3", "ogg", "vorbis", "adpcm"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Threading"] }

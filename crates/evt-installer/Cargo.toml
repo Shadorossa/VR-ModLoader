@@ -1,0 +1,25 @@
+[package]
+name = "evt-installer"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Install library of VR-ModLoader: game detection, v7.1.2 check, ModLoader component and mod install / update / uninstall with exact backups; data packs as binary deltas against the player's own retail files"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+# Data install into the game (loose files + cpk_list).
+vr-gamefiles = { path = "../vr-gamefiles" }
+# XOR of loose CRI files (acb/awb/usm): deltas are made on the plaintext, the result is encrypted again.
+l5-cpk = { path = "../l5-cpk" }
+# mods/enabled.toml rules shared with the loader and the app.
+evt-modfmt = { path = "../evt-modfmt" }
+serde.workspace = true
+serde_json.workspace = true
+crc32fast.workspace = true
+toml = "0.8"
+# nie.exe v7.1.2 check (same hash as vr-loader's gate).
+sha1 = "0.10"
+
+[dev-dependencies]
