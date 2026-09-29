@@ -1,0 +1,17 @@
+{
+ "_markers": [
+  "OnOpenLayer",
+  "OnSetupLayer",
+  "OnInit",
+  "Step",
+  "OnFunction"
+ ],
+ "setting_menu": {
+  "script": "setting_menu_1.03.73.00",
+  "require": [
+   "ChangeTabEventMainMenu"
+  ],
+  "forbid": [],
+  "ambiguous": []
+ }
+}

@@ -3,28 +3,27 @@ name = "evt-plugin-text-engine"
 version = "1.0.0"
 edition.workspace = true
 license.workspace = true
-description = "ModLoader plugin of mod text_engine: game texts by readable keys in 9 languages (replace retail texts, add new ones with stable ids), merged across mods at boot and served through the mods overlay (text_engine.dll)"
+description = "ModLoader plugin of mod text_engine: game texts by readable keys in 9 languages (replace retail texts, add new ones with stable ids), merged across mods at boot and served with the ModLoader's file_serve from the first start (text_engine.dll)"
 
 [lib]
 name = "text_engine"
 # cdylib = text_engine.dll (the plugin); rlib = unit tests + the evt-text-engine tool
 crate-type = ["cdylib", "rlib"]
 
-# Offline helper (game closed): `prepare <game dir>` builds and writes the served text files, `check <mod dir>`.
+# Offline helper (game closed): `prepare [--slots] <game dir>` optional pre-build of the cache (or the slots of an old
+# ModLoader), `check <mod dir>`.
 [[bin]]
 name = "evt-text-engine"
 path = "src/bin/evt_text_engine.rs"
 
 [dependencies]
 evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+# the shared engine base: discovery, layered merge, base files (cpk_list + CPK: feature gamefiles), cache, slots, ids
+vr-framework = { path = "../../vr-framework", features = ["gamefiles"] }
 # T2B reader / writer of the text tables
 l5-core = { path = "../../l5-core" }
-# cpk_list + CPK extraction (base files the game would read), like the ModLoader's data-delta merge
-vr-gamefiles = { path = "../../vr-gamefiles" }
 # load plan of the offline tool (the plugin itself gets the mod list from the ModLoader)
 evt-modfmt = { path = "../../evt-modfmt" }
-crc32fast = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
-sha1 = "0.10"
 toml = "0.8"

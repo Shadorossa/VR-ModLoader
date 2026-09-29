@@ -18,12 +18,16 @@
 
 use serde::{Deserialize, Serialize};
 
-pub mod generic;
 pub mod slots;
 pub mod store;
 pub mod watch;
 
-pub use generic::{num_value, str_value, valid_key, valid_mod_id, MAX_KEY, MAX_KEYS, MAX_STR};
+// generic parts (atomic writes, ids / keys, Lua values <-> JSON, event rings) come from the shared VR-Framework
+pub use vr_framework::ids::valid_mod_id;
+pub use vr_framework::lua::{num_value, str_value, valid_key, MAX_KEY, MAX_STR};
+
+/// Most keys per mod and scope.
+pub const MAX_KEYS: usize = 4096;
 
 #[cfg(all(windows, target_arch = "x86_64"))]
 mod rt;

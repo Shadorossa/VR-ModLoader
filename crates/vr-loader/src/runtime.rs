@@ -222,7 +222,7 @@ fn init_thread(quick_ok: bool) {
     crate::log::open(&ctx.data_dir.join("loader.log"), Level::parse(&cfg.loader.log_level), cfg.loader.debug_output);
     info!(
         "VR-ModLoader {} (vr-loader {}, Lua API {}) in {}",
-        crate::MODLOADER_VERSION,
+        crate::version_marker(),
         crate::LOADER_VERSION,
         crate::API_VERSION,
         ctx.exe.display()

@@ -78,7 +78,7 @@ pub fn parse_hash(s: &str) -> Option<u32> {
     if t.chars().all(|c| c.is_ascii_digit()) {
         return t.parse::<u64>().ok().map(|v| v as u32);
     }
-    Some(crc32fast::hash(t.as_bytes()))
+    Some(vr_framework::ids::crc32(t))
 }
 
 fn hash_or_row<'de, D: Deserializer<'de>>(d: D) -> Result<Option<u32>, D::Error> {
@@ -564,13 +564,8 @@ pub fn is_ruleset_file(stem: &str) -> bool {
 pub fn load_dir(dir: &Path) -> (Vec<Ruleset>, Vec<String>) {
     let mut out: Vec<Ruleset> = Vec::new();
     let mut msgs = Vec::new();
-    let Ok(rd) = std::fs::read_dir(dir) else {
-        return (out, msgs);
-    };
-    let mut files: Vec<std::path::PathBuf> =
-        rd.flatten().map(|e| e.path()).filter(|p| p.extension().is_some_and(|x| x.eq_ignore_ascii_case("toml"))).collect();
-    files.sort();
-    for f in files {
+    // `*.toml` by name, `_*.toml` already left out by the framework
+    for f in vr_framework::discover::toml_files(dir) {
         let stem = f.file_stem().and_then(|s| s.to_str()).unwrap_or("").to_string();
         if !is_ruleset_file(&stem) {
             continue;

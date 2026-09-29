@@ -642,7 +642,7 @@ activar = false
         assert_eq!(p.order.len(), 4);
         // ties keep pack order
         assert_eq!(p.order, vec!["clean_hud", "match_engine", "story_plus", "quit_fix"]);
-        // selecting only IF pulls its dependencies in
+        // selecting only story_plus pulls its dependencies in
         let p = plan_install(&pack, Some(&["story_plus".to_string()]), &[]).unwrap();
         assert_eq!(p.order, vec!["clean_hud", "match_engine", "story_plus"]);
         assert!(plan_install(&pack, Some(&["nope".to_string()]), &[]).is_err());

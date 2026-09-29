@@ -17,6 +17,11 @@ for later launches. For the plugin API and the SDK, see [sdk/README.md](../../sd
 * **Per-armour armour shouts** (`c05020700_was00630` instead of the usual generic armour shout).
 * **Name index** (`index\audio_index.json`) so you can write game names instead of ids.
 * **Voice packs** (dubs) ask for it: `requires = ["audio_engine>=1.0"]`.
+* **Voice pack selector**: the **"Voice pack"** row in Options › Game settings (None, or each installed pack; the
+  retail "Voice Language" row, 日本語 / English, stays as it is and decides the language of whatever the pack does not
+  dub). The row is added at startup to the player's own `setting_list_config` (only once: an older row with the same
+  id is adopted) and its texts come in 9 languages (`text.toml`; with the `text_engine` plugin active, it merges them).
+  The Lua is `lua\setting_menu\110_voice_pack.lua`. Turn it off with `[mods.audio_engine.voice_row] enabled = false`.
 
 ## Installation
 

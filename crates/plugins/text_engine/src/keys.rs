@@ -69,22 +69,8 @@ pub enum KeyRef {
     Bare { id: u32, variant: i32 },
 }
 
-/// A number (`123`, `-123`, `0x7B`) → that id; anything else → crc32 of the label.
-pub fn parse_id(s: &str) -> u32 {
-    let t = s.trim();
-    if let Some(h) = t.strip_prefix("0x").or_else(|| t.strip_prefix("0X")) {
-        if let Ok(v) = u32::from_str_radix(h, 16) {
-            return v;
-        }
-    }
-    if let Ok(v) = t.parse::<u32>() {
-        return v;
-    }
-    if let Ok(v) = t.parse::<i32>() {
-        return v as u32;
-    }
-    crc32_str(t)
-}
+/// A number (`123`, `-123`, `0x7B`) → that id; anything else → crc32 of the label (the framework's game-id rule).
+pub use vr_framework::ids::parse_id;
 
 fn split_variant(s: &str) -> Result<(&str, i32), String> {
     match s.rsplit_once('#') {

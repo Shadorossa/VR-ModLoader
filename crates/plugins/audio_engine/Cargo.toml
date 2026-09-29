@@ -16,14 +16,18 @@ path = "src/bin/audio_build.rs"
 
 [dependencies]
 evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+vr-framework = { path = "../../vr-framework" }
 l5-core = { path = "../../l5-core" }
 cri = { path = "../../cri" }
 crc32fast = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 toml = "0.8"
-md-5 = "0.10"
 symphonia = { version = "0.5", default-features = false, features = ["wav", "pcm", "flac", "mp3", "ogg", "vorbis", "adpcm"] }
+
+[dev-dependencies]
+# Lua 5.2 harness of tests/voice_pack_row.rs: the retail setting_menu chunk + the mod's Lua in a real VM
+mlua = { version = "0.9", features = ["lua52", "vendored"] }
 
 [target.'cfg(windows)'.dependencies]
 windows-sys = { version = "0.59", features = ["Win32_Foundation", "Win32_System_Threading"] }

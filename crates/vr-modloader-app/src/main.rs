@@ -1,13 +1,16 @@
-//! `VR-ModLoader.exe`: the public mod manager (tabs «Manager», «Studio», «Settings").
+//! `VR-ModLoader.exe`: the public mod manager (sections «Mods», «Studio», «More»; newspaper-dark look).
 //!
 //! ```text
-//! VR-ModLoader.exe [--game-dir <folder>] [--lang en|es] [--tab manager|studio|settings] [--select <mod id>]
-//!                  [<vrmodloader:link> | <archive.zip>]
+//! VR-ModLoader.exe [--game-dir <folder>] [--lang en|es] [--tab mods|studio|more] [--section <more section>]
+//!                  [--select <mod id>] [<vrmodloader:link> | <archive.zip>]
 //! ```
+//! `--section`: conflicts, problems, log, profiles, game, links, trash, language, about (implies `--tab more`;
+//! the old `--tab settings` opens «More» on «Game & ModLoader»).
 //! `--game-dir` is not saved (safe manual tests on a copy of the game); a `vrmodloader:` link is what Windows
 //! passes for a 1-click install; an archive path is what «Open with» / dropping on the exe passes.
 #![cfg_attr(not(test), windows_subsystem = "windows")]
 
+mod theme;
 mod ui;
 
 use eframe::egui;
@@ -22,6 +25,7 @@ fn parse_args() -> ui::Args {
             "--lang" => a.lang = it.next(),
             "--tab" => a.tab = it.next(),
             "--select" => a.select = it.next(),
+            "--section" => a.section = it.next(),
             _ if !x.starts_with("--") && a.open.is_none() => a.open = Some(x),
             _ => {}
         }

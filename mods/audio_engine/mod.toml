@@ -2,7 +2,7 @@ id = "audio_engine"
 name = "Audio engine"
 version = "1.1.0"
 author = "EVT"
-description = "Audio layer of the ModLoader: voices, effects and music for mods (audio.toml with wav / ogg / flac / mp3 / .hca), built at startup on the player's PC from their own banks, with a cache; several mods without stepping on each other (per-cue merge, sound_queue_sheet, bgm_config); per-armour armour shouts; name index. Needed by voice packs and sound mods."
+description = "Audio layer of the ModLoader: voices, effects and music for mods (audio.toml with wav / ogg / flac / mp3 / .hca), built at startup on the player's PC from their own banks, with a cache; several mods without stepping on each other (per-cue merge, sound_queue_sheet, bgm_config); per-armour armour shouts; name index; \"Voice pack\" row in Options › Game settings (voice pack selector, 9 languages). Needed by voice packs and sound mods."
 priority = 0
 tags = ["Audio"]
 updated = "2026-09-29"
@@ -10,5 +10,7 @@ updated = "2026-09-29"
 plugin = "audio_engine.dll"
 # "audio_engine" is the name other mods ask for in requires; "armed_voice" is the per-armour shout feature
 provides = ["audio_engine", "armed_voice"]
+# the "Voice pack" row (lua/setting_menu/110_voice_pack.lua) uses CMND_EVT_VOICE_* / CMND_TEXT_GET: Lua bridge
+loader_modules = ["lua_bridge"]
 # ModLoader with plugins (API v1)
 loader_min = "1.0.0"

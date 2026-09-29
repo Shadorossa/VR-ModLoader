@@ -6,7 +6,7 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc::{channel, Receiver, Sender};
 use std::sync::Arc;
 
-use eframe::egui::{self, Align, Align2, Color32, FontId, Id, Layout, RichText, Sense, Stroke, Ui, Vec2};
+use eframe::egui::{self, Align, Align2, Color32, FontId, Id, Layout, Margin, RichText, Sense, Stroke, Ui, Vec2};
 use evt_installer::game;
 use evt_modfmt as fmt;
 use vr_modloader_app::i18n::{self, tr, trf, Lang};
@@ -17,31 +17,74 @@ use vr_modloader_app::settings::{self, Settings};
 use vr_modloader_app::urlscheme::{self, Link};
 use vr_modloader_app::{audio, catalog, mods_root, APP_NAME};
 
+use crate::theme;
+
 #[derive(Debug, Default, Clone)]
 pub struct Args {
     pub game_dir: Option<PathBuf>,
     pub lang: Option<String>,
     pub tab: Option<String>,
     pub select: Option<String>,
+    /// `--section`: which part of «More» to show (conflicts, problems, log, profiles, game, links, trash, language, about).
+    pub section: Option<String>,
     /// A `vrmodloader:` link or an archive path.
     pub open: Option<String>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Tab {
-    Manager,
+    Mods,
     Studio,
-    Settings,
+    More,
 }
 
+/// The parts of the «More» tab (everything that is not the everyday list).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-enum Bottom {
+enum Section {
     Conflicts,
     Problems,
     Log,
+    Profiles,
+    Game,
+    Links,
+    Trash,
+    Language,
+    About,
 }
 
-/// Results of background work.
+impl Section {
+    fn from_arg(s: &str) -> Option<Section> {
+        Some(match s.to_ascii_lowercase().as_str() {
+            "conflicts" => Section::Conflicts,
+            "problems" => Section::Problems,
+            "log" => Section::Log,
+            "profiles" => Section::Profiles,
+            "game" | "modloader" => Section::Game,
+            "links" => Section::Links,
+            "trash" => Section::Trash,
+            "language" => Section::Language,
+            "about" => Section::About,
+            _ => return None,
+        })
+    }
+
+    fn title(self) -> &'static str {
+        match self {
+            Section::Conflicts => tr("Conflicts"),
+            Section::Problems => tr("Problems"),
+            Section::Log => tr("Log"),
+            Section::Profiles => tr("Profiles"),
+            Section::Game => tr("Game & ModLoader"),
+            Section::Links => tr("1-click install"),
+            Section::Trash => tr("Trash"),
+            Section::Language => tr("Language"),
+            Section::About => tr("About"),
+        }
+    }
+}
+
+/// Results of background work (rare, so the size of the biggest variant does not matter).
+#[allow(clippy::large_enum_variant)]
 enum Msg {
     Version(PathBuf, Result<bool, String>),
     Payload(Option<Result<Payload, String>>),
@@ -49,7 +92,8 @@ enum Msg {
     Downloaded(Result<PathBuf, String>),
     Staged(Result<Prepared, String>),
     LoaderInstalled(Result<bool, String>),
-    LoaderRemoved(Result<(), String>),
+    /// Ok(true) = the manager deletes itself: close the window.
+    LoaderRemoved(Result<bool, String>),
     Index(Result<(Arc<vr_index::Index>, bool), String>),
 }
 
@@ -69,6 +113,8 @@ enum Dialog {
 enum Action {
     Save,
     Refresh,
+    SetAll(bool),
+    GoTo(Section),
     Launch,
     PickArchive,
     InstallArchive(PathBuf),
@@ -85,7 +131,8 @@ enum Action {
     DeleteProfile(String),
     LoaderInstall,
     LoaderPick,
-    LoaderRemove,
+    /// true = also delete VR-ModLoader.exe (after the window closes).
+    LoaderRemove(bool),
     EnableModsModule,
     Register,
     Unregister,
@@ -121,7 +168,7 @@ pub struct ManagerApp {
     selected: Option<String>,
     profiles: (Vec<String>, usize),
     tab: Tab,
-    bottom: Bottom,
+    section: Section,
     conflict_filter: String,
     log: Vec<String>,
     status_line: String,
@@ -151,22 +198,35 @@ struct Studio {
 
 // ---------------------------------------------------------------- colours
 
-fn level_color(l: Level, dark: bool) -> Color32 {
+/// Status marks (list squares, kickers).
+fn level_color(l: Level) -> Color32 {
     match l {
-        Level::Ok | Level::Info => {
-            if dark {
-                Color32::from_rgb(110, 200, 120)
-            } else {
-                Color32::from_rgb(30, 130, 50)
-            }
-        }
-        Level::Off => Color32::GRAY,
-        Level::Warn => Color32::from_rgb(230, 170, 40),
-        Level::Error => Color32::from_rgb(230, 80, 70),
+        Level::Ok | Level::Info => theme::GREEN,
+        Level::Off => theme::INK_4,
+        Level::Warn => theme::GOLD,
+        Level::Error => theme::RED,
     }
 }
 
-const ACCENT: Color32 = Color32::from_rgb(64, 140, 230);
+/// Running text: fine is plain ink, only warnings and errors take colour.
+fn note_color(l: Level) -> Color32 {
+    match l {
+        Level::Ok | Level::Info => theme::INK_2,
+        Level::Off => theme::INK_3,
+        Level::Warn => theme::GOLD,
+        Level::Error => theme::RED,
+    }
+}
+
+/// The masthead dateline: quiet unless something needs attention.
+fn dateline_color(l: Level) -> Color32 {
+    match l {
+        Level::Ok | Level::Info => theme::INK_2,
+        Level::Off => theme::INK_3,
+        Level::Warn => theme::GOLD,
+        Level::Error => theme::RED,
+    }
+}
 
 /// Window icon: a lightning bolt on blue (drawn, no file).
 pub fn icon() -> egui::IconData {
@@ -213,11 +273,7 @@ impl ManagerApp {
             }
         });
         i18n::set_lang(Lang::from_code(&lang));
-        cc.egui_ctx.global_style_mut(|s| {
-            s.interaction.selectable_labels = false;
-            s.spacing.item_spacing = Vec2::new(8.0, 6.0);
-            s.spacing.button_padding = Vec2::new(10.0, 4.0);
-        });
+        theme::apply(&cc.egui_ctx);
         let (tx, rx) = channel();
         let exe = std::env::current_exe().unwrap_or_else(|_| PathBuf::from("VR-ModLoader.exe"));
         let mut app = ManagerApp {
@@ -232,12 +288,16 @@ impl ManagerApp {
             stale: true,
             selected: args.select.clone(),
             profiles: (Vec::new(), 0),
-            tab: match args.tab.as_deref() {
-                Some("studio") => Tab::Studio,
-                Some("settings") => Tab::Settings,
-                _ => Tab::Manager,
+            tab: match (args.tab.as_deref(), &args.section) {
+                (Some("studio"), _) => Tab::Studio,
+                (Some("settings" | "more"), _) | (_, Some(_)) => Tab::More,
+                _ => Tab::Mods,
             },
-            bottom: Bottom::Conflicts,
+            section: match (args.section.as_deref().and_then(Section::from_arg), args.tab.as_deref()) {
+                (Some(s), _) => s,
+                (None, Some("settings")) => Section::Game,
+                _ => Section::Conflicts,
+            },
             conflict_filter: String::new(),
             log: Vec::new(),
             status_line: String::new(),
@@ -263,9 +323,14 @@ impl ManagerApp {
             let _ = tx.send(Msg::Payload(modloader::find_payload(&exe_dir)));
             ctx.request_repaint();
         });
-        let game = args.game_dir.clone().or_else(|| app.settings.game_dir.clone().filter(|g| game::is_game_dir(g))).or_else(|| game::find_games().into_iter().next());
+        // the release layout: VR-ModLoader.exe in the game folder IS the game; elsewhere, the saved folder / Steam
+        let beside = modloader::exe_game_dir(&app.exe);
+        let game = args.game_dir.clone().or(beside.clone()).or_else(|| app.settings.game_dir.clone().filter(|g| game::is_game_dir(g))).or_else(|| game::find_games().into_iter().next());
         if let Some(g) = game {
             app.set_game(g, &cc.egui_ctx);
+        }
+        if beside.is_none() {
+            app.log(tr("VR-ModLoader.exe should be in the game folder (next to nie.exe)."));
         }
         app
     }
@@ -273,7 +338,7 @@ impl ManagerApp {
     fn log(&mut self, s: impl Into<String>) {
         let s = s.into();
         self.status_line = s.clone();
-        self.log.push(format!("[{}] {s}", evt_installer::stamp(evt_installer::now_secs())[9..].to_string()));
+        self.log.push(format!("[{}] {s}", &evt_installer::stamp(evt_installer::now_secs())[9..]));
     }
 
     fn error(&mut self, e: impl Into<String>) {
@@ -424,7 +489,8 @@ impl ManagerApp {
                     self.busy = None;
                     self.reload_loader();
                     match r {
-                        Ok(()) => self.log(tr("Done")),
+                        Ok(true) => ctx.send_viewport_cmd(egui::ViewportCommand::Close),
+                        Ok(false) => self.log(tr("Done")),
                         Err(e) => self.error(e),
                     }
                 }
@@ -451,6 +517,16 @@ impl ManagerApp {
             Action::Refresh => {
                 self.reload();
                 self.scheme_cmd = urlscheme::registered_command_at(urlscheme::CLASSES);
+            }
+            Action::SetAll(on) => {
+                if let Some(l) = &mut self.list {
+                    l.set_all(on);
+                    self.stale = true;
+                }
+            }
+            Action::GoTo(s) => {
+                self.tab = Tab::More;
+                self.section = s;
             }
             Action::Launch => {
                 if self.list.as_ref().is_some_and(|l| l.dirty) {
@@ -653,10 +729,14 @@ impl ManagerApp {
                     }
                 }
             }
-            Action::LoaderRemove => {
+            Action::LoaderRemove(delete_exe) => {
                 self.dialog = None;
                 let Some(g) = self.game.clone() else { return };
-                self.spawn(tr("Working…").into(), ctx, move |_| Msg::LoaderRemoved(modloader::remove(&g)));
+                let exe = self.exe.clone();
+                self.spawn(tr("Working…").into(), ctx, move |_| {
+                    let r = modloader::remove(&g).and_then(|()| if delete_exe { modloader::delete_after_exit(&exe).map(|()| true) } else { Ok(false) });
+                    Msg::LoaderRemoved(r)
+                });
             }
             Action::EnableModsModule => {
                 if let Some(g) = self.game.clone() {
@@ -717,279 +797,299 @@ impl ManagerApp {
         }
     }
 
-    // ------------------------------------------------------------ drawing
+    // ------------------------------------------------------------ status summaries
 
-    fn header(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
-        ui.horizontal(|ui| {
-            ui.label(RichText::new(APP_NAME).size(20.0).strong().color(ACCENT));
-            ui.add_space(12.0);
-            for (t, label) in [(Tab::Manager, tr("Manager")), (Tab::Studio, tr("Studio")), (Tab::Settings, tr("Settings"))] {
-                if ui.selectable_label(self.tab == t, RichText::new(label).size(15.0)).clicked() {
-                    self.tab = t;
-                }
-            }
+    /// The `loader_min` the enabled mods ask for (empty = none).
+    fn loader_need(&self) -> String {
+        self.list.as_ref().map(|l| evt_installer::modpack::max_version(l.rows.iter().filter(|r| r.enabled).map(|r| r.info.manifest.loader_min.as_str()))).unwrap_or_default()
+    }
+
+    fn payload_version(&self) -> Option<String> {
+        self.payload.as_ref().and_then(|p| p.as_ref().ok()).map(|p| p.version.clone())
+    }
+
+    /// The ModLoader in one short phrase (the most important thing first) and its level.
+    fn loader_summary(&self) -> Option<(String, Level)> {
+        let st = self.loader.as_ref()?;
+        let need = self.loader_need();
+        let pv = self.payload_version();
+        Some(match st.version() {
+            _ if matches!(st.state, evt_installer::modpack::LoaderState::Missing) => (tr("ModLoader not installed").to_string(), Level::Error),
+            Some(v) if !need.is_empty() && fmt::compare_versions(v, &need).is_lt() => (trf("ModLoader {}: outdated", &[&v]), Level::Error),
+            _ if st.mods_module == Some(false) => (tr("ModLoader: mods module off").to_string(), Level::Error),
+            None => (tr("ModLoader (unknown version)").to_string(), Level::Warn),
+            Some(v) if pv.as_deref().is_some_and(|p| st.update_available(p)) => (trf("ModLoader {}: update available", &[&v]), Level::Warn),
+            Some(v) => (trf("ModLoader {}", &[&v]), Level::Ok),
+        })
+    }
+
+    /// The v7.1.2 check: short text, level, longer explanation.
+    fn version_summary(&self) -> (String, Level, String) {
+        match &self.game_version {
+            None => (tr("checking version…").to_string(), Level::Off, String::new()),
+            Some(Ok(true)) => (tr("v7.1.2 (OK)").to_string(), Level::Ok, String::new()),
+            Some(Ok(false)) => (tr("Not v7.1.2").to_string(), Level::Error, tr("Not v7.1.2: the ModLoader stays inactive on this build").to_string()),
+            Some(Err(e)) => (tr("Version unknown").to_string(), Level::Error, e.clone()),
+        }
+    }
+
+    // ------------------------------------------------------------ masthead
+
+    fn masthead(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        let w = ui.available_width();
+        let (rect, _) = ui.allocate_exact_size(Vec2::new(w, 72.0), Sense::hover());
+        ui.painter().text(rect.center() - Vec2::new(0.0, 2.0), Align2::CENTER_CENTER, APP_NAME, theme::display_font(48.0), theme::INK);
+        let corner = egui::Rect::from_min_size(rect.min, Vec2::new(230.0, rect.height()));
+        place(ui, corner, Layout::top_down(Align::Min), |ui| {
+            ui.add_space(20.0);
+            ui.spacing_mut().item_spacing.y = 2.0;
+            ui.label(theme::kicker("Inazuma Eleven", theme::INK_3));
+            ui.label(theme::kicker(tr("Victory Road · PC v7.1.2"), theme::INK_3));
+        });
+        let corner = egui::Rect::from_min_size(egui::pos2(rect.right() - 230.0, rect.top()), Vec2::new(230.0, rect.height()));
+        place(ui, corner, Layout::top_down(Align::Max), |ui| {
+            ui.add_space(20.0);
+            ui.spacing_mut().item_spacing.y = 2.0;
+            ui.label(theme::kicker(tr("The mod manager"), theme::INK_3));
+            ui.label(RichText::new(format!("{} {}", tr("Edition"), vr_modloader_app::APP_VERSION)).font(theme::mono(11.0)).color(theme::INK_3));
         });
         ui.add_space(2.0);
-        egui::Frame::group(ui.style()).show(ui, |ui| {
-            ui.set_width(ui.available_width());
-            ui.horizontal(|ui| {
-                ui.label(RichText::new(tr("Game folder")).strong());
-                ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                    if ui.button(tr("Change…")).clicked() {
-                        acts.push(Action::PickGame);
+        theme::double_rule(ui, theme::RED);
+        ui.horizontal(|ui| {
+            ui.set_height(32.0);
+            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                ui.spacing_mut().item_spacing.x = 2.0;
+                for (t, label) in [(Tab::More, tr("More")), (Tab::Studio, tr("Studio")), (Tab::Mods, tr("Mods"))] {
+                    let sel = self.tab == t;
+                    let text = RichText::new(label.to_uppercase()).font(theme::sans_bold(12.5)).extra_letter_spacing(1.6).color(if sel { theme::PAPER } else { theme::INK_2 });
+                    let b = egui::Button::new(text).fill(if sel { theme::INK } else { theme::PAPER }).stroke(Stroke::NONE).frame_when_inactive(sel).min_size(Vec2::new(0.0, 26.0));
+                    if ui.add(b).clicked() {
+                        self.tab = t;
                     }
-                    if ui.button(tr("Detect")).clicked() {
-                        acts.push(Action::DetectGame);
-                    }
-                    match &self.game {
-                        Some(g) => {
-                            match &self.game_version {
-                                None => {
-                                    ui.label(RichText::new(tr("checking version…")).weak());
-                                    ui.spinner();
-                                }
-                                Some(Ok(true)) => {
-                                    ui.label(RichText::new(tr("v7.1.2 (OK)")).strong().color(level_color(Level::Ok, ui.visuals().dark_mode)));
-                                }
-                                Some(Ok(false)) => {
-                                    ui.label(RichText::new(tr("Not v7.1.2: the ModLoader stays inactive on this build")).color(level_color(Level::Error, true)));
-                                }
-                                Some(Err(e)) => {
-                                    ui.label(RichText::new(e).color(level_color(Level::Error, true)));
-                                }
-                            }
-                            if self.game_override {
-                                ui.label(RichText::new(tr("(command-line override, not saved)")).small().weak());
-                            }
-                            ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
-                                ui.add(egui::Label::new(RichText::new(g.display().to_string()).monospace()).truncate());
-                            });
-                        }
-                        None => {
-                            ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
-                                ui.label(RichText::new(tr("No game folder selected")).color(level_color(Level::Warn, true)));
-                            });
-                        }
-                    }
+                }
+                ui.add_space(12.0);
+                ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
+                    ui.spacing_mut().item_spacing.x = 8.0;
+                    self.dateline(ui, acts);
                 });
             });
-            if self.game.is_some() {
-                ui.separator();
-                self.loader_card(ui, acts);
-            }
         });
+        theme::rule(ui, theme::RULE_STRONG, 1.0);
+    }
+
+    /// Game path · v7.1.2 check · ModLoader · game running: each opens its place in «More».
+    fn dateline(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        let dot = |ui: &mut Ui| {
+            ui.label(RichText::new("·").color(theme::INK_4));
+        };
+        let item = |ui: &mut Ui, text: RichText, hover: &str| -> bool {
+            let r = ui.add(egui::Label::new(text).sense(Sense::click())).on_hover_cursor(egui::CursorIcon::PointingHand);
+            let r = if hover.is_empty() { r } else { r.on_hover_text(hover) };
+            r.clicked()
+        };
+        let Some(g) = self.game.clone() else {
+            if item(ui, RichText::new(tr("No game folder selected")).font(theme::sans(13.0)).color(theme::RED), "") {
+                acts.push(Action::GoTo(Section::Game));
+            }
+            return;
+        };
+        if item(ui, RichText::new(short_path(&g, 44)).font(theme::mono(11.5)).color(theme::INK_3), &g.display().to_string()) {
+            acts.push(Action::GoTo(Section::Game));
+        }
+        dot(ui);
+        let (vt, vl, vh) = self.version_summary();
+        if self.game_version.is_none() {
+            ui.spinner();
+        }
+        if item(ui, RichText::new(vt).font(theme::sans(13.0)).color(dateline_color(vl)), &vh) {
+            acts.push(Action::GoTo(Section::Game));
+        }
+        if let Some((lt, ll)) = self.loader_summary() {
+            dot(ui);
+            if item(ui, RichText::new(lt).font(theme::sans(13.0)).color(dateline_color(ll)), "") {
+                acts.push(Action::GoTo(Section::Game));
+            }
+        }
         if self.game_running {
-            ui.label(RichText::new(tr("The game is running: changes apply at the next start.")).color(level_color(Level::Warn, true)));
+            dot(ui);
+            let text = RichText::new(tr("Game running")).font(theme::sans_bold(13.0)).color(theme::RED);
+            ui.label(text).on_hover_text(tr("The game is running: changes apply at the next start."));
         }
     }
 
-    fn loader_card(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
-        let dark = ui.visuals().dark_mode;
-        let busy = self.busy.is_some();
-        let Some(st) = self.loader.clone() else { return };
-        let need = self.list.as_ref().map(|l| evt_installer::modpack::max_version(l.rows.iter().filter(|r| r.enabled).map(|r| r.info.manifest.loader_min.as_str()))).unwrap_or_default();
-        ui.horizontal(|ui| {
-            ui.label(RichText::new(tr("ModLoader")).strong());
-            let (text, lvl) = match (&st.state, st.version()) {
-                (evt_installer::modpack::LoaderState::Missing, _) => (tr("Not installed").to_string(), Level::Error),
-                (_, Some(v)) => (trf("Installed {}", &[&v]), Level::Ok),
-                (_, None) => (tr("Installed (unknown version)").to_string(), Level::Warn),
-            };
-            ui.label(RichText::new(text).color(level_color(lvl, dark)));
-            if let Some(v) = st.version() {
-                if !need.is_empty() && fmt::compare_versions(v, &need).is_lt() {
-                    ui.label(RichText::new(trf("Outdated: a mod needs {}", &[&need])).color(level_color(Level::Error, dark)));
-                }
-            }
-            let pv = self.payload.as_ref().and_then(|p| p.as_ref().ok()).map(|p| p.version.clone());
-            if let Some(pv) = &pv {
-                if st.update_available(pv) {
-                    ui.label(RichText::new(trf("Update available: {}", &[pv])).color(level_color(Level::Warn, dark)));
-                }
-            }
-            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                if st.installed() {
-                    let r = ui.add_enabled(!busy && st.ours, egui::Button::new(tr("Remove")));
-                    let r = if st.ours { r } else { r.on_disabled_hover_text(tr("installed by another tool: remove it with that tool")) };
-                    if r.clicked() {
-                        self.dialog = Some(Dialog::ConfirmRemoveLoader);
-                    }
-                }
-                if ui.add_enabled(!busy, egui::Button::new(tr("Install ModLoader from file…"))).clicked() {
-                    acts.push(Action::LoaderPick);
-                }
-                if let Some(pv) = &pv {
-                    let label = if !st.installed() {
-                        tr("Install")
-                    } else if st.update_available(pv) {
-                        tr("Update")
-                    } else {
-                        tr("Reinstall")
-                    };
-                    let enabled = !busy && (label != tr("Reinstall"));
-                    let src = self.payload.as_ref().and_then(|p| p.as_ref().ok()).map(|p| p.source.clone()).unwrap_or_default();
-                    let r = ui.add_enabled(enabled, egui::Button::new(RichText::new(format!("{label} {pv}")).strong()));
-                    if r.on_hover_text(trf("Package: {}", &[&src])).clicked() {
-                        acts.push(Action::LoaderInstall);
-                    }
-                } else {
-                    ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
-                        ui.add(egui::Label::new(RichText::new(tr("No ModLoader package found (embedded, modloader\\ or modloader.zip next to the exe).")).small().weak()).truncate());
-                    });
-                }
-            });
-        });
-        if st.mods_module == Some(false) {
-            ui.horizontal(|ui| {
-                ui.label(RichText::new(tr("The mods module is off in evt_loader\\config.toml: mods are ignored.")).color(level_color(Level::Warn, dark)));
-                if ui.button(tr("Turn on")).clicked() {
-                    acts.push(Action::EnableModsModule);
-                }
-            });
-        }
-    }
+    // ------------------------------------------------------------ footer: status + primary actions
 
-    fn toolbar(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+    fn footer(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
         let busy = self.busy.is_some();
         let dirty = self.list.as_ref().is_some_and(|l| l.dirty);
+        let has_game = self.game.is_some();
         ui.horizontal(|ui| {
-            ui.label(RichText::new(tr("Profile")).strong());
-            let (names, cur) = self.profiles.clone();
-            let cur_name = names.get(cur).cloned().unwrap_or_else(|| fmt::DEFAULT_PROFILE.to_string());
-            egui::ComboBox::from_id_salt("profile").width(170.0).selected_text(profile_label(&cur_name)).show_ui(ui, |ui| {
-                for (i, n) in names.iter().enumerate() {
-                    if ui.selectable_label(i == cur, profile_label(n)).clicked() && i != cur {
-                        acts.push(Action::SwitchProfile(n.clone()));
-                    }
-                }
-            });
-            if ui.button(tr("New…")).clicked() {
-                self.dialog = Some(Dialog::ProfileName { rename: None, text: String::new(), error: String::new() });
-            }
-            let custom = cur_name != fmt::DEFAULT_PROFILE;
-            if ui.add_enabled(custom, egui::Button::new(tr("Rename…"))).clicked() {
-                self.dialog = Some(Dialog::ProfileName { rename: Some(cur_name.clone()), text: cur_name.clone(), error: String::new() });
-            }
-            if ui.add_enabled(custom, egui::Button::new(tr("Delete"))).clicked() {
-                self.dialog = Some(Dialog::ConfirmDeleteProfile(cur_name.clone()));
-            }
-            ui.separator();
-            if ui.add_enabled(!busy, egui::Button::new(tr("Install mod…"))).clicked() {
-                acts.push(Action::PickArchive);
-            }
-            if ui.add_enabled(!busy, egui::Button::new(tr("Refresh"))).clicked() {
-                acts.push(Action::Refresh);
-            }
-            if let Some(root) = self.mods_root() {
-                if ui.button(tr("Open mods folder")).clicked() {
-                    let _ = std::fs::create_dir_all(&root);
-                    acts.push(Action::Open(root.display().to_string()));
-                }
-            }
+            ui.set_height(38.0);
             ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                let launch = egui::Button::new(RichText::new(format!("▶ {}", tr("Launch game"))).strong().color(Color32::WHITE)).fill(Color32::from_rgb(40, 150, 80));
-                if ui.add_enabled(!busy, launch).clicked() {
+                if ui.add_enabled(!busy && has_game, theme::primary_button(&format!("▶  {}", tr("Play")))).on_hover_text(tr("Saves the list if needed, then starts the game through Steam.")).clicked() {
                     acts.push(Action::Launch);
                 }
-                let save = egui::Button::new(RichText::new(tr("Save")).strong()).fill(if dirty { ACCENT } else { ui.visuals().widgets.inactive.weak_bg_fill });
+                let save = if dirty {
+                    theme::button(tr("Save changes")).stroke(Stroke::new(1.0, theme::GOLD))
+                } else {
+                    theme::button(tr("Saved"))
+                };
                 if ui.add_enabled(dirty && !busy, save).clicked() {
                     acts.push(Action::Save);
                 }
-                if dirty {
-                    ui.label(RichText::new(tr("Unsaved changes")).color(level_color(Level::Warn, true)));
+                if ui.add_enabled(!busy && has_game, theme::button(tr("Install mod (.zip)…"))).on_hover_text(tr("You can also drop a .zip on the window.")).clicked() {
+                    acts.push(Action::PickArchive);
                 }
+                ui.add_space(10.0);
+                ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
+                    if let Some((label, f)) = &self.busy {
+                        ui.spinner();
+                        ui.add(egui::Label::new(RichText::new(label.as_str()).font(theme::sans(13.0)).color(theme::INK_2)).truncate());
+                        if let Some(f) = f {
+                            ui.add(egui::ProgressBar::new(*f).desired_width(200.0).show_percentage());
+                        }
+                    } else {
+                        ui.add(egui::Label::new(RichText::new(&self.status_line).font(theme::sans(13.0)).color(theme::INK_3)).truncate());
+                    }
+                });
             });
         });
     }
 
-    fn mod_list(&mut self, ui: &mut Ui) {
-        let dark = ui.visuals().dark_mode;
-        let Some(list) = self.list.as_mut() else { return };
+    // ------------------------------------------------------------ the list column
+
+    fn mod_list(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        let total = self.list.as_ref().map_or(0, |l| l.rows.len());
+        // head: kicker + headline, profile + options on the right
         ui.horizontal(|ui| {
-            ui.label(RichText::new(format!("{} ({}/{})", tr("Mods"), self.derived.active, list.rows.len())).strong());
+            ui.vertical(|ui| {
+                ui.spacing_mut().item_spacing.y = 0.0;
+                ui.label(theme::kicker(tr("Load order"), theme::RED));
+                ui.label(theme::headline(tr("Mods"), 32.0));
+            });
             ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                if ui.small_button(tr("Disable all")).clicked() {
-                    list.set_all(false);
-                    self.stale = true;
+                ui.menu_button(theme::caps(tr("Options")), |ui| {
+                    ui.set_min_width(210.0);
+                    if ui.button(tr("Enable all")).clicked() {
+                        acts.push(Action::SetAll(true));
+                    }
+                    if ui.button(tr("Disable all")).clicked() {
+                        acts.push(Action::SetAll(false));
+                    }
+                    ui.separator();
+                    if ui.add_enabled(self.busy.is_none(), egui::Button::new(tr("Reload from disk"))).clicked() {
+                        acts.push(Action::Refresh);
+                    }
+                    if let Some(root) = self.mods_root() {
+                        if ui.button(tr("Open mods folder")).clicked() {
+                            let _ = std::fs::create_dir_all(&root);
+                            acts.push(Action::Open(root.display().to_string()));
+                        }
+                    }
+                    ui.separator();
+                    if ui.button(tr("Manage profiles…")).clicked() {
+                        acts.push(Action::GoTo(Section::Profiles));
+                    }
+                });
+                let (names, cur) = self.profiles.clone();
+                let cur_name = names.get(cur).cloned().unwrap_or_else(|| fmt::DEFAULT_PROFILE.to_string());
+                egui::ComboBox::from_id_salt("profile").width(150.0).selected_text(RichText::new(profile_label(&cur_name)).font(theme::sans_bold(13.0))).show_ui(ui, |ui| {
+                    for (i, n) in names.iter().enumerate() {
+                        if ui.selectable_label(i == cur, profile_label(n)).clicked() && i != cur {
+                            acts.push(Action::SwitchProfile(n.clone()));
+                        }
+                    }
+                    ui.separator();
+                    if ui.selectable_label(false, tr("Manage profiles…")).clicked() {
+                        acts.push(Action::GoTo(Section::Profiles));
+                    }
+                });
+                ui.label(theme::kicker(tr("Profile"), theme::INK_3));
+            });
+        });
+        ui.horizontal(|ui| {
+            let caption = trf("{} of {} active. The top of the list wins conflicts; drag a row or press Alt+↑/↓ to reorder.", &[&self.derived.active, &total]);
+            let nc = self.derived.conflicts.len();
+            let np = self.derived.problems.len();
+            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                if np > 0 && ui.add(theme::text_button(RichText::new(trf("{} problem(s)", &[&np])).font(theme::sans_bold(13.0)).color(theme::RED))).clicked() {
+                    acts.push(Action::GoTo(Section::Problems));
                 }
-                if ui.small_button(tr("Enable all")).clicked() {
-                    list.set_all(true);
-                    self.stale = true;
+                if nc > 0 && ui.add(theme::text_button(RichText::new(trf("{} conflict(s)", &[&nc])).font(theme::sans_bold(13.0)).color(theme::GOLD))).clicked() {
+                    acts.push(Action::GoTo(Section::Conflicts));
                 }
                 ui.with_layout(Layout::left_to_right(Align::Center), |ui| {
-                    ui.add(egui::Label::new(RichText::new(tr("Top = highest priority (loads last, wins conflicts). Drag a row to reorder.")).small().weak()).truncate());
+                    ui.add(egui::Label::new(theme::italic(&caption)).truncate());
                 });
             });
         });
+        ui.add_space(2.0);
+        theme::rule(ui, theme::RULE_STRONG, 1.0);
+        let Some(list) = self.list.as_mut() else { return };
         if list.rows.is_empty() {
-            ui.add_space(30.0);
-            ui.vertical_centered(|ui| ui.label(RichText::new(tr("No mods installed. Use «Install mod…» or drop a .zip on the window.")).weak()));
+            ui.add_space(40.0);
+            ui.vertical_centered(|ui| {
+                ui.label(theme::headline(tr("No mods yet"), 22.0));
+                ui.label(theme::italic(tr("Use «Install mod (.zip)» or drop a .zip on the window.")));
+            });
             return;
         }
-        let row_h = 30.0;
+        let row_h = 38.0;
         let w = ui.available_width();
-        let cols = [26.0, 28.0, (w - 26.0 - 28.0 - 90.0 - 150.0 - 130.0).max(160.0), 90.0, 150.0, 130.0];
-        // header
-        let (hr, _) = ui.allocate_exact_size(Vec2::new(w, 22.0), Sense::hover());
-        let hdr_color = ui.visuals().weak_text_color();
+        let cols = [24.0, 30.0, (w - 24.0 - 30.0 - 96.0 - 128.0).max(140.0), 96.0, 128.0];
+        // column heads
+        let (hr, _) = ui.allocate_exact_size(Vec2::new(w, 24.0), Sense::hover());
         let mut x = hr.left();
-        for (i, name) in ["", tr("On"), tr("Name"), tr("Version"), tr("Author"), tr("Status")].iter().enumerate() {
-            ui.painter().text(egui::pos2(x + 4.0, hr.center().y), Align2::LEFT_CENTER, *name, FontId::proportional(12.5), hdr_color);
+        for (i, name) in ["", "", tr("Name"), tr("Version"), tr("Status")].iter().enumerate() {
+            if !name.is_empty() {
+                cell(ui, egui::Rect::from_min_size(egui::pos2(x + 4.0, hr.top()), Vec2::new(cols[i] - 8.0, hr.height())), theme::kicker(name, theme::INK_4));
+            }
             x += cols[i];
         }
+        theme::rule(ui, theme::RULE, 1.0);
         let mut row_rects: Vec<egui::Rect> = Vec::with_capacity(list.rows.len());
         let mut toggles: Vec<(usize, bool)> = Vec::new();
         let mut clicked: Option<String> = None;
         let mut drag_started: Option<usize> = None;
         egui::ScrollArea::vertical().id_salt("mods").auto_shrink([false, false]).show(ui, |ui| {
+            ui.spacing_mut().item_spacing.y = 0.0;
             for (i, row) in list.rows.iter().enumerate() {
                 let (rect, resp) = ui.allocate_exact_size(Vec2::new(w, row_h), Sense::click_and_drag());
                 row_rects.push(rect);
                 let selected = self.selected.as_deref() == Some(row.id.as_str());
                 let painter = ui.painter();
-                let bg = if selected {
-                    ACCENT.gamma_multiply(0.35)
+                if selected {
+                    painter.rect_filled(rect, 0.0, theme::PAPER_3);
+                    painter.rect_filled(egui::Rect::from_min_size(rect.min, Vec2::new(3.0, rect.height())), 0.0, theme::RED);
                 } else if resp.hovered() {
-                    ui.visuals().widgets.hovered.weak_bg_fill
-                } else if i % 2 == 1 {
-                    ui.visuals().faint_bg_color
-                } else {
-                    Color32::TRANSPARENT
-                };
-                painter.rect_filled(rect, 3.0, bg);
+                    painter.rect_filled(rect, 0.0, theme::PAPER_2);
+                }
+                painter.hline(rect.x_range(), rect.bottom() - 0.5, Stroke::new(1.0, theme::RULE));
                 // grip
-                let gx = rect.left() + 9.0;
+                let gx = rect.left() + 8.0;
                 for k in 0..3 {
-                    let y = rect.center().y - 5.0 + k as f32 * 5.0;
-                    painter.line_segment([egui::pos2(gx, y), egui::pos2(gx + 10.0, y)], Stroke::new(1.5, ui.visuals().weak_text_color()));
+                    let y = rect.center().y - 4.0 + k as f32 * 4.0;
+                    painter.hline(gx..=gx + 9.0, y, Stroke::new(1.0, if resp.hovered() || selected { theme::INK_3 } else { theme::INK_4 }));
                 }
                 let st = self.derived.statuses.get(i);
                 let lvl = st.map_or(Level::Ok, |s| s.level);
-                let text_color = if row.enabled { ui.visuals().strong_text_color() } else { ui.visuals().weak_text_color() };
                 let mut x = rect.left() + cols[0];
                 let mut on = row.enabled;
-                let cb = ui.put(egui::Rect::from_min_size(egui::pos2(x + 4.0, rect.top() + 5.0), Vec2::new(20.0, 20.0)), egui::Checkbox::without_text(&mut on));
+                let cb = ui.put(egui::Rect::from_min_size(egui::pos2(x + 4.0, rect.center().y - 10.0), Vec2::new(20.0, 20.0)), egui::Checkbox::without_text(&mut on));
                 if cb.changed() {
                     toggles.push((i, on));
                 }
                 x += cols[1];
                 let name = if row.info.manifest.name.trim().is_empty() { row.id.clone() } else { row.info.manifest.name.clone() };
-                let cells = [
-                    (name, cols[2], text_color, true),
-                    (row.info.manifest.version.clone(), cols[3], text_color, false),
-                    (row.info.manifest.author.clone(), cols[4], text_color, false),
-                    (model::level_label(lvl).to_string(), cols[5], level_color(lvl, dark), false),
-                ];
-                for (k, (text, cw, color, strong)) in cells.into_iter().enumerate() {
-                    let mut r = egui::Rect::from_min_size(egui::pos2(x + 4.0, rect.top()), Vec2::new(cw - 8.0, row_h));
-                    if k == 3 {
-                        ui.painter().circle_filled(egui::pos2(r.left() + 5.0, rect.center().y), 4.5, color);
-                        r.min.x += 16.0;
-                    }
-                    let rt = if strong { RichText::new(text).color(color).strong() } else { RichText::new(text).color(color) };
-                    cell(ui, r, rt);
-                    x += cw;
-                }
+                let name_color = if row.enabled { theme::INK } else { theme::INK_3 };
+                let name_font = if selected { theme::serif_bold(16.0) } else { FontId::proportional(16.0) };
+                cell(ui, egui::Rect::from_min_size(egui::pos2(x + 4.0, rect.top()), Vec2::new(cols[2] - 8.0, row_h)), RichText::new(name).font(name_font).color(name_color));
+                x += cols[2];
+                cell(ui, egui::Rect::from_min_size(egui::pos2(x + 4.0, rect.top()), Vec2::new(cols[3] - 8.0, row_h)), RichText::new(&row.info.manifest.version).font(theme::mono(12.0)).color(theme::INK_3));
+                x += cols[3];
+                let color = level_color(lvl);
+                ui.painter().rect_filled(egui::Rect::from_center_size(egui::pos2(x + 8.0, rect.center().y), Vec2::splat(6.0)), 0.0, color);
+                cell(ui, egui::Rect::from_min_size(egui::pos2(x + 18.0, rect.top()), Vec2::new(cols[4] - 22.0, row_h)), theme::kicker(model::level_label(lvl), color));
                 if resp.clicked() {
                     clicked = Some(row.id.clone());
                 }
@@ -1016,13 +1116,10 @@ impl ManagerApp {
         // drop target while dragging
         if let Some(from) = self.drag_from {
             let ptr = ui.ctx().pointer_interact_pos();
-            let target = ptr.map(|p| {
-                row_rects.iter().position(|r| p.y < r.center().y).unwrap_or(row_rects.len())
-            });
+            let target = ptr.map(|p| row_rects.iter().position(|r| p.y < r.center().y).unwrap_or(row_rects.len()));
             if let (Some(t), Some(last)) = (target, row_rects.last()) {
                 let y = if t < row_rects.len() { row_rects[t].top() } else { last.bottom() };
-                let (l, r) = (last.left(), last.right());
-                ui.painter().line_segment([egui::pos2(l, y), egui::pos2(r, y)], Stroke::new(2.5, ACCENT));
+                ui.painter().hline(last.x_range(), y, Stroke::new(2.0, theme::RED));
                 ui.ctx().set_cursor_icon(egui::CursorIcon::Grabbing);
             }
             if ui.input(|i| !i.pointer.any_down()) {
@@ -1036,7 +1133,7 @@ impl ManagerApp {
                 self.drag_from = None;
             }
         }
-        // keyboard: up / down moves the selected mod
+        // keyboard: Alt + up / down moves the selected mod
         if let Some(sel) = self.selected.clone() {
             if let Some(i) = list.index_of(&sel) {
                 let (up, down) = ui.input(|inp| (inp.modifiers.alt && inp.key_pressed(egui::Key::ArrowUp), inp.modifiers.alt && inp.key_pressed(egui::Key::ArrowDown)));
@@ -1065,149 +1162,448 @@ impl ManagerApp {
         tex
     }
 
+    // ------------------------------------------------------------ the article column (selected mod)
+
     fn details(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
-        let dark = ui.visuals().dark_mode;
         let Some((row, st)) = self.selected.as_ref().and_then(|s| {
             let l = self.list.as_ref()?;
             let i = l.index_of(s)?;
             Some((l.rows[i].clone(), self.derived.statuses.get(i).cloned()))
         }) else {
-            ui.add_space(20.0);
-            ui.label(RichText::new(tr("Select a mod to see its details.")).weak());
+            ui.add_space(60.0);
+            ui.vertical_centered(|ui| ui.label(theme::italic(tr("Select a mod to see its details."))));
             return;
         };
         let m = &row.info.manifest;
+        let in_conflict = self.derived.conflicts.iter().any(|c| c.mods.iter().any(|x| x == &m.id));
         egui::ScrollArea::vertical().id_salt("details").auto_shrink([false, false]).show(ui, |ui| {
-            let title = if m.name.trim().is_empty() { m.id.clone() } else { m.name.clone() };
-            ui.label(RichText::new(title).size(19.0).strong());
+            let lvl = st.as_ref().map_or(Level::Ok, |s| s.level);
             ui.horizontal(|ui| {
-                ui.label(RichText::new(format!("v{}", m.version)).strong());
-                if !m.author.is_empty() {
-                    ui.label(trf("by {}", &[&m.author]));
-                }
+                ui.label(theme::kicker(model::level_label(lvl), level_color(lvl)));
+                ui.label(RichText::new("·").color(theme::INK_4));
+                ui.label(RichText::new(&m.id).font(theme::mono(11.5)).color(theme::INK_3));
             });
+            let title = if m.name.trim().is_empty() { m.id.clone() } else { m.name.clone() };
+            ui.add(egui::Label::new(theme::headline(&title, 30.0)).wrap());
+            let mut byline = Vec::new();
+            if !m.author.is_empty() {
+                byline.push(trf("By {}", &[&m.author]));
+            }
+            byline.push(trf("version {}", &[&m.version]));
+            let upd = row.info.updated();
+            if !upd.is_empty() {
+                byline.push(trf("updated {}", &[&upd]));
+            }
+            ui.label(RichText::new(byline.join("  ·  ")).font(theme::serif_italic(14.5)).color(theme::INK_2));
+            ui.add_space(4.0);
+            theme::rule(ui, theme::RULE, 1.0);
+            ui.add_space(6.0);
             if let Some(p) = row.info.preview_png.clone() {
                 if let Some(t) = self.preview(ui.ctx(), &p) {
-                    let w = ui.available_width().min(460.0);
+                    let w = ui.available_width().min(560.0);
                     let s = t.size_vec2();
-                    ui.add(egui::Image::new(&t).fit_to_exact_size(Vec2::new(w, w * s.y / s.x.max(1.0))).corner_radius(4.0));
+                    ui.add(egui::Image::new(&t).fit_to_exact_size(Vec2::new(w, w * s.y / s.x.max(1.0))));
+                    ui.add_space(6.0);
                 }
             }
             if !m.description.trim().is_empty() {
-                ui.add_space(4.0);
-                ui.label(m.description.trim());
+                ui.add(egui::Label::new(RichText::new(m.description.trim()).font(FontId::proportional(15.5)).color(theme::INK).line_height(Some(22.0))).wrap());
+                ui.add_space(6.0);
             }
             if let Some(st) = &st {
                 if !st.lines.is_empty() {
-                    ui.add_space(6.0);
-                    ui.label(RichText::new(tr("Problems")).strong());
+                    ui.add_space(4.0);
+                    ui.label(theme::kicker(tr("Notes"), theme::RED));
                     for (l, text) in &st.lines {
-                        ui.label(RichText::new(format!("•  {text}")).color(level_color(*l, dark)));
+                        ui.horizontal_top(|ui| {
+                            ui.label(RichText::new("—").color(level_color(*l)));
+                            ui.add(egui::Label::new(RichText::new(text).font(FontId::proportional(14.5)).color(note_color(*l))).wrap());
+                        });
                     }
-                    if !st.missing.is_empty() {
-                        let miss: Vec<(String, String, Vec<String>)> = st.missing.iter().map(|(id, c)| (id.clone(), c.clone(), vec![m.id.clone()])).collect();
-                        if ui.button(tr("Install missing…")).clicked() {
-                            acts.push(Action::ShowMissing(miss));
+                    ui.horizontal(|ui| {
+                        if !st.missing.is_empty() {
+                            let miss: Vec<(String, String, Vec<String>)> = st.missing.iter().map(|(id, c)| (id.clone(), c.clone(), vec![m.id.clone()])).collect();
+                            if ui.add(theme::small_button(tr("Install missing…"))).clicked() {
+                                acts.push(Action::ShowMissing(miss));
+                            }
                         }
-                    }
+                        if in_conflict && ui.add(theme::text_button(RichText::new(tr("See all conflicts")).font(theme::sans_bold(12.5)).color(theme::GOLD))).clicked() {
+                            acts.push(Action::GoTo(Section::Conflicts));
+                        }
+                    });
+                    ui.add_space(6.0);
                 }
             }
+            theme::rule(ui, theme::RULE, 1.0);
             ui.add_space(6.0);
-            egui::Grid::new("info").num_columns(2).spacing([12.0, 4.0]).show(ui, |ui| {
-                let vw = (ui.available_width() - 110.0).max(120.0);
-                let mut kv = |k: &str, v: String| {
-                    if !v.trim().is_empty() {
-                        ui.label(RichText::new(k).weak());
-                        ui.add_sized([vw, 18.0], egui::Label::new(v.clone()).truncate()).on_hover_text(v);
-                        ui.end_row();
-                    }
-                };
-                kv("id", m.id.clone());
-                kv(tr("Requires"), m.requires.join(", "));
-                kv(tr("Provides"), m.provides.join(", "));
-                kv(tr("Incompatible with"), m.conflicts.join(", "));
-                kv(tr("Needs ModLoader"), m.loader_min.clone());
-                kv(tr("Plugin"), m.plugin.clone());
-                kv(tr("Tags"), m.tags.join(", "));
-                kv(tr("Updated"), row.info.updated());
-                let deltas: usize = row.info.deltas.iter().map(|d| d.delta.set.len() + d.delta.add.len()).sum();
-                kv(tr("Contents"), trf("{} files, {} Lua scripts, {} data deltas", &[&row.info.files.len(), &row.info.lua_scripts.len(), &deltas]));
-                kv(tr("Folder"), row.info.dir.display().to_string());
+            let monos = |ui: &mut Ui, v: &[String]| {
+                for x in v {
+                    ui.label(RichText::new(x).font(theme::mono(12.5)).color(theme::INK));
+                }
+            };
+            if !m.requires.is_empty() {
+                fact(ui, tr("Requires"), |ui| monos(ui, &m.requires));
+            }
+            if !m.conflicts.is_empty() {
+                fact(ui, tr("Incompatible with"), |ui| monos(ui, &m.conflicts));
+            }
+            if !m.provides.is_empty() {
+                fact(ui, tr("Provides"), |ui| monos(ui, &m.provides));
+            }
+            if !m.loader_min.trim().is_empty() {
+                fact(ui, tr("Needs ModLoader"), |ui| monos(ui, std::slice::from_ref(&m.loader_min)));
+            }
+            if !m.plugin.trim().is_empty() {
+                fact(ui, tr("Plugin"), |ui| monos(ui, std::slice::from_ref(&m.plugin)));
+            }
+            if !m.tags.is_empty() {
+                fact(ui, tr("Tags"), |ui| {
+                    ui.add(egui::Label::new(RichText::new(m.tags.join(", ")).color(theme::INK_2)).wrap());
+                });
+            }
+            let deltas: usize = row.info.deltas.iter().map(|d| d.delta.set.len() + d.delta.add.len()).sum();
+            fact(ui, tr("Contents"), |ui| {
+                ui.add(egui::Label::new(RichText::new(trf("{} files, {} Lua scripts, {} data deltas", &[&row.info.files.len(), &row.info.lua_scripts.len(), &deltas])).color(theme::INK_2)).wrap());
             });
-            ui.add_space(8.0);
+            fact(ui, tr("Folder"), |ui| {
+                ui.add(egui::Label::new(RichText::new(row.info.dir.display().to_string()).font(theme::mono(11.5)).color(theme::INK_3)).wrap());
+            });
+            ui.add_space(10.0);
             ui.horizontal(|ui| {
-                if ui.button(tr("Open folder")).clicked() {
+                if ui.add(theme::small_button(tr("Open folder"))).clicked() {
                     acts.push(Action::Open(row.info.dir.display().to_string()));
                 }
-                if ui.add_enabled(self.busy.is_none(), egui::Button::new(RichText::new(tr("Uninstall…")).color(level_color(Level::Error, dark)))).clicked() {
+                let un = egui::Button::new(RichText::new(tr("Uninstall…").to_uppercase()).font(theme::sans_bold(11.5)).extra_letter_spacing(0.8).color(theme::RED));
+                if ui.add_enabled(self.busy.is_none(), un).clicked() {
                     acts.push(Action::AskUninstall(m.id.clone()));
                 }
             });
+            ui.add_space(8.0);
         });
     }
 
-    fn bottom_panel(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
-        let dark = ui.visuals().dark_mode;
-        ui.horizontal(|ui| {
-            let nc = self.derived.conflicts.len();
-            let np = self.derived.problems.len();
-            ui.selectable_value(&mut self.bottom, Bottom::Conflicts, format!("{} ({nc})", tr("Conflicts")));
-            ui.selectable_value(&mut self.bottom, Bottom::Problems, format!("{} ({np})", tr("Problems")));
-            ui.selectable_value(&mut self.bottom, Bottom::Log, tr("Log"));
-            if !self.derived.missing.is_empty() {
-                ui.separator();
-                let n = self.derived.missing.len();
-                if ui.button(RichText::new(format!("{} ({n})", tr("Install missing…"))).color(level_color(Level::Error, dark))).clicked() {
-                    acts.push(Action::ShowMissing(self.derived.missing.clone()));
+    // ------------------------------------------------------------ «More»: one index column + one section
+
+    fn more_index(&mut self, ui: &mut Ui) {
+        ui.add_space(18.0);
+        let nc = self.derived.conflicts.len();
+        let np = self.derived.problems.len();
+        for (group, items) in [
+            (tr("Reports"), &[Section::Conflicts, Section::Problems, Section::Log][..]),
+            (tr("Setup"), &[Section::Profiles, Section::Game, Section::Links, Section::Trash][..]),
+            (tr("Program"), &[Section::Language, Section::About][..]),
+        ] {
+            ui.label(theme::kicker(group, theme::INK_4));
+            ui.add_space(2.0);
+            for &s in items {
+                let w = ui.available_width();
+                let (rect, resp) = ui.allocate_exact_size(Vec2::new(w, 30.0), Sense::click());
+                let sel = self.section == s;
+                let p = ui.painter();
+                if sel {
+                    p.rect_filled(rect, 0.0, theme::PAPER_3);
+                    p.rect_filled(egui::Rect::from_min_size(rect.min, Vec2::new(3.0, rect.height())), 0.0, theme::RED);
+                } else if resp.hovered() {
+                    p.rect_filled(rect, 0.0, theme::PAPER_2);
+                }
+                let font = if sel { theme::serif_bold(15.5) } else { FontId::proportional(15.5) };
+                p.text(egui::pos2(rect.left() + 14.0, rect.center().y), Align2::LEFT_CENTER, s.title(), font, if sel { theme::INK } else { theme::INK_2 });
+                let count = match s {
+                    Section::Conflicts => nc,
+                    Section::Problems => np,
+                    _ => 0,
+                };
+                if count > 0 {
+                    let c = if s == Section::Problems { theme::RED } else { theme::GOLD };
+                    p.text(egui::pos2(rect.right() - 10.0, rect.center().y), Align2::RIGHT_CENTER, count.to_string(), theme::mono(12.0), c);
+                }
+                if resp.on_hover_cursor(egui::CursorIcon::PointingHand).clicked() {
+                    self.section = s;
                 }
             }
-            if self.bottom == Bottom::Conflicts {
-                ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-                    ui.add(egui::TextEdit::singleline(&mut self.conflict_filter).desired_width(180.0).hint_text(tr("Filter")));
-                });
+            ui.add_space(14.0);
+        }
+    }
+
+    fn more_section(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        egui::ScrollArea::vertical().id_salt("more").auto_shrink([false, false]).show(ui, |ui| {
+            ui.set_max_width(900.0);
+            match self.section {
+                Section::Conflicts => self.sec_conflicts(ui),
+                Section::Problems => self.sec_problems(ui, acts),
+                Section::Log => self.sec_log(ui),
+                Section::Profiles => self.sec_profiles(ui, acts),
+                Section::Game => self.sec_game(ui, acts),
+                Section::Links => self.sec_links(ui, acts),
+                Section::Trash => self.sec_trash(ui, acts),
+                Section::Language => self.sec_language(ui),
+                Section::About => self.sec_about(ui),
             }
         });
-        ui.separator();
-        egui::ScrollArea::vertical().id_salt("bottom").auto_shrink([false, false]).show(ui, |ui| match self.bottom {
-            Bottom::Conflicts => {
-                if self.derived.conflicts.is_empty() {
-                    ui.label(RichText::new(tr("No conflicts between the enabled mods.")).weak());
-                    return;
+    }
+
+    fn sec_conflicts(&mut self, ui: &mut Ui) {
+        section_head(ui, tr("Reports"), tr("Conflicts"), tr("Places where two enabled mods change the same thing. The mod higher in the list loads later and wins."));
+        if self.derived.conflicts.is_empty() {
+            ui.label(theme::italic(tr("No conflicts between the enabled mods.")));
+            return;
+        }
+        ui.horizontal(|ui| {
+            ui.label(theme::kicker(tr("Filter"), theme::INK_3));
+            ui.add(egui::TextEdit::singleline(&mut self.conflict_filter).desired_width(240.0).hint_text(tr("file, cell or mod id")));
+        });
+        ui.add_space(6.0);
+        let f = self.conflict_filter.to_lowercase();
+        egui::Grid::new("conf").num_columns(4).spacing([18.0, 8.0]).show(ui, |ui| {
+            ui.label(theme::kicker(tr("Kind"), theme::INK_4));
+            ui.label(theme::kicker(tr("What"), theme::INK_4));
+            ui.label(theme::kicker(tr("Mods (load order)"), theme::INK_4));
+            ui.label(theme::kicker(tr("Winner"), theme::INK_4));
+            ui.end_row();
+            for c in self.derived.conflicts.iter().filter(|c| f.is_empty() || c.what.to_lowercase().contains(&f) || c.mods.iter().any(|m| m.contains(&f))) {
+                ui.label(RichText::new(&c.kind).font(theme::sans(13.0)).color(theme::INK_3));
+                ui.label(RichText::new(&c.what).font(theme::mono(12.5)).color(theme::INK));
+                ui.label(RichText::new(c.mods.join("  >  ")).font(theme::mono(12.5)).color(theme::INK_2));
+                ui.label(RichText::new(c.winner()).font(theme::mono(12.5)).color(theme::GOLD));
+                ui.end_row();
+            }
+        });
+        if self.derived.conflicts.iter().any(|c| c.kind.starts_with("audio")) {
+            ui.add_space(8.0);
+            ui.label(theme::italic(tr("Audio declarations (audio.toml): the mod loaded last is expected to win.")));
+        }
+    }
+
+    fn sec_problems(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        section_head(ui, tr("Reports"), tr("Problems"), tr("What stops a mod from loading, and files the loader cannot read."));
+        if !self.derived.missing.is_empty() {
+            let n = self.derived.missing.len();
+            if ui.add(theme::button(&format!("{} ({n})", tr("Install missing…")))).clicked() {
+                acts.push(Action::ShowMissing(self.derived.missing.clone()));
+            }
+            ui.add_space(6.0);
+        }
+        if self.derived.problems.is_empty() {
+            ui.label(theme::italic(tr("No problems.")));
+        }
+        for (l, t) in &self.derived.problems {
+            ui.horizontal_top(|ui| {
+                ui.label(RichText::new("—").color(level_color(*l)));
+                ui.add(egui::Label::new(RichText::new(t).color(note_color(*l))).wrap());
+            });
+        }
+    }
+
+    fn sec_log(&mut self, ui: &mut Ui) {
+        section_head(ui, tr("Reports"), tr("Log"), tr("What this window did since it opened."));
+        if self.log.is_empty() {
+            ui.label(theme::italic(tr("Nothing yet.")));
+        }
+        for l in &self.log {
+            ui.label(RichText::new(l).font(theme::mono(12.0)).color(theme::INK_2));
+        }
+    }
+
+    fn sec_profiles(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        section_head(ui, tr("Setup"), tr("Profiles"), tr("Each profile keeps its own enabled mods and order. The game's Mods menu uses the same profiles."));
+        let (names, cur) = self.profiles.clone();
+        for (i, n) in names.iter().enumerate() {
+            ui.horizontal(|ui| {
+                let sel = i == cur;
+                if ui.radio(sel, RichText::new(profile_label(n)).font(if sel { theme::serif_bold(15.5) } else { FontId::proportional(15.5) })).clicked() && !sel {
+                    acts.push(Action::SwitchProfile(n.clone()));
                 }
-                let f = self.conflict_filter.to_lowercase();
-                egui::Grid::new("conf").striped(true).num_columns(4).spacing([16.0, 3.0]).show(ui, |ui| {
-                    ui.label(RichText::new(tr("What")).strong());
-                    ui.label("");
-                    ui.label(RichText::new(tr("Mods (load order)")).strong());
-                    ui.label(RichText::new(tr("Winner")).strong());
-                    ui.end_row();
-                    for c in self.derived.conflicts.iter().filter(|c| f.is_empty() || c.what.to_lowercase().contains(&f) || c.mods.iter().any(|m| m.contains(&f))) {
-                        ui.label(RichText::new(&c.kind).weak());
-                        ui.label(RichText::new(&c.what).monospace());
-                        ui.label(c.mods.join("  >  "));
-                        ui.label(RichText::new(c.winner()).strong());
-                        ui.end_row();
-                    }
-                });
-                if self.derived.conflicts.iter().any(|c| c.kind.starts_with("audio")) {
-                    ui.label(RichText::new(tr("Audio declarations (audio.toml): the mod loaded last is expected to win.")).small().weak());
+                if sel {
+                    ui.label(theme::kicker(tr("Active"), theme::GREEN));
+                }
+            });
+        }
+        ui.add_space(10.0);
+        let cur_name = names.get(cur).cloned().unwrap_or_else(|| fmt::DEFAULT_PROFILE.to_string());
+        let custom = cur_name != fmt::DEFAULT_PROFILE;
+        ui.horizontal(|ui| {
+            if ui.add(theme::small_button(tr("New…"))).clicked() {
+                self.dialog = Some(Dialog::ProfileName { rename: None, text: String::new(), error: String::new() });
+            }
+            if ui.add_enabled(custom, theme::small_button(tr("Rename…"))).clicked() {
+                self.dialog = Some(Dialog::ProfileName { rename: Some(cur_name.clone()), text: cur_name.clone(), error: String::new() });
+            }
+            if ui.add_enabled(custom, theme::small_button(tr("Delete"))).clicked() {
+                self.dialog = Some(Dialog::ConfirmDeleteProfile(cur_name.clone()));
+            }
+        });
+        if !custom {
+            ui.label(theme::italic(tr("The default profile cannot be renamed or deleted.")));
+        }
+    }
+
+    fn sec_game(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        section_head(ui, tr("Setup"), tr("Game & ModLoader"), tr("Where the game is, whether it is the right version, and the ModLoader that loads the mods."));
+        ui.label(theme::headline(tr("Game folder"), 20.0));
+        match &self.game {
+            Some(g) => {
+                ui.add(egui::Label::new(RichText::new(g.display().to_string()).font(theme::mono(12.5)).color(theme::INK)).wrap());
+                if self.game_override {
+                    ui.label(theme::italic(tr("(command-line override, not saved)")));
+                }
+                if modloader::exe_game_dir(&self.exe).is_none() {
+                    ui.label(RichText::new(tr("VR-ModLoader.exe should be in the game folder (next to nie.exe).")).color(theme::GOLD));
+                }
+                let (vt, vl, vh) = self.version_summary();
+                ui.label(RichText::new(if vh.is_empty() { vt } else { vh }).color(note_color(vl)));
+            }
+            None => {
+                ui.label(RichText::new(tr("No game folder selected")).color(theme::RED));
+            }
+        }
+        ui.horizontal(|ui| {
+            if ui.add(theme::small_button(tr("Change…"))).clicked() {
+                acts.push(Action::PickGame);
+            }
+            if ui.add(theme::small_button(tr("Detect"))).clicked() {
+                acts.push(Action::DetectGame);
+            }
+            if let Some(root) = self.mods_root() {
+                if ui.add(theme::small_button(tr("Open mods folder"))).clicked() {
+                    let _ = std::fs::create_dir_all(&root);
+                    acts.push(Action::Open(root.display().to_string()));
                 }
             }
-            Bottom::Problems => {
-                if self.derived.problems.is_empty() {
-                    ui.label(RichText::new(tr("No problems.")).weak());
+        });
+        if self.game_running {
+            ui.label(RichText::new(tr("The game is running: changes apply at the next start.")).color(theme::RED));
+        }
+        let Some(st) = self.loader.clone() else { return };
+        ui.add_space(14.0);
+        theme::rule(ui, theme::RULE, 1.0);
+        ui.add_space(8.0);
+        ui.label(theme::headline(tr("ModLoader"), 20.0));
+        let busy = self.busy.is_some();
+        let need = self.loader_need();
+        let (text, lvl) = match (&st.state, st.version()) {
+            (evt_installer::modpack::LoaderState::Missing, _) => (tr("Not installed").to_string(), Level::Error),
+            (_, Some(v)) => (trf("Installed {}", &[&v]), Level::Ok),
+            (_, None) => (tr("Installed (unknown version)").to_string(), Level::Warn),
+        };
+        ui.label(RichText::new(text).font(theme::serif_bold(15.5)).color(note_color(lvl)));
+        if let Some(v) = st.version() {
+            if !need.is_empty() && fmt::compare_versions(v, &need).is_lt() {
+                ui.label(RichText::new(trf("Outdated: a mod needs {}", &[&need])).color(theme::RED));
+            }
+        }
+        let pv = self.payload_version();
+        if let Some(pv) = &pv {
+            if st.update_available(pv) {
+                ui.label(RichText::new(trf("Update available: {}", &[pv])).color(theme::GOLD));
+            }
+        }
+        if st.mods_module == Some(false) {
+            ui.horizontal(|ui| {
+                ui.label(RichText::new(tr("The mods module is off in evt_loader\\config.toml: mods are ignored.")).color(theme::GOLD));
+                if ui.add(theme::small_button(tr("Turn on"))).clicked() {
+                    acts.push(Action::EnableModsModule);
                 }
-                for (l, t) in &self.derived.problems {
-                    ui.label(RichText::new(format!("•  {t}")).color(level_color(*l, dark)));
+            });
+        }
+        ui.add_space(4.0);
+        ui.horizontal(|ui| {
+            if let Some(pv) = &pv {
+                let label = if !st.installed() {
+                    tr("Install")
+                } else if st.update_available(pv) {
+                    tr("Update")
+                } else {
+                    tr("Repair")
+                };
+                let enabled = !busy;
+                let src = self.payload.as_ref().and_then(|p| p.as_ref().ok()).map(|p| p.source.clone()).unwrap_or_default();
+                let r = ui.add_enabled(enabled, theme::small_button(&format!("{label} {pv}")));
+                if r.on_hover_text(trf("Package: {}", &[&src])).clicked() {
+                    acts.push(Action::LoaderInstall);
                 }
             }
-            Bottom::Log => {
-                for l in &self.log {
-                    ui.label(RichText::new(l).monospace().small());
+            if ui.add_enabled(!busy, theme::small_button(tr("Install ModLoader from file…"))).clicked() {
+                acts.push(Action::LoaderPick);
+            }
+            if st.installed() {
+                let b = egui::Button::new(RichText::new(tr("Remove").to_uppercase()).font(theme::sans_bold(11.5)).extra_letter_spacing(0.8).color(theme::RED));
+                let r = ui.add_enabled(!busy && st.ours, b);
+                let r = if st.ours { r } else { r.on_disabled_hover_text(tr("installed by another tool: remove it with that tool")) };
+                if r.clicked() {
+                    self.dialog = Some(Dialog::ConfirmRemoveLoader);
+                }
+            }
+        });
+        if pv.is_none() {
+            ui.add(egui::Label::new(theme::italic(tr("No ModLoader package found (embedded, modloader\\ or modloader.zip next to the exe)."))).wrap());
+        }
+    }
+
+    fn sec_links(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        section_head(ui, tr("Setup"), tr("1-click install"), tr("Registers the vrmodloader: link type for your Windows user (HKCU\\Software\\Classes\\vrmodloader), so «1-click install» buttons on mod sites open this program. Nothing is registered without this button."));
+        let (status, ok) = match &self.scheme_cmd {
+            Some(c) if urlscheme::command_is(c, &self.exe) => (tr("Status: registered to this program").to_string(), Level::Ok),
+            Some(c) => (trf("Status: registered to another program: {}", &[c]), Level::Warn),
+            None => (tr("Status: not registered").to_string(), Level::Off),
+        };
+        ui.add(egui::Label::new(RichText::new(status).font(theme::serif_bold(15.0)).color(note_color(ok))).wrap());
+        ui.add_space(4.0);
+        ui.horizontal(|ui| {
+            if ui.add(theme::small_button(tr("Register 1-click links"))).clicked() {
+                acts.push(Action::Register);
+            }
+            if ui.add_enabled(self.scheme_cmd.is_some(), theme::small_button(tr("Unregister"))).clicked() {
+                acts.push(Action::Unregister);
+            }
+        });
+    }
+
+    fn sec_trash(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
+        section_head(ui, tr("Setup"), tr("Trash"), tr("Uninstalled mods and replaced versions wait in mods\\_trash\\ until you empty it."));
+        let Some(root) = self.mods_root() else {
+            ui.label(RichText::new(tr("No game folder selected")).color(theme::RED));
+            return;
+        };
+        let n = install::trash_items(&root);
+        ui.label(trf("{} item(s) in mods\\_trash\\", &[&n]));
+        ui.horizontal(|ui| {
+            if ui.add_enabled(n > 0, theme::small_button(tr("Open trash"))).clicked() {
+                acts.push(Action::Open(install::trash_root(&root).display().to_string()));
+            }
+            let b = egui::Button::new(RichText::new(tr("Empty trash…").to_uppercase()).font(theme::sans_bold(11.5)).extra_letter_spacing(0.8).color(theme::RED));
+            if ui.add_enabled(n > 0, b).clicked() {
+                self.dialog = Some(Dialog::ConfirmEmptyTrash);
+            }
+        });
+    }
+
+    fn sec_language(&mut self, ui: &mut Ui) {
+        section_head(ui, tr("Program"), tr("Language"), tr("The language of this window."));
+        let cur = i18n::lang();
+        ui.horizontal(|ui| {
+            for l in [Lang::En, Lang::Es] {
+                if ui.radio(cur == l, RichText::new(l.label()).font(FontId::proportional(15.5))).clicked() && cur != l {
+                    i18n::set_lang(l);
+                    self.settings.language = l.code().into();
+                    self.save_settings();
+                    self.stale = true;
                 }
             }
         });
     }
+
+    fn sec_about(&mut self, ui: &mut Ui) {
+        section_head(ui, tr("Program"), tr("About"), "");
+        ui.label(RichText::new(format!("{APP_NAME} {}", vr_modloader_app::APP_VERSION)).font(theme::serif_bold(16.0)).color(theme::INK));
+        ui.add(egui::Label::new(tr("Mod manager for the VR-ModLoader (Inazuma Eleven Victory Road PC v7.1.2). Free software under the GPL-3.0.")).wrap());
+        ui.add(egui::Label::new(theme::italic(tr("Fonts: Playfair Display, Source Serif 4, IBM Plex Sans Condensed and IBM Plex Mono, under the SIL Open Font License 1.1."))).wrap());
+        ui.add_space(6.0);
+        fact(ui, tr("Settings"), |ui| {
+            ui.add(egui::Label::new(RichText::new(settings::settings_path().display().to_string()).font(theme::mono(11.5)).color(theme::INK_3)).wrap());
+        });
+    }
+
+    // ------------------------------------------------------------ Studio (secondary section)
 
     fn open_index(&mut self, ctx: &egui::Context) {
         let Some(g) = self.game.clone() else { return };
@@ -1230,22 +1626,19 @@ impl ManagerApp {
 
     fn studio(&mut self, ui: &mut Ui) {
         let ctx = ui.ctx().clone();
-        ui.add_space(8.0);
-        ui.label(RichText::new(tr("Studio (coming soon)")).size(20.0).strong());
-        ui.label(tr("Create and edit mods with forms: characters, techniques, teams, texts… It reads your own game data (v7.1.2) to build a local index, so you pick game things from lists instead of typing ids. Nothing from the game ships with this program."));
-        ui.add_space(8.0);
-        ui.separator();
-        ui.heading(tr("Game index"));
+        section_head(ui, tr("Coming soon"), tr("Studio"), tr("Create and edit mods with forms: characters, techniques, teams, texts… It reads your own game data (v7.1.2) to build a local index, so you pick game things from lists instead of typing ids. Nothing from the game ships with this program."));
+        ui.label(theme::headline(tr("Game index"), 20.0));
         let Some(idx) = self.studio.index.clone() else {
-            ui.label(tr("The index is built once from your game (a few minutes; read only) and stored in %LOCALAPPDATA%\\VR-ModLoader\\index."));
-            if ui.add_enabled(self.game.is_some() && self.busy.is_none(), egui::Button::new(RichText::new(tr("Open / build the index")).strong())).clicked() {
+            ui.add(egui::Label::new(tr("The index is built once from your game (a few minutes; read only) and stored in %LOCALAPPDATA%\\VR-ModLoader\\index.")).wrap());
+            ui.add_space(4.0);
+            if ui.add_enabled(self.game.is_some() && self.busy.is_none(), theme::small_button(tr("Open / build the index"))).clicked() {
                 self.open_index(&ctx);
             }
             return;
         };
         let lang = if i18n::lang() == Lang::Es { 2 } else { 1 };
         ui.horizontal(|ui| {
-            ui.add(egui::TextEdit::singleline(&mut self.studio.query).desired_width(280.0).hint_text(tr("Search names or ids (any language)")));
+            ui.add(egui::TextEdit::singleline(&mut self.studio.query).desired_width(300.0).hint_text(tr("Search names or ids (any language)")));
             let cat_label = self.studio.category.map(|c| c.as_str().to_string()).unwrap_or_else(|| tr("All").to_string());
             egui::ComboBox::from_id_salt("cat").selected_text(cat_label).show_ui(ui, |ui| {
                 ui.selectable_value(&mut self.studio.category, None, tr("All"));
@@ -1254,7 +1647,7 @@ impl ManagerApp {
                 }
             });
             let m = idx.meta();
-            ui.label(RichText::new(format!("{} · {}", trf("{} entries", &[&idx.entities().len()]), m.game_version.clone().unwrap_or_default())).weak());
+            ui.label(RichText::new(format!("{} · {}", trf("{} entries", &[&idx.entities().len()]), m.game_version.clone().unwrap_or_default())).font(theme::mono(11.5)).color(theme::INK_3));
         });
         let key = (self.studio.query.trim().to_string(), self.studio.category, lang);
         if self.studio.searched.as_ref() != Some(&key) {
@@ -1270,7 +1663,8 @@ impl ManagerApp {
             self.studio.searched = Some(key);
             self.studio.selected = None;
         }
-        ui.separator();
+        ui.add_space(4.0);
+        theme::rule(ui, theme::RULE, 1.0);
         let rows: Vec<(Option<std::path::PathBuf>, String, String, String)> = self
             .studio
             .hits
@@ -1282,7 +1676,7 @@ impl ManagerApp {
             .collect();
         let rows: Vec<_> = rows.into_iter().map(|(p, n, id, d)| (p.and_then(|p| self.preview(&ctx, &p)), n, id, d)).collect();
         egui::ScrollArea::vertical().id_salt("hits").auto_shrink([false, false]).show(ui, |ui| {
-            egui::Grid::new("hits_grid").striped(true).num_columns(4).spacing([14.0, 4.0]).show(ui, |ui| {
+            egui::Grid::new("hits_grid").num_columns(4).spacing([14.0, 6.0]).show(ui, |ui| {
                 for (k, (tex, name, id, detail)) in rows.iter().enumerate() {
                     match tex {
                         Some(t) => {
@@ -1292,76 +1686,21 @@ impl ManagerApp {
                             ui.label("");
                         }
                     }
-                    if ui.selectable_label(self.studio.selected == Some(k), RichText::new(name).strong()).clicked() {
+                    if ui.selectable_label(self.studio.selected == Some(k), RichText::new(name).font(theme::serif_bold(15.0))).clicked() {
                         self.studio.selected = Some(k);
                     }
-                    ui.label(RichText::new(id).monospace());
-                    ui.label(RichText::new(detail).weak());
+                    ui.label(RichText::new(id).font(theme::mono(12.0)).color(theme::INK_2));
+                    ui.label(RichText::new(detail).color(theme::INK_3));
                     ui.end_row();
                 }
             });
         });
     }
-
-    fn settings_tab(&mut self, ui: &mut Ui, acts: &mut Vec<Action>) {
-        egui::ScrollArea::vertical().auto_shrink([false, false]).show(ui, |ui| {
-            ui.set_max_width(760.0);
-            ui.heading(tr("Language"));
-            let cur = i18n::lang();
-            ui.horizontal(|ui| {
-                for l in [Lang::En, Lang::Es] {
-                    if ui.selectable_label(cur == l, l.label()).clicked() && cur != l {
-                        i18n::set_lang(l);
-                        self.settings.language = l.code().into();
-                        self.save_settings();
-                        self.stale = true;
-                    }
-                }
-            });
-            ui.add_space(14.0);
-            ui.heading(tr("1-click install (GameBanana / Nexus style links)"));
-            ui.label(tr("Registers the vrmodloader: link type for your Windows user (HKCU\\Software\\Classes\\vrmodloader), so «1-click install» buttons on mod sites open this program. Nothing is registered without this button."));
-            let status = match &self.scheme_cmd {
-                Some(c) if urlscheme::command_is(c, &self.exe) => tr("Status: registered to this program").to_string(),
-                Some(c) => trf("Status: registered to another program: {}", &[c]),
-                None => tr("Status: not registered").to_string(),
-            };
-            ui.label(RichText::new(status).strong());
-            ui.horizontal(|ui| {
-                if ui.button(tr("Register 1-click links")).clicked() {
-                    acts.push(Action::Register);
-                }
-                if ui.add_enabled(self.scheme_cmd.is_some(), egui::Button::new(tr("Unregister"))).clicked() {
-                    acts.push(Action::Unregister);
-                }
-            });
-            if let Some(root) = self.mods_root() {
-                ui.add_space(14.0);
-                ui.heading(tr("Trash"));
-                let n = install::trash_items(&root);
-                ui.label(trf("{} item(s) in mods\\_trash\\", &[&n]));
-                ui.horizontal(|ui| {
-                    if ui.add_enabled(n > 0, egui::Button::new(tr("Open trash"))).clicked() {
-                        acts.push(Action::Open(install::trash_root(&root).display().to_string()));
-                    }
-                    if ui.add_enabled(n > 0, egui::Button::new(tr("Empty trash…"))).clicked() {
-                        self.dialog = Some(Dialog::ConfirmEmptyTrash);
-                    }
-                });
-            }
-            ui.add_space(14.0);
-            ui.heading(tr("About"));
-            ui.label(format!("{APP_NAME} {}", vr_modloader_app::APP_VERSION));
-            ui.label(tr("Mod manager for the VR-ModLoader (Inazuma Eleven Victory Road PC v7.1.2). Free software under the GPL-3.0."));
-            ui.label(RichText::new(settings::settings_path().display().to_string()).small().weak());
-        });
-    }
-
     fn dialogs(&mut self, ctx: &egui::Context, acts: &mut Vec<Action>) {
         let Some(mut d) = self.dialog.take() else { return };
         let mut keep = true;
-        let dark = ctx.global_style().visuals.dark_mode;
-        egui::Modal::new(Id::new("dialog")).show(ctx, |ui| {
+        let frame = egui::Frame::popup(&ctx.global_style()).inner_margin(Margin::same(24)).stroke(Stroke::new(1.0, theme::RULE_STRONG));
+        egui::Modal::new(Id::new("dialog")).frame(frame).show(ctx, |ui| {
             ui.set_max_width(640.0);
             match &mut d {
                 Dialog::Message { title, body } => {
@@ -1392,18 +1731,18 @@ impl ManagerApp {
                                     Existing::Downgrade(v) => (trf("downgrade from {}", &[v]), Level::Warn),
                                 };
                                 if ok {
-                                    ui.label(RichText::new(t).color(level_color(l, dark)));
+                                    ui.label(RichText::new(t).color(level_color(l)));
                                 }
                                 ui.add(egui::Label::new(RichText::new(name).strong()).truncate());
                             });
                             if !ok {
-                                ui.label(RichText::new(tr("Errors: this mod cannot be installed")).color(level_color(Level::Error, dark)));
+                                ui.label(RichText::new(tr("Errors: this mod cannot be installed")).color(theme::RED));
                             }
                             for e in &c.staged.errors {
-                                ui.label(RichText::new(format!("  •  {e}")).color(level_color(Level::Error, dark)).small());
+                                ui.label(RichText::new(format!("  •  {e}")).color(theme::RED).small());
                             }
                             for w in c.staged.warnings.iter().take(8) {
-                                ui.label(RichText::new(format!("  •  {w}")).color(level_color(Level::Warn, dark)).small());
+                                ui.label(RichText::new(format!("  •  {w}")).color(theme::GOLD).small());
                             }
                             if let Some(m) = &c.staged.manifest {
                                 if !m.description.is_empty() {
@@ -1419,7 +1758,7 @@ impl ManagerApp {
                     ui.separator();
                     ui.horizontal(|ui| {
                         let any = p.candidates.iter().any(|c| c.selected && c.staged.ok());
-                        if ui.add_enabled(any, egui::Button::new(RichText::new(tr("Install selected")).strong())).clicked() {
+                        if ui.add_enabled(any, theme::primary_button(tr("Install selected"))).clicked() {
                             acts.push(Action::CommitInstall);
                         }
                         if ui.button(tr("Cancel")).clicked() {
@@ -1464,10 +1803,10 @@ impl ManagerApp {
                     ui.heading(trf("Uninstall «{}»?", &[id]));
                     ui.label(tr("The folder is moved to mods\\_trash\\ (you can restore it by moving it back)."));
                     if !dependents.is_empty() {
-                        ui.label(RichText::new(trf("These enabled mods need it: {}", &[&dependents.join(", ")])).color(level_color(Level::Warn, dark)));
+                        ui.label(RichText::new(trf("These enabled mods need it: {}", &[&dependents.join(", ")])).color(theme::GOLD));
                     }
                     ui.horizontal(|ui| {
-                        if ui.button(RichText::new(tr("Uninstall")).color(level_color(Level::Error, dark))).clicked() {
+                        if ui.button(RichText::new(tr("Uninstall")).color(theme::RED)).clicked() {
                             acts.push(Action::Uninstall(id.clone()));
                         }
                         if ui.button(tr("Cancel")).clicked() {
@@ -1483,12 +1822,12 @@ impl ManagerApp {
                         r.request_focus();
                     });
                     if !error.is_empty() {
-                        ui.label(RichText::new(error.as_str()).color(level_color(Level::Error, dark)));
+                        ui.label(RichText::new(error.as_str()).color(theme::RED));
                     }
                     ui.horizontal(|ui| {
                         let label = if rename.is_some() { tr("Rename") } else { tr("Create") };
                         let enter = ui.input(|i| i.key_pressed(egui::Key::Enter));
-                        if ui.button(RichText::new(label).strong()).clicked() || enter {
+                        if ui.add(theme::primary_button(label)).clicked() || enter {
                             match rename {
                                 Some(old) => acts.push(Action::RenameProfile(old.clone(), text.trim().to_string())),
                                 None => acts.push(Action::NewProfile(text.trim().to_string())),
@@ -1514,7 +1853,7 @@ impl ManagerApp {
                     ui.heading(tr("Unsaved changes"));
                     ui.label(tr("Unsaved changes: save before switching profile?"));
                     ui.horizontal(|ui| {
-                        if ui.button(RichText::new(tr("Save and switch")).strong()).clicked() {
+                        if ui.add(theme::primary_button(tr("Save and switch"))).clicked() {
                             acts.push(Action::SwitchProfileNow(name.clone(), true));
                         }
                         if ui.button(tr("Discard and switch")).clicked() {
@@ -1529,14 +1868,14 @@ impl ManagerApp {
                     ui.set_width(520.0);
                     ui.heading(tr("Install from link"));
                     ui.label(tr("A website asks to download and install a mod from:"));
-                    ui.label(RichText::new(link.host()).size(17.0).strong());
+                    ui.label(RichText::new(link.host()).font(theme::serif_bold(18.0)).color(theme::INK));
                     ui.add(egui::Label::new(RichText::new(&link.url).monospace().small()).wrap());
                     if let Some((t, id)) = &link.item {
                         ui.label(RichText::new(format!("GameBanana {t} #{id}")).weak());
                     }
-                    ui.label(RichText::new(tr("Only continue if you trust this site. The archive is checked before anything is installed.")).color(level_color(Level::Warn, dark)));
+                    ui.label(RichText::new(tr("Only continue if you trust this site. The archive is checked before anything is installed.")).color(theme::GOLD));
                     ui.horizontal(|ui| {
-                        if ui.button(RichText::new(tr("Download")).strong()).clicked() {
+                        if ui.add(theme::primary_button(tr("Download"))).clicked() {
                             acts.push(Action::Download(link.url.clone()));
                             keep = false;
                         }
@@ -1547,10 +1886,13 @@ impl ManagerApp {
                 }
                 Dialog::ConfirmRemoveLoader => {
                     ui.heading(tr("ModLoader"));
-                    ui.label(tr("Remove the ModLoader? Its backup puts back the files it replaced. Your mods folder is kept."));
+                    ui.label(tr("Remove the ModLoader? The game goes back to how it was (what it replaced is put back, its evt_loader folder is deleted). Your mods folder is kept."));
                     ui.horizontal(|ui| {
-                        if ui.button(RichText::new(tr("Remove")).color(level_color(Level::Error, dark))).clicked() {
-                            acts.push(Action::LoaderRemove);
+                        if ui.button(RichText::new(tr("Remove")).color(theme::RED)).clicked() {
+                            acts.push(Action::LoaderRemove(false));
+                        }
+                        if modloader::exe_game_dir(&self.exe).is_some() && ui.button(RichText::new(tr("Remove and delete VR-ModLoader.exe")).color(theme::RED)).clicked() {
+                            acts.push(Action::LoaderRemove(true));
                         }
                         if ui.button(tr("Cancel")).clicked() {
                             keep = false;
@@ -1561,7 +1903,7 @@ impl ManagerApp {
                     ui.heading(tr("Trash"));
                     ui.label(tr("Permanently delete everything in mods\\_trash\\? This cannot be undone."));
                     ui.horizontal(|ui| {
-                        if ui.button(RichText::new(tr("Delete permanently")).color(level_color(Level::Error, dark))).clicked() {
+                        if ui.button(RichText::new(tr("Delete permanently")).color(theme::RED)).clicked() {
                             acts.push(Action::EmptyTrash);
                         }
                         if ui.button(tr("Cancel")).clicked() {
@@ -1579,9 +1921,58 @@ impl ManagerApp {
 
 /// A left-aligned, truncated label in `r`.
 fn cell(ui: &mut Ui, r: egui::Rect, text: RichText) {
-    ui.scope_builder(egui::UiBuilder::new().max_rect(r).layout(Layout::left_to_right(Align::Center)), |ui| {
+    place(ui, r, Layout::left_to_right(Align::Center), |ui| {
         ui.add(egui::Label::new(text).truncate().selectable(false));
     });
+}
+
+/// Lay out `add` inside `r`.
+fn place(ui: &mut Ui, r: egui::Rect, layout: Layout, add: impl FnOnce(&mut Ui)) {
+    ui.scope_builder(egui::UiBuilder::new().max_rect(r).layout(layout), add);
+}
+
+/// Kicker + headline + italic standfirst + rule: the top of every secondary section.
+fn section_head(ui: &mut Ui, kicker: &str, title: &str, standfirst: &str) {
+    ui.add_space(2.0);
+    ui.label(theme::kicker(kicker, theme::RED));
+    ui.label(theme::headline(title, 30.0));
+    if !standfirst.is_empty() {
+        ui.add(egui::Label::new(theme::italic(standfirst)).wrap());
+    }
+    ui.add_space(4.0);
+    theme::rule(ui, theme::RULE_STRONG, 1.0);
+    ui.add_space(8.0);
+}
+
+/// One line of a fact box: small caps label on the left, the value(s) on the right.
+fn fact(ui: &mut Ui, label: &str, add: impl FnOnce(&mut Ui)) {
+    ui.horizontal_top(|ui| {
+        ui.allocate_ui_with_layout(Vec2::new(128.0, 18.0), Layout::top_down(Align::Min), |ui| {
+            ui.set_min_width(128.0);
+            ui.add_space(3.0);
+            ui.add(egui::Label::new(theme::kicker(label, theme::INK_3)).wrap());
+        });
+        ui.vertical(|ui| {
+            ui.spacing_mut().item_spacing.y = 2.0;
+            add(ui);
+        });
+    });
+    ui.add_space(4.0);
+}
+
+/// A path shortened from the left («…\steamapps\common\Game»), for the dateline.
+fn short_path(p: &Path, max: usize) -> String {
+    let s = p.display().to_string();
+    let n = s.chars().count();
+    if n <= max {
+        return s;
+    }
+    let tail: String = s.chars().skip(n - max.saturating_sub(1)).collect();
+    let tail = match tail.find(['\\', '/']) {
+        Some(i) => tail[i..].to_string(),
+        None => tail,
+    };
+    format!("…{tail}")
 }
 
 fn profile_label(name: &str) -> String {
@@ -1618,58 +2009,53 @@ impl eframe::App for ManagerApp {
     fn ui(&mut self, ui: &mut Ui, _frame: &mut eframe::Frame) {
         let ctx = ui.ctx().clone();
         let mut acts: Vec<Action> = Vec::new();
-        egui::Panel::top("header").show(ui, |ui| {
-            ui.add_space(4.0);
-            self.header(ui, &mut acts);
-            if self.tab == Tab::Manager && self.game.is_some() {
-                ui.add_space(2.0);
-                self.toolbar(ui, &mut acts);
-            }
-            ui.add_space(2.0);
-        });
-        egui::Panel::bottom("status").show(ui, |ui| {
-            ui.horizontal(|ui| {
-                if let Some((label, f)) = &self.busy {
-                    ui.spinner();
-                    ui.label(label.as_str());
-                    if let Some(f) = f {
-                        ui.add(egui::ProgressBar::new(*f).desired_width(220.0).show_percentage());
-                    }
-                } else {
-                    ui.label(RichText::new(&self.status_line).weak());
-                }
-            });
-        });
+        let paper = |l: i8, r: i8, t: i8, b: i8| egui::Frame::new().fill(theme::PAPER).inner_margin(Margin { left: l, right: r, top: t, bottom: b });
+        egui::Panel::top("masthead").frame(paper(28, 28, 10, 0)).show_separator_line(false).show(ui, |ui| self.masthead(ui, &mut acts));
+        egui::Panel::bottom("footer").frame(paper(28, 28, 8, 8)).show(ui, |ui| self.footer(ui, &mut acts));
         match self.tab {
-            Tab::Manager if self.game.is_some() => {
-                egui::Panel::bottom("conflicts").resizable(true).default_size(190.0).min_size(90.0).show(ui, |ui| self.bottom_panel(ui, &mut acts));
-                egui::Panel::right("details").resizable(true).default_size(380.0).min_size(260.0).max_size(640.0).show(ui, |ui| self.details(ui, &mut acts));
-                egui::CentralPanel::default().show(ui, |ui| self.mod_list(ui));
+            Tab::Mods if self.game.is_some() => {
+                egui::Panel::right("article").frame(paper(26, 28, 20, 8)).resizable(true).default_size(430.0).min_size(300.0).max_size(700.0).show(ui, |ui| self.details(ui, &mut acts));
+                egui::CentralPanel::default().frame(paper(28, 24, 16, 8)).show(ui, |ui| self.mod_list(ui, &mut acts));
             }
-            Tab::Manager => {
-                egui::CentralPanel::default().show(ui, |ui| {
-                    ui.add_space(40.0);
+            Tab::Mods => {
+                egui::CentralPanel::default().frame(paper(28, 28, 16, 8)).show(ui, |ui| {
+                    ui.add_space(60.0);
                     ui.vertical_centered(|ui| {
-                        ui.label(RichText::new(tr("Game not found. Choose the folder that contains nie.exe.")).size(16.0));
-                        if ui.button(tr("Change…")).clicked() {
-                            acts.push(Action::PickGame);
-                        }
+                        ui.label(theme::headline(tr("Game not found"), 30.0));
+                        ui.label(theme::italic(tr("Game not found. Choose the folder that contains nie.exe.")));
+                        ui.add_space(8.0);
+                        ui.horizontal(|ui| {
+                            ui.add_space((ui.available_width() - 230.0).max(0.0) / 2.0);
+                            if ui.add(theme::button(tr("Change…"))).clicked() {
+                                acts.push(Action::PickGame);
+                            }
+                            if ui.add(theme::button(tr("Detect"))).clicked() {
+                                acts.push(Action::DetectGame);
+                            }
+                        });
                     });
                 });
             }
             Tab::Studio => {
-                egui::CentralPanel::default().show(ui, |ui| self.studio(ui));
+                egui::CentralPanel::default().frame(paper(28, 28, 20, 8)).show(ui, |ui| {
+                    ui.set_max_width(980.0);
+                    self.studio(ui);
+                });
             }
-            Tab::Settings => {
-                egui::CentralPanel::default().show(ui, |ui| self.settings_tab(ui, &mut acts));
+            Tab::More => {
+                egui::Panel::left("index").frame(paper(20, 16, 4, 8)).resizable(false).exact_size(230.0).show(ui, |ui| self.more_index(ui));
+                egui::CentralPanel::default().frame(paper(32, 28, 20, 8)).show(ui, |ui| self.more_section(ui, &mut acts));
             }
         }
         // hovering files: drop hint
         if ctx.input(|i| !i.raw.hovered_files.is_empty()) {
             let screen = ctx.content_rect();
             let painter = ctx.layer_painter(egui::LayerId::new(egui::Order::Foreground, Id::new("drop")));
-            painter.rect_filled(screen, 0.0, Color32::from_black_alpha(170));
-            painter.text(screen.center(), Align2::CENTER_CENTER, tr("Drop a .zip here to install it"), FontId::proportional(26.0), Color32::WHITE);
+            painter.rect_filled(screen, 0.0, theme::PAPER.gamma_multiply(0.93));
+            let inner = screen.shrink(28.0);
+            painter.rect_stroke(inner, 0.0, Stroke::new(1.0, theme::RED), egui::StrokeKind::Inside);
+            painter.rect_stroke(inner.shrink(5.0), 0.0, Stroke::new(1.0, theme::RED), egui::StrokeKind::Inside);
+            painter.text(screen.center(), Align2::CENTER_CENTER, tr("Drop a .zip here to install it"), theme::display_font(34.0), theme::INK);
         }
         self.dialogs(&ctx, &mut acts);
         for a in acts {

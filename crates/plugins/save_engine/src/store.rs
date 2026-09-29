@@ -48,7 +48,7 @@ struct ModData {
     dirty: bool,
 }
 
-pub use crate::generic::{unix_now, write_atomic};
+pub use vr_framework::fsx::{unix_now, write_atomic};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum SetError {

@@ -2,7 +2,7 @@
 //! (docs/game/modes/prorroga-penaltis.md). Same behaviour, file and Lua commands as the old built-in loader module.
 //!
 //! Slice 1: **half length** ("Duración de cada parte", 30' / 45'). The value lives in `evt_loader\match_rules.json`
-//! (never in the save) and is applied to every match by the Lua grafts of `research/grafts/match_rules/` through
+//! (never in the save) and is applied to every match by the match_rules Lua patches through
 //! `CMND_EVT_MATCH_RULES_APPLY`.
 //!
 //! Engine facts (v7.1.2, static, `docs/game/modes/prorroga-penaltis.md` §2):

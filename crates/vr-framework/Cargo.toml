@@ -1,0 +1,22 @@
+[package]
+name = "vr-framework"
+version = "1.0.0"
+edition.workspace = true
+license = "GPL-3.0-only"
+description = "VR-Framework: the shared base of the VR-ModLoader engine plugins (mod discovery, strict TOML data files, namespaced stable ids, build cache served with file_serve, game files, Lua helpers)"
+
+[features]
+default = []
+# `game::GameSource`: read the installed game straight from `data\cpk_list.cfg.bin` + its CPKs (offline tools, the
+# text engine). Pulls in the game-file crates; a plugin that only uses the ModLoader's `game_file_path` does not need it.
+gamefiles = ["dep:vr-gamefiles"]
+
+[dependencies]
+evt-plugin-sdk = { path = "../evt-plugin-sdk" }
+crc32fast = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = "0.8"
+sha1 = "0.10"
+md-5 = "0.10"
+vr-gamefiles = { path = "../vr-gamefiles", optional = true }

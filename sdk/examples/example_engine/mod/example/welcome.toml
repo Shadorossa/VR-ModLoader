@@ -1,0 +1,6 @@
+schema = "example_engine.greetings/1"
+
+# own id "example_engine.welcome" (the engine's mod id + the name)
+[[greeting]]
+name = "welcome"
+text = "Welcome to the example engine"

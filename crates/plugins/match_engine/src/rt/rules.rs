@@ -133,13 +133,8 @@ pub(super) fn init(host: &Host) {
     info!("match_rules: half length {}' ({})", s.half_minutes, path.display());
     *STATE.lock().unwrap_or_else(|e| e.into_inner()) = Some(s);
     let _ = FILE.set(path);
-    for (n, f) in [
-        ("CMND_EVT_MATCH_RULES_GET", cmd_get as fn(&mut LuaCall)),
-        ("CMND_EVT_MATCH_RULES_SET", cmd_set),
-        ("CMND_EVT_MATCH_RULES_APPLY", cmd_apply),
-    ] {
-        if let Err(e) = host.lua_register(n, f) {
-            warning!("match_rules: {n} not registered (code {e})");
-        }
+    let cmds: [(&str, vr_framework::lua::Command); 3] = [("CMND_EVT_MATCH_RULES_GET", cmd_get), ("CMND_EVT_MATCH_RULES_SET", cmd_set), ("CMND_EVT_MATCH_RULES_APPLY", cmd_apply)];
+    for (n, e) in vr_framework::lua::register_all(host, &cmds) {
+        warning!("match_rules: {n} not registered (code {e})");
     }
 }

@@ -231,10 +231,10 @@ pub fn statuses(list: &ModList, plan: &LoadPlan, loader: Option<&str>) -> Vec<St
 
 pub fn level_label(l: Level) -> &'static str {
     match l {
-        Level::Ok | Level::Info => tr("OK"),
+        Level::Ok | Level::Info => tr("Active"),
         Level::Off => tr("Off"),
         Level::Warn => tr("Warning"),
-        Level::Error => tr("Not loaded"),
+        Level::Error => tr("Won't load"),
     }
 }
 

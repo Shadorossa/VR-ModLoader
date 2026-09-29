@@ -12,6 +12,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 evt-plugin-sdk = { path = "../../evt-plugin-sdk" }
+vr-framework = { path = "../../vr-framework" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 toml = "0.8"

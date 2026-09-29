@@ -1,0 +1,16 @@
+id = "example_engine"
+name = "Example: engine"
+version = "1.0.0"
+author = "ModLoader SDK"
+description = "The smallest VR-Framework engine: merges <mod>\\example\\*.toml of every mod that requires it into one generated file (served with file_serve) and answers CMND_EVT_EXAMPLE_GREETING. Changes nothing in the game."
+priority = 0
+tags = ["Example"]
+updated = "2026-09-29"
+
+plugin = "example_engine.dll"
+# the name data mods put in their requires
+provides = ["example_engine"]
+# CMND_EVT_EXAMPLE_GREETING needs the Lua bridge
+loader_modules = ["lua_bridge"]
+# early phase + file_serve (plugin API v1 with the +248 field)
+loader_min = "1.0.0"

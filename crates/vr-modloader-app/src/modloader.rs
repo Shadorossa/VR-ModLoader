@@ -181,11 +181,21 @@ pub fn find_payload(exe_dir: &Path) -> Option<Result<Payload, String>> {
 
 // ---------------------------------------------------------------- status
 
+/// The game folder when `VR-ModLoader.exe` sits in it (next to `nie.exe`): the release layout, that folder IS the
+/// game. None = the exe is elsewhere (the manager falls back to the saved folder / Steam and warns).
+pub fn exe_game_dir(exe: &Path) -> Option<PathBuf> {
+    exe.parent().filter(|d| evt_installer::game::is_game_dir(d)).map(Path::to_path_buf)
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Status {
     pub state: LoaderState,
-    /// Installed by evt-installer / this manager (so it can be removed with its backup).
+    /// This manager can remove it: installed by evt-installer / this manager (removed with its backup), or a
+    /// `winmm.dll` with our version marker unzipped from the release (see `unpacked`).
     pub ours: bool,
+    /// Our `winmm.dll` (version marker) with no install record: the release zip unpacked into the game folder.
+    /// Repair / update write the payload in place; removal deletes the ModLoader files.
+    pub unpacked: bool,
     /// `[modules] mods` of `evt_loader\config.toml` (None = no config yet / no such line).
     pub mods_module: Option<bool>,
 }
@@ -212,21 +222,56 @@ impl Status {
 
 pub fn status(game: &Path) -> Status {
     let state = modops::loader_state(game);
-    let ours = modops::find_components(game).iter().any(|c| c.is_loader());
+    let component = modops::find_components(game).iter().any(|c| c.is_loader());
+    let unpacked = !component && matches!(state, LoaderState::Known { .. });
     let mods_module = std::fs::read_to_string(game.join(LOADER_CONFIG))
         .ok()
         .and_then(|t| loadercfg::modules_of(&t).into_iter().find(|(n, _)| n == "mods").map(|(_, v)| v));
-    Status { state, ours, mods_module }
+    Status { state, ours: component || unpacked, unpacked, mods_module }
 }
 
-/// Install or update the ModLoader from `payload`, then make sure `[modules] mods = true`. Ok(true) = files
-/// written, Ok(false) = the installed one is already this version.
+/// Install, update or repair the ModLoader from `payload`, then make sure `[modules] mods = true`. Ok(true) = files
+/// written, Ok(false) = nothing to do (every file already matches the payload).
+/// * nothing / someone else's `winmm.dll`: installed as a component (what it replaces is backed up);
+/// * ours, older: updated (a component in place with its backup; an unpacked release file by file);
+/// * ours, same version: repaired (files that differ from the payload are written again).
+///
+/// `evt_loader\config.toml` of the player is never overwritten. A newer installed ModLoader is refused.
 pub fn install(game: &Path, payload: &Payload) -> Result<bool, String> {
-    let (action, _) = modops::install_loader_only(game, &payload.pack, true, &mut |_| {})?;
+    let st = status(game);
+    let installed_newer = st.version().is_some_and(|v| evt_modfmt::compare_versions(v, &payload.version).is_gt());
+    if installed_newer {
+        return Err(format!("the installed ModLoader ({}) is newer than this package ({})", st.version().unwrap_or_default(), payload.version));
+    }
+    let in_place = st.unpacked || (st.ours && !st.update_available(&payload.version));
+    let wrote = if in_place {
+        write_in_place(game, payload)?
+    } else {
+        let (action, _) = modops::install_loader_only(game, &payload.pack, true, &mut |_| {})?;
+        matches!(action, LoaderAction::Install(_))
+    };
     if status(game).mods_module == Some(false) {
         enable_mods_module(game)?;
     }
-    Ok(matches!(action, LoaderAction::Install(_)))
+    Ok(wrote)
+}
+
+/// The payload's files over the game's where they differ (not an existing `evt_loader\config.toml`).
+fn write_in_place(game: &Path, payload: &Payload) -> Result<bool, String> {
+    let src = payload.pack.root.join(LOADER_DIR);
+    let mut wrote = false;
+    for rel in &payload.pack.loader_files {
+        let dst = game.join(rel);
+        if rel.eq_ignore_ascii_case(LOADER_CONFIG) && dst.is_file() {
+            continue;
+        }
+        let new = std::fs::read(src.join(rel)).map_err(|e| format!("{}: {e}", src.join(rel).display()))?;
+        if std::fs::read(&dst).ok().as_deref() != Some(new.as_slice()) {
+            evt_installer::copy_file(&src.join(rel), &dst)?;
+            wrote = true;
+        }
+    }
+    Ok(wrote)
 }
 
 /// `[modules] mods = true` in `evt_loader\config.toml` (tracked by our ModLoader component when there is one).
@@ -245,13 +290,52 @@ pub fn enable_mods_module(game: &Path) -> Result<(), String> {
     Ok(())
 }
 
-/// Remove the ModLoader we installed (its backup puts back what it replaced). Refused when mods installed by the
-/// release installer (components) are left; plain `mods\<id>` folders stay and are simply not loaded.
+/// Files the ModLoader puts in the game folder (an unpacked release: removed by [`remove`]).
+const LOADER_FILES: &[&str] = &["winmm.dll", "vr_loader.pdb"];
+
+/// Remove the ModLoader: one we installed goes with its backup (what it replaced is put back); an unpacked release
+/// (our `winmm.dll`, no record) is deleted: `winmm.dll`, `vr_loader.pdb`, `steam_appid.txt` when it holds the game's
+/// id and `evt_loader\` (settings, logs, caches). Refused when mods installed by the release installer (components)
+/// are left; plain `mods\<id>` folders stay and are simply not loaded.
 pub fn remove(game: &Path) -> Result<(), String> {
-    match modops::uninstall_loader(game, &mut |_| {})? {
-        Some(_) => Ok(()),
-        None => Err(format!("{LOADER_ID}: not installed by this program")),
+    if modops::uninstall_loader(game, &mut |_| {})?.is_some() {
+        return Ok(());
     }
+    if !status(game).unpacked {
+        return Err(format!("{LOADER_ID}: not installed by this program"));
+    }
+    for f in LOADER_FILES {
+        let p = game.join(f);
+        if p.is_file() {
+            std::fs::remove_file(&p).map_err(|e| format!("{}: {e}", p.display()))?;
+        }
+    }
+    let appid = game.join("steam_appid.txt");
+    if std::fs::read_to_string(&appid).is_ok_and(|t| t.trim() == crate::STEAM_APPID) {
+        let _ = std::fs::remove_file(&appid);
+    }
+    let dir = game.join("evt_loader");
+    if dir.is_dir() {
+        std::fs::remove_dir_all(&dir).map_err(|e| format!("{}: {e}", dir.display()))?;
+    }
+    Ok(())
+}
+
+/// Delete `exe` a few seconds after this process exits (a hidden `cmd` waits, then deletes it): «Remove ModLoader»
+/// on request also removes the manager from the game folder. The caller closes the window right after.
+pub fn delete_after_exit(exe: &Path) -> Result<(), String> {
+    let mut c = std::process::Command::new("cmd.exe");
+    #[cfg(windows)]
+    {
+        // raw: cmd.exe does not understand the backslash escaping of Command::arg
+        use std::os::windows::process::CommandExt;
+        c.raw_arg(self_delete_command(exe));
+    }
+    evt_installer::no_window(&mut c).spawn().map(|_| ()).map_err(|e| e.to_string())
+}
+
+fn self_delete_command(exe: &Path) -> String {
+    format!("/C ping -n 4 127.0.0.1 >nul & del /f /q \"{}\"", exe.display())
 }
 
 #[cfg(test)]
@@ -311,6 +395,74 @@ mod tests {
         assert!(!game.join("evt_loader").exists());
         assert!(!game.join("evt_backup").exists());
         assert!(remove(&game).is_err());
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    #[test]
+    fn unpacked_release_repair_update_remove() {
+        let d = crate::temp_dir("loader_unpacked").unwrap();
+        let game = fake_game(&d);
+        // the release zip unpacked into the game folder: our winmm.dll, no install record
+        let dll1 = "MZ....EVT_MODLOADER_VERSION=1.0.0\0....";
+        std::fs::write(game.join("winmm.dll"), dll1).unwrap();
+        std::fs::create_dir_all(game.join("mods").join("some_mod")).unwrap();
+        let st = status(&game);
+        assert_eq!(st.version(), Some("1.0.0"), "the version comes from the marker in the DLL");
+        assert!(st.unpacked && st.ours, "removable by the manager");
+        let p1 = from_path(&plain_payload(&d, "1.0.0", dll1)).unwrap();
+        assert!(!st.update_available(&p1.version), "same version: up to date");
+        // repair: the missing files are written, winmm.dll already matches
+        assert!(install(&game, &p1).unwrap());
+        assert_eq!(std::fs::read_to_string(game.join("steam_appid.txt")).unwrap(), "2799860\n");
+        assert!(!game.join("evt_backup").exists(), "an unpacked release is repaired in place, no component");
+        assert!(!install(&game, &p1).unwrap(), "nothing left to repair");
+        // a damaged DLL (same marker, other bytes) is written again; the player's config.toml stays
+        std::fs::write(game.join("winmm.dll"), "MZ..damaged..EVT_MODLOADER_VERSION=1.0.0\0").unwrap();
+        let cfg = game.join(LOADER_CONFIG);
+        std::fs::write(&cfg, "[modules]\nmods = true\nconsole = true\n").unwrap();
+        assert!(install(&game, &p1).unwrap());
+        assert_eq!(std::fs::read_to_string(game.join("winmm.dll")).unwrap(), dll1);
+        assert!(std::fs::read_to_string(&cfg).unwrap().contains("console = true"));
+        // update in place
+        let dll2 = "MZ....EVT_MODLOADER_VERSION=1.1.0\0....";
+        let p2 = from_path(&plain_payload(&d, "1.1.0", dll2)).unwrap();
+        assert!(status(&game).update_available(&p2.version));
+        assert!(install(&game, &p2).unwrap());
+        assert_eq!(status(&game).version(), Some("1.1.0"));
+        // an older package never downgrades
+        assert!(install(&game, &p1).is_err());
+        // remove: the ModLoader files go, the mods folder stays
+        std::fs::write(game.join("vr_loader.pdb"), "pdb").unwrap();
+        remove(&game).unwrap();
+        for f in ["winmm.dll", "vr_loader.pdb", "steam_appid.txt", "evt_loader"] {
+            assert!(!game.join(f).exists(), "{f} removed");
+        }
+        assert!(game.join("mods").join("some_mod").is_dir());
+        assert_eq!(status(&game).state, LoaderState::Missing);
+        assert!(remove(&game).is_err());
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    #[test]
+    fn someone_elses_dll_is_not_removed_by_file() {
+        let d = crate::temp_dir("loader_foreign").unwrap();
+        let game = fake_game(&d);
+        std::fs::write(game.join("winmm.dll"), "another proxy, no marker").unwrap();
+        let st = status(&game);
+        assert!(!st.unpacked && !st.ours);
+        assert!(remove(&game).is_err());
+        assert!(game.join("winmm.dll").is_file());
+        let _ = std::fs::remove_dir_all(&d);
+    }
+
+    #[test]
+    fn exe_in_the_game_folder_is_the_game() {
+        let d = crate::temp_dir("loader_exe").unwrap();
+        let game = fake_game(&d);
+        assert_eq!(exe_game_dir(&game.join("VR-ModLoader.exe")), Some(game.clone()));
+        assert_eq!(exe_game_dir(&d.join("VR-ModLoader.exe")), None);
+        let cmd = self_delete_command(&game.join("VR-ModLoader.exe"));
+        assert!(cmd.starts_with("/C ") && cmd.ends_with(&format!("del /f /q \"{}\"", game.join("VR-ModLoader.exe").display())), "{cmd}");
         let _ = std::fs::remove_dir_all(&d);
     }
 

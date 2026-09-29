@@ -1,17 +1,46 @@
-//! Where a base file comes from (generic). Order, like the ModLoader's data-delta merge
-//! (`crates/vr-loader/src/mods/merge.rs`):
+//! The player's own game files: where the base of a generated file comes from. Game paths are overlay keys
+//! (`data/...`, lower case, `/`). Two interfaces, both in use:
 //!
-//! 1. the whole-file override of another active mod (`<mod>\files\data\...`), the one that loads last; the engine's own
-//!    folder never counts (its files are the engine's output);
-//! 2. the file the game would read: `data\cpk_list.cfg.bin` record → loose file under the game folder (what the app
-//!    installs), else extracted from its CPK (decrypted + decompressed by `vr_gamefiles::cpk`); a key missing from
-//!    the list is read loose when it exists (an all-loose dump).
-//!
-//! Every file read is returned as a cache dependency.
+//! * [`Source`] (bytes + the paths read, as cache dependencies) with [`base_file`]: order like the ModLoader's
+//!   data-delta merge (`crates/vr-loader/src/mods/merge.rs`):
+//!   1. the whole-file override of another active mod (`<mod>\files\data\...`), the one that loads last; the engine's
+//!      own folder never counts (its files are the engine's output);
+//!   2. the file the game would read ([`GameSource`], feature `gamefiles`): `data\cpk_list.cfg.bin` record → loose
+//!      file under the game folder (what the app installs), else extracted from its CPK (decrypted + decompressed by
+//!      `vr_gamefiles::cpk`); a key missing from the list is read loose when it exists (an all-loose dump).
+//! * [`GameFiles`] (a file on disk per key) with [`overlay_winner`]: in the plugin the ModLoader answers
+//!   ([`crate::host::HostGame`], API `game_file_path`: loose-first, else extracted from the CPK into its cache); tools
+//!   use a dump folder ([`DumpFiles`]).
 
-use super::ModDir;
+use crate::ModDir;
+#[cfg(feature = "gamefiles")]
 use std::collections::HashMap;
 use std::path::{Path, PathBuf};
+
+/// Where the game's own files (no mods) are, as files on disk.
+pub trait GameFiles {
+    /// A file on disk with the game's bytes of `key` (`data/...`), if the game has it.
+    fn path(&self, key: &str) -> Option<PathBuf>;
+}
+
+/// A folder laid out like the game's `data` (the v7.1.2 dump, or an all-loose install): `<root>/<key without data/>`.
+pub struct DumpFiles(pub PathBuf);
+
+impl GameFiles for DumpFiles {
+    fn path(&self, key: &str) -> Option<PathBuf> {
+        let rel = key.strip_prefix("data/").unwrap_or(key);
+        let p: PathBuf = std::iter::once(self.0.clone()).chain(rel.split('/').map(PathBuf::from)).collect();
+        p.is_file().then_some(p)
+    }
+}
+
+/// `files\<key>` of the mod that the overlay serves `key` from (the last one in load order that has it).
+pub fn overlay_winner(mods: &[ModDir], key: &str) -> Option<(ModDir, PathBuf)> {
+    crate::in_load_order(mods).into_iter().rev().find_map(|m| {
+        let p = mod_file(&m.dir, key);
+        p.is_file().then(|| (m.clone(), p))
+    })
+}
 
 /// A file and the paths it was read from.
 pub type Read = Option<(Vec<u8>, Vec<PathBuf>)>;
@@ -24,12 +53,14 @@ pub trait Source {
     fn keys(&mut self) -> Result<Vec<String>, String>;
 }
 
-/// The installed game (or an extracted dump with its `data\cpk_list.cfg.bin`).
+/// The installed game (or an extracted dump with its `data\cpk_list.cfg.bin`). Feature `gamefiles`.
+#[cfg(feature = "gamefiles")]
 pub struct GameSource {
     pub game_dir: PathBuf,
     list: Option<(vr_gamefiles::cpk_list::CpkList, HashMap<String, usize>)>,
 }
 
+#[cfg(feature = "gamefiles")]
 impl GameSource {
     pub fn new(game_dir: &Path) -> GameSource {
         GameSource { game_dir: game_dir.to_path_buf(), list: None }
@@ -47,6 +78,7 @@ impl GameSource {
     }
 }
 
+#[cfg(feature = "gamefiles")]
 impl Source for GameSource {
     fn keys(&mut self) -> Result<Vec<String>, String> {
         Ok(self.list()?.1.keys().cloned().collect())
@@ -90,11 +122,7 @@ pub struct BaseFile {
 
 /// The whole-file override of `key` in a mod folder.
 pub fn mod_file(dir: &Path, key: &str) -> PathBuf {
-    let mut p = dir.join("files");
-    for part in key.split('/') {
-        p.push(part);
-    }
-    p
+    crate::fsx::key_path(&dir.join("files"), key)
 }
 
 /// Base of `key` (see the module doc). `self_id` = the engine's mod id, `mods` = active mods in load order.
@@ -185,7 +213,7 @@ mod tests {
 
     #[test]
     fn whole_file_of_the_last_other_mod_is_the_base() {
-        let root = std::env::temp_dir().join(format!("evt-te-fw-game-{}", std::process::id()));
+        let root = std::env::temp_dir().join(format!("vr-fw-game-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&root);
         let key = "data/common/text/en/menu_text.cfg.bin";
         let mk = |id: &str, li: u32, content: Option<&[u8]>| {
@@ -210,6 +238,24 @@ mod tests {
         let b = base_file(&mut src, &mods[1..2], "text_engine", key).unwrap().unwrap();
         assert_eq!((b.bytes.as_slice(), b.label.as_str()), (&b"game"[..], "game"));
         assert!(base_file(&mut src, &mods[1..2], "text_engine", "data/none.cfg.bin").unwrap().is_none());
+        let _ = std::fs::remove_dir_all(&root);
+    }
+
+    #[test]
+    fn overlay_winner_is_the_last_in_load_order_and_dump_paths() {
+        let root = std::env::temp_dir().join(format!("vr-fw-winner-{}", std::process::id()));
+        let _ = std::fs::remove_dir_all(&root);
+        for id in ["m1", "m2"] {
+            let f = root.join(id).join("files/data/common/a.acb");
+            std::fs::create_dir_all(f.parent().unwrap()).unwrap();
+            std::fs::write(&f, id).unwrap();
+        }
+        let mods = vec![ModDir::new("m2", root.join("m2"), 1), ModDir::new("m1", root.join("m1"), 0)];
+        assert_eq!(overlay_winner(&mods, "data/common/a.acb").unwrap().0.id, "m2");
+        assert!(overlay_winner(&mods, "data/common/b.acb").is_none());
+        let dump = DumpFiles(root.join("m1").join("files").join("data"));
+        assert_eq!(dump.path("data/common/a.acb"), Some(root.join("m1").join("files").join("data").join("common").join("a.acb")));
+        assert_eq!(dump.path("data/common/none.acb"), None);
         let _ = std::fs::remove_dir_all(&root);
     }
 }

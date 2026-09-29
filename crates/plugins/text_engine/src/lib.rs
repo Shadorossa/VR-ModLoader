@@ -1,19 +1,21 @@
 //! Plugin `text_engine` (mod `mods\text_engine\`, `text_engine.dll`): the **text engine** of the ModLoader, the first
 //! of the engines (docs/app/modloader-roadmap.md «Engines»; design: docs/game/engine/text-engine.md; modders:
-//! research/mods/text_engine/README.md).
+//! mods/text_engine/README.md).
 //!
 //! Mods write texts by readable keys in 9 languages (`text.toml` / `text\<lang>.toml`): replace a game text
 //! (`chara.c01000010.name`, `menu_text:sysmes_foo`, `system_text:1389146809`) or add a new one (`[new] greeting =
 //! "Hello"` → key `<mod id>.greeting`, stable id). At the early phase (exe entry point, before any game code) the
 //! plugin merges every active mod over the tables the game would read (load order, conflicts → WARN, later wins;
-//! language fallback: the language → `all` → the mod's default language → the game's text) and serves the merged
-//! tables through the mods overlay ([`fw::slots`]); the result is cached ([`fw::cache`]). Lua: `CMND_EVT_TEXT_ID(key)`
+//! language fallback: the language → `all` → the mod's default language → the game's text), writes the merged tables
+//! to `evt_loader\cache\text_engine\` and serves them with the ModLoader's `file_serve` (shown at the first start;
+//! a ModLoader without it: the [`fw::slots`] fallback); the result is cached ([`fw::cache`]). Lua: `CMND_EVT_TEXT_ID(key)`
 //! → id, `CMND_EVT_TEXT_GET(key | id [, lang])` → string. Other plugins: the DLL exports `evt_text_id` /
 //! `evt_text_get` (see `rt`).
 //!
-//! Layout (for the future `vr-framework` crate): [`fw`] is generic (discovery of per-mod declaration files, layered
-//! cross-mod merge, base files, cache, slots); [`lang`], [`table`], [`decl`], [`keys`], [`build`], [`index`] are the
-//! text-specific parts; [`boot`] wires them (its flow is generic, its types are text ones).
+//! Layout: [`fw`] is the generic part, from the shared **VR-Framework** crate (`crates/vr-framework`: discovery of
+//! per-mod declaration files, layered cross-mod merge, base files, cache, slots, ids, host helpers); [`lang`],
+//! [`table`], [`decl`], [`keys`], [`build`], [`index`] are the text-specific parts; [`boot`] wires them (its flow is
+//! generic, its types are text ones).
 
 pub mod boot;
 pub mod build;
@@ -30,14 +32,16 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 #[serde(default)]
 pub struct Cfg {
-    /// Merge and serve the mods' texts (false = the served files are left as they are; Lua commands still answer
-    /// from the last build).
+    /// Merge and serve the mods' texts (false = nothing served, the game's texts; Lua commands still answer the new
+    /// keys from the last build).
     pub enabled: bool,
     /// Language of `CMND_EVT_TEXT_GET` when the call gives none (a folder name: en, es, ja, zh_hans…).
     pub lang: String,
-    /// Minimum free room of a new served file, KiB (texts added later must fit without a restart).
+    /// Slots fallback only (a ModLoader without `file_serve`): minimum free room of a new slot, KiB (texts added
+    /// later must fit without a restart).
     pub headroom_kib: u32,
-    /// Prepare served files for installed mods that are not active, so enabling one needs one restart only.
+    /// Slots fallback only: prepare slots for installed mods that are not active, so enabling one needs one restart
+    /// only.
     pub prepare_inactive: bool,
 }
 

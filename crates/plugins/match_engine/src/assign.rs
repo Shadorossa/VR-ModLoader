@@ -272,21 +272,7 @@ impl Table {
 /// Does the mod with `mod.toml` text `manifest` use the match engine (it is `own_id`, or `requires` / `provides`
 /// names `match_engine`, with or without a version: `"match_engine>=1.0"`)?
 pub fn uses_match_engine(own_id: &str, id: &str, manifest: &str) -> bool {
-    if id == own_id {
-        return true;
-    }
-    #[derive(Deserialize, Default)]
-    #[serde(default)]
-    struct M {
-        requires: Vec<String>,
-        provides: Vec<String>,
-    }
-    let Ok(m) = toml::from_str::<M>(manifest) else { return false };
-    let named = |s: &String| {
-        let name = s.split(|c: char| matches!(c, '<' | '>' | '=' | ' ')).next().unwrap_or("").trim();
-        name == "match_engine" || name == own_id
-    };
-    m.requires.iter().any(named) || m.provides.iter().any(named)
+    vr_framework::discover::uses_engine("match_engine", own_id, id, manifest)
 }
 
 #[cfg(test)]

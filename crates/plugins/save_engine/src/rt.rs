@@ -19,7 +19,7 @@ use crate::{slots, SaveEngineCfg};
 use evt_plugin_sdk::{declare_plugin, evt_error, evt_info, evt_warn, Host, LuaCall, EVT_LUA_BOOLEAN, EVT_LUA_NIL, EVT_LUA_NONE, EVT_LUA_NUMBER, EVT_LUA_STRING};
 use serde_json::Value;
 use std::collections::BTreeSet;
-use std::ffi::{c_char, CStr};
+use std::ffi::c_char;
 use std::path::PathBuf;
 use std::sync::{Mutex, OnceLock};
 
@@ -167,7 +167,7 @@ fn init(host: &'static Host) -> Result<(), String> {
         );
     }
     let layout = slots::Layout::new(&cfg.slots);
-    let commands: [(&str, fn(&mut LuaCall)); 10] = [
+    let commands: [(&str, vr_framework::lua::Command); 10] = [
         ("CMND_EVT_SAVE_GET", cmd_get),
         ("CMND_EVT_SAVE_SET", cmd_set),
         ("CMND_EVT_SAVE_SET_BOOL", cmd_set_bool),
@@ -252,7 +252,7 @@ fn sync(inner: &mut Inner, from_worker: bool) {
         set_mode(src, Mode::Events);
         let locked = state_i64("save.locked_slot").unwrap_or(1) as u8;
         let seq = state_i64("save.event_seq").unwrap_or(0).max(0) as u64;
-        let (range, lost) = crate::generic::ring_pending(src.seen, seq, RING);
+        let (range, lost) = vr_framework::state::ring_pending(src.seen, seq, RING);
         if lost {
             evt_warn!("save events {}..{} were missed (ring of {RING}): resynchronised on the active slot", src.seen + 1, range.start() - 1);
         }
@@ -364,14 +364,7 @@ fn key_arg(c: &LuaCall, what: &str, m: &str) -> Option<String> {
     }
 }
 
-fn push_value(c: &mut LuaCall, v: &Value) {
-    match v {
-        Value::Bool(b) => c.push_bool(*b),
-        Value::Number(n) => c.push_num(n.as_f64().unwrap_or(0.0)),
-        Value::String(s) => c.push_str(s),
-        other => c.push_str(&other.to_string()),
-    }
-}
+use vr_framework::lua::push_json as push_value;
 
 /// Echo argument `i` back (the default of GET).
 fn push_arg(c: &mut LuaCall, i: i32) {
@@ -531,9 +524,7 @@ fn cmd_slot(c: &mut LuaCall) {
 
 // ---------------------------------------------------------------- C exports for other plugins
 
-unsafe fn cstr<'a>(p: *const c_char) -> Option<&'a str> {
-    (!p.is_null()).then(|| CStr::from_ptr(p).to_str().ok()).flatten()
-}
+use vr_framework::lua::cstr;
 
 fn scope_of(global: i32) -> Scope {
     if global != 0 {

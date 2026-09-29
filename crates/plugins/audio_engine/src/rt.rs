@@ -361,18 +361,7 @@ fn log_sheet(base: &str, rep: &crate::sheet::MergeReport, warnings: &[String]) {
     );
 }
 
-fn active_mods(host: &Host) -> Vec<crate::ModDir> {
-    host.mods().into_iter().map(|m| crate::ModDir { id: m.id, dir: m.dir, load_index: m.load_index }).collect()
-}
-
-/// The game's own files through the ModLoader (`game_file_path`: loose install or CPK extraction, no overlay).
-struct HostGame(&'static Host);
-
-impl crate::framework::GameFiles for HostGame {
-    fn path(&self, key: &str) -> Option<std::path::PathBuf> {
-        self.0.game_file_path(key)
-    }
-}
+use vr_framework::host::{active_mods, HostGame};
 
 /// Write `bytes` to the cache at game path `key` (plain, e.g. a cfg.bin) and serve it.
 fn serve_generated(host: &'static Host, cache: &crate::framework::Cache, key: &str, bytes: &[u8], what: &str) {
@@ -398,8 +387,7 @@ fn log_notes(prefix: &str, notes: &[(bool, String)]) {
 fn early_audio(host: &'static Host, cfg: &Cfg) {
     let t0 = Instant::now();
     let mods = active_mods(host);
-    let cache_root = host.path("cache_dir").or_else(|| host.path("loader_dir").map(|d| d.join("cache"))).unwrap_or_default().join(&host.mod_id);
-    let cache = crate::framework::Cache::new(cache_root);
+    let cache = crate::framework::Cache::new(vr_framework::host::cache_dir(host));
     let game = HostGame(host);
     // 1. the mods' [[voice]] / [[sfx]] / [[music]]
     let mut plan = crate::build::Plan::default();
@@ -464,6 +452,12 @@ fn early_audio(host: &'static Host, cfg: &Cfg) {
             None => error!("bgm_config: the game's table not found: the mods' music ids are NOT applied"),
         }
     }
+    // 4. the «Pack de voces» row of Opciones > «Ajustes del juego»
+    if cfg.voice_row.enabled {
+        voice_row(host, &mods, &cache);
+    } else {
+        info!("voice row: off ([voice_row] enabled = false): no «Pack de voces» row in Opciones");
+    }
     info!(
         "audio build: {} bank(s) built, {} from the cache, {} file(s) served, in {} ms",
         built.rebuilt,
@@ -471,6 +465,61 @@ fn early_audio(host: &'static Host, cfg: &Cfg) {
         built.files.len(),
         t0.elapsed().as_millis()
     );
+}
+
+/// The bytes a game path has for the engine before this plugin: another mod's whole file (`files\`), else the game's.
+fn base_of(host: &'static Host, mods: &[crate::ModDir], key: &str) -> Option<(String, Vec<u8>)> {
+    if let Some((m, p)) = crate::framework::overlay_winner(mods, key) {
+        return std::fs::read(&p).ok().map(|b| (format!("mod {}", m.id), b));
+    }
+    let p = host.game_file_path(key)?;
+    std::fs::read(&p).ok().map(|b| ("game".to_string(), b))
+}
+
+/// The «Pack de voces» row (crate::voice_row): the settings list row (added once; a row of the same id, e.g. one left
+/// by an earlier install, is adopted) and its texts (text_engine when active, else our own `menu_text` of each
+/// language), all served.
+fn voice_row(host: &'static Host, mods: &[crate::ModDir], cache: &crate::framework::Cache) {
+    use crate::voice_row as vr;
+    match base_of(host, mods, vr::SETTINGS) {
+        Some((from, b)) => match vr::patch_settings(&b) {
+            Ok((Some(bytes), ch)) => {
+                info!("voice row: {} the settings list of the {from}", if ch == vr::RowChange::Adopted { "row «Pack de voces» already there (legacy id): adopted in" } else { "row «Pack de voces» added to" });
+                serve_generated(host, cache, vr::SETTINGS, &bytes, "voice row: setting_list_config");
+            }
+            Ok((None, _)) => info!("voice row: the settings list of the {from} already has the row: nothing served"),
+            Err(e) => error!("voice row: {e}: no «Pack de voces» row"),
+        },
+        None => error!("voice row: the game's settings list not found: no «Pack de voces» row"),
+    }
+    let texts = match std::fs::read_to_string(host.mod_dir.join("text.toml")).map_err(|e| format!("text.toml: {e}")).and_then(|s| vr::texts_from_toml(&s)) {
+        Ok(t) => t,
+        Err(e) => {
+            error!("voice row: {e}: the row has no label / help texts");
+            return;
+        }
+    };
+    if let Some((m, _)) = host.provider("text_engine") {
+        info!("voice row: texts through text_engine (mod {}, from this mod's text.toml)", m.id);
+        return;
+    }
+    let mut served = 0;
+    for lang in vr::LANGS {
+        let key = vr::menu_text_path(lang);
+        let Some((_, b)) = base_of(host, mods, &key) else {
+            warn!("voice row: {key} not found: no texts in {lang}");
+            continue;
+        };
+        match vr::patch_menu_text(&b, &vr::rows_for(&texts, lang)) {
+            Ok(Some(bytes)) => {
+                serve_generated(host, cache, &key, &bytes, "voice row: menu_text");
+                served += 1;
+            }
+            Ok(None) => {}
+            Err(e) => error!("voice row: {key}: {e}"),
+        }
+    }
+    info!("voice row: texts added to menu_text in {served} language(s) (no text_engine)");
 }
 
 // ---------------------------------------------------------------- entry points
@@ -498,7 +547,7 @@ fn early(host: &'static Host) -> Result<(), String> {
                 let late = thread_name().is_some_and(|n| n.starts_with("vr-loader"));
                 queue_sheet_placeholder(host, late);
             }
-            warn!("this ModLoader has no file_serve: the mods' [[voice]] / [[sfx]] / [[music]] only work when they ship built banks");
+            warn!("this ModLoader has no file_serve: the mods' [[voice]] / [[sfx]] / [[music]] only work when they ship built banks, and there is no «Pack de voces» row");
         }
     }
     Ok(())

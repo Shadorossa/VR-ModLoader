@@ -219,13 +219,8 @@ pub fn build(mods: &[ModInput], src: &mut dyn Tables) -> Built {
             }
         }
         for nk in &news {
-            let first = l5_core::hash::crc32_str(&nk.full);
-            let mut id = first;
-            let mut i = 1u32;
-            while used.contains(&id) || id == 0 || id == u32::MAX {
-                id = l5_core::hash::crc32_str(&format!("{}#{i}", nk.full));
-                i += 1;
-            }
+            let first = vr_framework::ids::crc32(&nk.full);
+            let id = vr_framework::ids::probe_id(&nk.full, |id| used.contains(&id));
             if id != first {
                 notes.info(format!("{}: id of new text `{}` is {id:#010X} (crc32 {first:#010X} is already a text id)", nk.m.id, nk.full));
             }

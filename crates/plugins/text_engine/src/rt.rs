@@ -1,5 +1,5 @@
-//! The plugin glue (Windows x64): early phase = boot (merge + slots), init = Lua commands; DLL exports for other
-//! plugins.
+//! The plugin glue (Windows x64): early phase = boot (merge into the cache + `file_serve`, shown at this start; the
+//! slots fallback on a ModLoader without `file_serve`), init = Lua commands; DLL exports for other plugins.
 //!
 //! **Lua** (module `lua_bridge`, turned on by `loader_modules` of the mod):
 //! * `CMND_EVT_TEXT_ID(key)` → the text id (number, unsigned 32-bit), 0 when the key is unknown. A number argument is
@@ -15,20 +15,22 @@
 //!   length (writes at most `cap - 1` bytes + NUL; call again with a bigger buffer when `>= cap`), negative
 //!   `EVT_E_*` on error. `key` NULL = by `id`; `lang` NULL = the configured language.
 
-use crate::boot::{self, BootIn, OwnedTables};
+use crate::boot::{self, BootIn, OwnedTables, Serve};
 use crate::fw::game::GameSource;
-use crate::fw::{self, Lvl, ModDir, Notes};
+use crate::fw::Notes;
 use crate::index::{FileLazy, Query, Runtime};
 use crate::{lang, Cfg};
 use evt_plugin_sdk::{declare_plugin, host, try_host, Host, Level, LuaCall, EVT_E_ARG, EVT_E_NOT_FOUND, EVT_E_STATE, EVT_LUA_NUMBER, EVT_LUA_STRING, EVT_OK};
 use std::collections::HashSet;
-use std::ffi::{c_char, CStr};
-use std::sync::{Mutex, OnceLock};
+use std::ffi::c_char;
+use std::sync::OnceLock;
 use std::time::Instant;
+use vr_framework::host::{self as fwhost, EarlyMode};
+use vr_framework::lua::{self as fwlua, cstr, WarnOnce};
 
 static RT: OnceLock<Runtime> = OnceLock::new();
 static CFG: OnceLock<Cfg> = OnceLock::new();
-static WARNED: Mutex<Option<HashSet<String>>> = Mutex::new(None);
+static WARNED: WarnOnce = WarnOnce::new(200);
 
 fn log(level: Level, msg: &str) {
     host().log(level, msg);
@@ -45,46 +47,76 @@ fn cfg(h: &Host) -> &'static Cfg {
 }
 
 fn log_notes(n: &Notes) {
-    for (l, s) in &n.0 {
-        let lvl = match l {
-            Lvl::Error => Level::Error,
-            Lvl::Warn => Level::Warn,
-            Lvl::Info => Level::Info,
-            Lvl::Debug => Level::Debug,
-        };
-        log(lvl, s);
+    fwhost::log_notes(host(), n);
+}
+
+/// What the boot may do.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Mode {
+    /// Early phase at the entry point with `file_serve`: build into the cache and serve (shown at this start).
+    Serve,
+    /// Early phase run late (the overlay is sealed): build into the cache, serve nothing (shown from the next start).
+    Late,
+    /// A ModLoader without `file_serve`: the slots fallback.
+    Slots,
+    /// Init without an early phase: lookups from the last build, nothing written.
+    Lookup,
+}
+
+/// `file_serve` every file of `out` (early phase at the entry point), then delete the legacy slots it covers (the
+/// overlay no longer points at them). Returns the keys served.
+fn serve_files(h: &'static Host, out: &boot::BootOut) -> HashSet<String> {
+    let files = out.to_serve();
+    let (served, refused) = fwhost::serve_files(h, files.iter().map(|(k, p)| (*k, p.as_path())));
+    for (key, c) in refused {
+        log(Level::Error, &format!("{key}: file_serve error {c}: NOT served (the game shows its own texts of that table)"));
     }
+    let ok: HashSet<String> = served.into_iter().collect();
+    let legacy: Vec<String> = boot::legacy_slots(&h.mod_dir).into_iter().filter(|k| ok.contains(k)).collect();
+    if !legacy.is_empty() {
+        let (n, errs) = boot::retire_legacy(&h.mod_dir, &legacy);
+        for e in errs {
+            log(Level::Warn, &format!("old slot not deleted ({e}): delete mods\\{}\\files with the game closed", h.mod_id));
+        }
+        if n > 0 {
+            log(Level::Info, &format!("{n} old slot file(s) of mods\\{}\\files deleted (the texts are served from the cache now)", h.mod_id));
+        }
+    }
+    ok
 }
 
-fn active_mods(h: &Host) -> Vec<ModDir> {
-    h.mods().into_iter().map(|m| ModDir { id: m.id, dir: m.dir, load_index: m.load_index }).collect()
-}
-
-fn inactive_mods(h: &Host, active: &[ModDir]) -> Vec<ModDir> {
-    let Some(md) = h.path("mods_dir") else { return Vec::new() };
-    fw::discover::installed(&md)
-        .into_iter()
-        .filter(|(id, _)| !active.iter().any(|a| a.id == *id))
-        .map(|(id, dir)| ModDir { id, dir, load_index: 0 })
-        .collect()
-}
-
-/// Build (or reuse) the merge and publish the run-time index. `write` = the slots may be rewritten (early phase only).
-fn boot(h: &'static Host, write: bool) {
+/// Build (or reuse) the merge, serve it and publish the run-time index.
+fn boot(h: &'static Host, mode: Mode) {
     let t0 = Instant::now();
     let c = cfg(h);
-    let game = h.path("game_dir").unwrap_or_default();
-    let loader = h.path("loader_dir").unwrap_or_else(|| game.join("evt_loader"));
-    let mods = active_mods(h);
-    let out = if c.enabled && write {
-        let inactive = if c.prepare_inactive { inactive_mods(h, &mods) } else { Vec::new() };
-        let inp = BootIn { self_id: &h.mod_id, self_dir: &h.mod_dir, loader_dir: &loader, mods: &mods, inactive: &inactive, policy: c.policy(true) };
-        let out = boot::run(&inp, &mut GameSource::new(&game));
+    let (game, loader) = fwhost::game_and_loader_dirs(h);
+    let mods = fwhost::active_mods(h);
+    let out = if c.enabled && mode != Mode::Lookup {
+        let (serve, inactive) = match mode {
+            Mode::Slots => (Serve::Slots(c.policy(true)), if c.prepare_inactive { fwhost::inactive_mods(h, &mods) } else { Vec::new() }),
+            _ => (Serve::Cache, Vec::new()),
+        };
+        let inp = BootIn { self_id: &h.mod_id, self_dir: &h.mod_dir, loader_dir: &loader, mods: &mods, inactive: &inactive, serve };
+        let mut out = boot::run(&inp, &mut GameSource::new(&game));
         log_notes(&out.notes);
+        let served = match mode {
+            Mode::Serve => {
+                let ok = serve_files(h, &out);
+                // lookups read what the game reads
+                out.files.retain(|f| f.file.is_none() || ok.contains(&f.key));
+                format!("; {} text file(s) served", ok.len())
+            }
+            Mode::Late => {
+                out.files.retain(|f| f.file.is_none());
+                log(Level::Warn, "the early phase ran late (the game already runs): the merged texts are NOT served at this start; they show from the next start");
+                String::new()
+            }
+            _ => String::new(),
+        };
         log(
             Level::Info,
             &format!(
-                "{} mod(s) with texts{}; {} new text key(s); {} in {} ms",
+                "{} mod(s) with texts{}; {} new text key(s); {}{served} in {} ms",
                 out.text_mods.len(),
                 if out.text_mods.is_empty() { String::new() } else { format!(" ({})", out.text_mods.join(", ")) },
                 out.index.keys.len(),
@@ -95,9 +127,11 @@ fn boot(h: &'static Host, write: bool) {
         out
     } else {
         if !c.enabled {
-            log(Level::Info, "off (enabled = false): served text files left as they are");
+            log(Level::Info, "off (enabled = false): no merged text file served (old slots, if any, are left as they are)");
         }
-        let out = boot::cached(&loader).unwrap_or_default();
+        let mut out = boot::cached(&loader).unwrap_or_default();
+        // cache files are served only by a boot that serves them
+        out.files.retain(|f| f.file.is_none());
         log(Level::Info, &format!("lookups from the last build ({} new text key(s))", out.index.keys.len()));
         out
     };
@@ -106,9 +140,7 @@ fn boot(h: &'static Host, write: bool) {
 }
 
 fn warn_once(what: &str) {
-    let mut g = WARNED.lock().unwrap_or_else(|e| e.into_inner());
-    let set = g.get_or_insert_with(HashSet::new);
-    if set.len() < 200 && set.insert(what.to_string()) {
+    if WARNED.first(what) {
         log(Level::Warn, what);
     }
 }
@@ -163,7 +195,13 @@ fn cmd_text_get(c: &mut LuaCall) {
 }
 
 fn early(h: &'static Host) -> Result<(), String> {
-    boot(h, true);
+    let mode = match EarlyMode::of(h) {
+        EarlyMode::Serve => Mode::Serve,
+        // a ModLoader without phase / file_serve
+        EarlyMode::Legacy => Mode::Slots,
+        EarlyMode::Late => Mode::Late,
+    };
+    boot(h, mode);
     Ok(())
 }
 
@@ -171,27 +209,17 @@ fn init(h: &'static Host) -> Result<(), String> {
     if RT.get().is_none() {
         log(
             Level::Warn,
-            "the early phase did not run: the served text files are NOT updated at this start (the game may already be reading them); lookups use the last build",
+            "the early phase did not run: the merged text files are NOT served / updated at this start (the game may already be reading them); lookups use the last build",
         );
-        boot(h, false);
+        boot(h, Mode::Lookup);
     }
-    for (n, f) in [("CMND_EVT_TEXT_ID", cmd_text_id as fn(&mut LuaCall)), ("CMND_EVT_TEXT_GET", cmd_text_get)] {
-        if let Err(e) = h.lua_register(n, f) {
-            log(Level::Warn, &format!("{n} not registered (code {e}: module lua_bridge off, or the name is taken): texts still merge"));
-        }
+    for (n, e) in fwlua::register_all(h, &[("CMND_EVT_TEXT_ID", cmd_text_id), ("CMND_EVT_TEXT_GET", cmd_text_get)]) {
+        log(Level::Warn, &format!("{n} not registered (code {e}: module lua_bridge off, or the name is taken): texts still merge"));
     }
     Ok(())
 }
 
 declare_plugin!(init = init, early = early);
-
-unsafe fn cstr<'a>(p: *const c_char) -> Option<&'a str> {
-    if p.is_null() {
-        None
-    } else {
-        CStr::from_ptr(p).to_str().ok()
-    }
-}
 
 /// Export for other plugins: id of a text key.
 ///

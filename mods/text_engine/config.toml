@@ -1,11 +1,11 @@
 # text_engine settings (defaults shown). Do not edit here: put your own values in <game>\evt_loader\config.toml under
 # [mods.text_engine] (they survive updates of this mod).
 
-# merge and serve the mods' texts (false = the served text files are left as they are)
+# merge and serve the mods' texts (false = the game's own texts)
 enabled = true
 # language of CMND_EVT_TEXT_GET when the call gives none: ja en es fr de it pt zh_hans zh_hant
 lang = "en"
-# minimum free room of a new served text file, KiB (texts added later must fit without a restart)
+# only with an old ModLoader without file_serve: minimum free room of a new text file, KiB
 headroom_kib = 64
-# prepare served files for installed mods that are not active (enabling one then needs a single restart)
+# only with an old ModLoader without file_serve: prepare files for installed mods that are not active
 prepare_inactive = true

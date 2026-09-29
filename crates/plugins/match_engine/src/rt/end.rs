@@ -752,17 +752,15 @@ fn cmd_state(c: &mut LuaCall) {
 }
 
 pub(super) fn register(host: &Host) {
-    let cmds: [(&str, fn(&mut LuaCall)); 5] = [
+    let cmds: [(&str, vr_framework::lua::Command); 5] = [
         ("CMND_EVT_MATCH_ENGINE_VERSION", cmd_version),
         ("CMND_EVT_MATCH_ENGINE_LIST", cmd_list),
         ("CMND_EVT_MATCH_ENGINE_SELECT", cmd_select),
         ("CMND_EVT_MATCH_ENGINE_GET", cmd_get),
         ("CMND_EVT_MATCH_ENGINE_STATE", cmd_state),
     ];
-    for (n, f) in cmds {
-        if let Err(e) = host.lua_register(n, f) {
-            error!("{n} not registered (code {e}: lua_bridge off or the name is taken)");
-        }
+    for (n, e) in vr_framework::lua::register_all(host, &cmds) {
+        error!("{n} not registered (code {e}: lua_bridge off or the name is taken)");
     }
 }
 

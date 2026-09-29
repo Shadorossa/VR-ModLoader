@@ -1,0 +1,11 @@
+Fonts embedded in VR-ModLoader.exe (src/theme.rs, include_bytes!). All under the SIL Open Font License 1.1
+(full text and copyright notices in the OFL-*.txt files next to this one).
+
+  PlayfairDisplay-Black.ttf, PlayfairDisplay-Bold.ttf     Playfair Display   OFL-playfair-display.txt
+  SourceSerif4-Regular/Italic/SemiBold.ttf                Source Serif 4     OFL-source-serif-4.txt
+  IBMPlexSansCondensed-Medium/SemiBold.ttf                IBM Plex Sans Cond OFL-ibm-plex-sans-condensed.txt
+  IBMPlexMono-Regular.ttf                                 IBM Plex Mono      OFL-ibm-plex-mono.txt
+
+Source: the Fontsource 5.3.0 npm packages (@fontsource/<name>, "latin" subset .woff files). The WOFF container
+was unpacked to a plain TrueType file (zlib-decompressed tables, byte-identical font data); nothing else was
+changed. egui's built-in fonts remain as fallbacks for other characters.

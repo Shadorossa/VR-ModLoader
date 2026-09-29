@@ -3,8 +3,38 @@
 //! default language»); the winner is the highest `(tier, load_index)`: at equal tier the mod that loads later wins,
 //! like every other ModLoader conflict. Two explicit claims (tier >= [`Layer::warn_tier`]) of different mods with
 //! different values are logged as a conflict.
+//!
+//! [`merge_by_key`] is the plain form (one tier): items in load order, the last value of a key wins, every key set by
+//! more than one mod is reported ([`MergeConflict`]).
 
 use std::collections::BTreeMap;
+
+/// A merge note of [`merge_by_key`]: `key` was set by `losers` (in load order) and by `winner` (loads last).
+#[derive(Debug, Clone, PartialEq)]
+pub struct MergeConflict {
+    pub key: String,
+    pub winner: String,
+    pub losers: Vec<String>,
+}
+
+/// Merge `(mod id, key, value)` items given in load order: the last value of each key wins.
+pub fn merge_by_key<V: Clone>(items: &[(String, String, V)]) -> (BTreeMap<String, (String, V)>, Vec<MergeConflict>) {
+    let mut out: BTreeMap<String, (String, V)> = BTreeMap::new();
+    let mut seen: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    for (m, k, v) in items {
+        seen.entry(k.clone()).or_default().push(m.clone());
+        out.insert(k.clone(), (m.clone(), v.clone()));
+    }
+    let conflicts = seen
+        .into_iter()
+        .filter(|(_, ms)| ms.len() > 1)
+        .map(|(k, mut ms)| {
+            let winner = ms.pop().unwrap_or_default();
+            MergeConflict { key: k, winner, losers: ms }
+        })
+        .collect();
+    (out, conflicts)
+}
 
 /// One claim on a key.
 #[derive(Debug, Clone, PartialEq)]
@@ -114,5 +144,18 @@ mod tests {
         assert!(!l.claim("k", c("early", 3, 1, "early")));
         assert_eq!(l.get(&"k").unwrap().value, "late");
         assert_eq!(l.conflicts[0].winner.owner, "late");
+    }
+
+    #[test]
+    fn merge_rule_last_wins_with_conflicts() {
+        let items = vec![
+            ("a".to_string(), "waza_stream/ev60_1".to_string(), 1),
+            ("b".to_string(), "waza_stream/ev60_2".to_string(), 2),
+            ("c".to_string(), "waza_stream/ev60_1".to_string(), 3),
+        ];
+        let (m, c) = merge_by_key(&items);
+        assert_eq!(m["waza_stream/ev60_1"], ("c".to_string(), 3));
+        assert_eq!(m["waza_stream/ev60_2"], ("b".to_string(), 2));
+        assert_eq!(c, vec![MergeConflict { key: "waza_stream/ev60_1".into(), winner: "c".into(), losers: vec!["a".into()] }]);
     }
 }

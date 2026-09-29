@@ -1,0 +1,11 @@
+id = "example_engine_data"
+name = "Example: data for example_engine"
+version = "1.0.0"
+author = "ModLoader SDK"
+description = "A data-only mod for the example engine: one greeting of its own and a replacement of the engine's welcome text."
+priority = 0
+tags = ["Example"]
+updated = "2026-09-29"
+
+# the engine that reads example\*.toml
+requires = ["example_engine>=1.0"]

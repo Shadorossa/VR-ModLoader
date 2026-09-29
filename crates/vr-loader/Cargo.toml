@@ -1,6 +1,6 @@
 [package]
 name = "vr-loader"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 license.workspace = true
 description = "VR-ModLoader: winmm.dll proxy mod loader for Inazuma Eleven Victory Road PC v7.1.2 (mod folders, file overlay, data deltas, Lua patches, native plugins, console)"

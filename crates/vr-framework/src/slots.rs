@@ -1,4 +1,6 @@
-//! Serving generated files through the mods overlay **without a loader API** (generic).
+//! Serving generated files through the mods overlay **without a loader API** (generic). Only the fallback for a
+//! ModLoader without `file_serve` (plugin API v1 +248): with it, the engines write their output to the cache and serve
+//! it at its real size at the early phase, shown at the first start (see [`crate::host::EarlyMode`]).
 //!
 //! The ModLoader builds its overlay in DllMain, before any plugin runs: the files of every mod's `files\data\...` and
 //! their SIZES (the size goes into the in-memory cpk_list record, and the game reads exactly that many bytes). A
@@ -14,8 +16,8 @@
 //!   content): [`SlotState::Stale`]; the fix is to delete the slot with the game closed (or run the offline tool,
 //!   which may resize freely) and start again.
 //!
-//! Proposed loader API that removes the dance (report / docs): `overlay_add(h, key, path)` callable during the early
-//! phase (the loader maps + registers the file with its real size before the game opens anything).
+//! The loader API that removes the dance exists now: `file_serve(h, key, path)` during the early phase (the loader
+//! registers the file with its real size before the game opens anything).
 
 use serde::{Deserialize, Serialize};
 use std::path::{Path, PathBuf};
@@ -101,8 +103,14 @@ fn write_in_place(path: &Path, bytes: &[u8]) -> Result<(), String> {
 
 /// Existing slot files under `<engine dir>\files\<prefix>` as `(key, path)`, key = `data/...` lower case.
 pub fn list(engine_dir: &Path, prefix: &str) -> Vec<(String, PathBuf)> {
+    list_under(&engine_dir.join("files"), prefix)
+}
+
+/// Files under `<root>\<prefix>` as `(key, path)`, key = `<prefix>/...` lower case (`root` = a folder whose layout is
+/// the game's: a mod's `files\`, an engine's cache).
+pub fn list_under(base: &Path, prefix: &str) -> Vec<(String, PathBuf)> {
     let mut out = Vec::new();
-    let mut root = engine_dir.join("files");
+    let mut root = base.to_path_buf();
     for p in prefix.split('/').filter(|p| !p.is_empty()) {
         root.push(p);
     }
@@ -124,6 +132,32 @@ pub fn list(engine_dir: &Path, prefix: &str) -> Vec<(String, PathBuf)> {
     out
 }
 
+/// Delete the files of `keys` under `<root>` (layout of the game) and the folders left empty (`root` included).
+/// `(deleted, errors)`. A slot mapped by the overlay may be deleted only once something else serves its key.
+pub fn retire(root: &Path, keys: &[String]) -> (usize, Vec<String>) {
+    let (mut n, mut errs) = (0, Vec::new());
+    for k in keys {
+        let mut p = root.to_path_buf();
+        for part in k.split('/') {
+            p.push(part);
+        }
+        match std::fs::remove_file(&p) {
+            Ok(()) => n += 1,
+            Err(e) if e.kind() == std::io::ErrorKind::NotFound => {}
+            Err(e) => errs.push(format!("{}: {e}", p.display())),
+        }
+        // empty folders up to the root (remove_dir fails on a non-empty one)
+        let mut d = p.parent().map(Path::to_path_buf);
+        while let Some(dir) = d {
+            if !dir.starts_with(root) || std::fs::remove_dir(&dir).is_err() {
+                break;
+            }
+            d = dir.parent().map(Path::to_path_buf);
+        }
+    }
+    (n, errs)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -139,7 +173,7 @@ mod tests {
 
     #[test]
     fn slot_lifecycle() {
-        let d = std::env::temp_dir().join(format!("evt-te-slots-{}", std::process::id()));
+        let d = std::env::temp_dir().join(format!("vr-fw-slots-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&d);
         let p = d.join("files").join("data").join("x").join("a.cfg.bin");
         let live = SlotPolicy { min_headroom: 100, align: 64, live: true };
@@ -162,6 +196,10 @@ mod tests {
         let r = put(&p, &big, 0, &pad, &off).unwrap();
         assert_eq!((r.state, r.size), (SlotState::Served, 320));
         assert_eq!(list(&d, "data/x").iter().map(|(k, _)| k.as_str()).collect::<Vec<_>>(), ["data/x/a.cfg.bin"]);
+        // retired: file and the empty folders gone, the engine folder stays
+        std::fs::write(d.join("keep.txt"), b"k").unwrap();
+        assert_eq!(retire(&d.join("files"), &["data/x/a.cfg.bin".into(), "data/x/missing.cfg.bin".into()]), (1, vec![]));
+        assert!(!d.join("files").exists() && d.join("keep.txt").exists());
         let _ = std::fs::remove_dir_all(&d);
     }
 }

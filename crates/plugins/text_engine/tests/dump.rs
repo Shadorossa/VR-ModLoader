@@ -4,9 +4,9 @@
 
 use std::path::{Path, PathBuf};
 use std::time::Instant;
-use text_engine::boot::{self, BootIn};
-use text_engine::fw::game::{self, GameSource};
-use text_engine::fw::slots::{SlotPolicy, SlotState};
+use text_engine::boot::{self, BootIn, Serve};
+use text_engine::fw::game::GameSource;
+use text_engine::fw::slots::SlotState;
 use text_engine::fw::{Lvl, ModDir};
 use text_engine::lang::{self, LANGS};
 use text_engine::table::{Kind, TextTable};
@@ -60,7 +60,7 @@ fn retail_tables_rename_add_and_serve() {
         ModDir { id: "second".into(), dir: m2.clone(), load_index: 2 },
     ];
     let loader = root.join("evt_loader");
-    let inp = BootIn { self_id: "text_engine", self_dir: &te, loader_dir: &loader, mods: &mods, inactive: &[], policy: SlotPolicy::default() };
+    let inp = BootIn { self_id: "text_engine", self_dir: &te, loader_dir: &loader, mods: &mods, inactive: &[], serve: Serve::Cache };
     let t0 = Instant::now();
     let out = boot::run(&inp, &mut GameSource::new(&game));
     eprintln!("first build: {} ms", t0.elapsed().as_millis());
@@ -71,13 +71,16 @@ fn retail_tables_rename_add_and_serve() {
     assert!(!out.from_cache);
     let gid = out.index.keys["test_text_mod.greeting"].id;
     assert_eq!(gid, l5_core::hash::crc32_str("test_text_mod.greeting"));
-    // slots: chara_text + menu_text of 9 languages, system_text of en
-    let keys: Vec<&str> = out.slots.iter().map(|s| s.key.as_str()).collect();
-    assert_eq!(out.slots.len(), 19, "{keys:?}");
-    assert!(out.slots.iter().all(|s| s.state == SlotState::Pending && s.size % 4096 == 0));
+    // files to serve: chara_text + menu_text of 9 languages, system_text of en; in the cache at their real size
+    let keys: Vec<&str> = out.files.iter().map(|s| s.key.as_str()).collect();
+    assert_eq!(out.files.len(), 19, "{keys:?}");
+    assert!(out.files.iter().all(|s| s.state == SlotState::Served && s.size == s.content && s.file.is_some()));
+    assert_eq!(out.to_serve().len(), 19);
+    assert!(!te.join("files").exists());
+    let served = |k: &str| boot::cache_file(&loader, k);
     for l in LANGS {
         let base = table(&game.join(lang::key(l, "chara_text")));
-        let slot = table(&game::mod_file(&te, &lang::key(l, "chara_text")));
+        let slot = table(&served(&lang::key(l, "chara_text")));
         let want = match l {
             "es" => "Mark Evans MOD (es)",
             _ => "Mark Evans MOD",
@@ -92,23 +95,23 @@ fn retail_tables_rename_add_and_serve() {
         assert_eq!(diff, if l == "fr" { 2 } else { 1 }, "{l}");
         // menu_text: one new row, the rest identical
         let mb = table(&game.join(lang::key(l, "menu_text")));
-        let ms = table(&game::mod_file(&te, &lang::key(l, "menu_text")));
+        let ms = table(&served(&lang::key(l, "menu_text")));
         assert_eq!(ms.rows(), mb.rows() + 1);
         let want = if l == "es" { "¡Hola desde test_text_mod!" } else { "Hello from test_text_mod!" };
         assert_eq!(text(&ms, Some(Kind::Text), gid, 0).as_deref(), Some(want), "{l}");
         assert!(mb.find(None, gid, 0).is_none());
     }
-    let sys = table(&game::mod_file(&te, &lang::key("en", "system_text")));
+    let sys = table(&served(&lang::key("en", "system_text")));
     assert_eq!(text(&sys, None, 1389146809, 0).as_deref(), Some("Got [CG]<ITEM_NAME>[C]!"));
-    assert!(!game::mod_file(&te, &lang::key("de", "system_text")).exists());
+    assert!(!served(&lang::key("de", "system_text")).exists());
     // run-time lookups
     assert_eq!(out.index.text("de", None, gid, 0), Some("Hello from test_text_mod!"));
-    // second start: from the cache, pending → served, fast
+    // second start: from the cache, fast
     let t0 = Instant::now();
     let out2 = boot::run(&inp, &mut GameSource::new(&game));
     eprintln!("cache hit: {} ms", t0.elapsed().as_millis());
     assert!(out2.from_cache);
-    assert!(out2.slots.iter().all(|s| s.state == SlotState::Served));
+    assert_eq!(out2.files, out.files);
     assert_eq!(out2.index, out.index);
     let _ = std::fs::remove_dir_all(&root);
 }

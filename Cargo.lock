@@ -1020,11 +1020,12 @@ dependencies = [
  "cri",
  "evt-plugin-sdk",
  "l5-core",
- "md-5",
+ "mlua",
  "serde",
  "serde_json",
  "symphonia",
  "toml",
+ "vr-framework",
  "windows-sys 0.59.0",
 ]
 
@@ -1047,6 +1048,7 @@ dependencies = [
  "serde",
  "serde_json",
  "toml",
+ "vr-framework",
 ]
 
 [[package]]
@@ -1068,6 +1070,7 @@ dependencies = [
  "serde",
  "serde_json",
  "toml",
+ "vr-framework",
  "windows-sys 0.59.0",
 ]
 
@@ -1079,15 +1082,13 @@ version = "1.0.0"
 name = "evt-plugin-text-engine"
 version = "1.0.0"
 dependencies = [
- "crc32fast",
  "evt-modfmt",
  "evt-plugin-sdk",
  "l5-core",
  "serde",
  "serde_json",
- "sha1",
  "toml",
- "vr-gamefiles",
+ "vr-framework",
 ]
 
 [[package]]
@@ -3555,6 +3556,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0b928f33d975fc6ad9f86c8f283853ad26bdd5b10b7f1542aa2fa15e2289105a"
 
 [[package]]
+name = "vr-framework"
+version = "1.0.0"
+dependencies = [
+ "crc32fast",
+ "evt-plugin-sdk",
+ "md-5",
+ "serde",
+ "serde_json",
+ "sha1",
+ "toml",
+ "vr-gamefiles",
+]
+
+[[package]]
 name = "vr-gamefiles"
 version = "0.1.0"
 dependencies = [
@@ -3585,7 +3600,7 @@ dependencies = [
 
 [[package]]
 name = "vr-loader"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "cc",
  "crc32fast",
@@ -3603,7 +3618,7 @@ dependencies = [
 
 [[package]]
 name = "vr-modloader-app"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "eframe",
  "evt-installer",

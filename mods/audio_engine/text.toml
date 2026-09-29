@@ -1,0 +1,60 @@
+# Texts of the audio_engine mod (format of the text_engine plugin: mods/text_engine/README.md).
+# New texts get the id crc32("audio_engine.<name>"): the row «Pack de voces» of Opciones > «Ajustes del juego» and its
+# Lua (lua/setting_menu/110_voice_pack.lua) use these ids. With the text_engine plugin active, text_engine merges this
+# file with the other mods' texts; without it, the audio_engine plugin adds the same rows to menu_text itself
+# (crates/plugins/audio_engine/src/voice_row.rs). A language missing here falls back to English.
+default_lang = "en"
+
+[en.new]
+voice_pack = "Voice pack"
+voice_pack_help = "None (the game's own voices) or one of the voice packs installed in the mods folder (Español, Français...). Lines the pack does not dub keep the original voice, in the language chosen in «Voice Language». Applies to the voices loaded from then on; restart the game to apply it to all of them. Needs the VR ModLoader."
+voice_pack_none = "None"
+voice_pack_off = "Needs the VR ModLoader"
+
+[es.new]
+voice_pack = "Pack de voces"
+voice_pack_help = "Ninguno (las voces del juego) o uno de los packs de voces instalados en la carpeta mods (Español, Français...). Lo que el pack no dobla sigue con la voz original, en el idioma elegido en «Idioma de voz». Vale para las voces que se cargan desde ese momento; reinicia el juego para aplicarlo a todas. Necesita el VR ModLoader."
+voice_pack_none = "Ninguno"
+voice_pack_off = "Necesita el VR ModLoader"
+
+[fr.new]
+voice_pack = "Pack de voix"
+voice_pack_help = "Aucun (les voix du jeu) ou l'un des packs de voix installés dans le dossier mods (Español, Français...). Ce que le pack ne double pas garde la voix d'origine, dans la langue choisie dans «Langue des voix». S'applique aux voix chargées à partir de ce moment ; redémarrez le jeu pour l'appliquer à toutes. Nécessite le VR ModLoader."
+voice_pack_none = "Aucun"
+voice_pack_off = "Nécessite le VR ModLoader"
+
+[de.new]
+voice_pack = "Sprachpaket"
+voice_pack_help = "Keines (die Stimmen des Spiels) oder eines der im Ordner mods installierten Sprachpakete (Español, Français...). Was das Paket nicht synchronisiert, behält die Originalstimme in der unter «Sprachausgabe» gewählten Sprache. Gilt für die ab dann geladenen Stimmen; starte das Spiel neu, um es auf alle anzuwenden. Benötigt den VR ModLoader."
+voice_pack_none = "Keines"
+voice_pack_off = "Benötigt den VR ModLoader"
+
+[it.new]
+voice_pack = "Pacchetto voci"
+voice_pack_help = "Nessuno (le voci del gioco) o uno dei pacchetti voci installati nella cartella mods (Español, Français...). Ciò che il pacchetto non doppia mantiene la voce originale, nella lingua scelta in «Lingua voci». Vale per le voci caricate da quel momento; riavvia il gioco per applicarlo a tutte. Richiede il VR ModLoader."
+voice_pack_none = "Nessuno"
+voice_pack_off = "Richiede il VR ModLoader"
+
+[pt.new]
+voice_pack = "Pacote de vozes"
+voice_pack_help = "Nenhum (as vozes do jogo) ou um dos pacotes de vozes instalados na pasta mods (Español, Français...). O que o pacote não dubla mantém a voz original, no idioma escolhido em «Idioma de voz». Vale para as vozes carregadas a partir desse momento; reinicie o jogo para aplicá-lo a todas. Requer o VR ModLoader."
+voice_pack_none = "Nenhum"
+voice_pack_off = "Requer o VR ModLoader"
+
+[ja.new]
+voice_pack = "ボイスパック"
+voice_pack_help = "なし（ゲーム本来のボイス）、またはmodsフォルダにインストールされたボイスパック（Español、Français…）を選びます。パックが吹き替えていないセリフは「ボイス言語」で選んだ言語の元のボイスのままです。この時点から読み込まれるボイスに適用されます。すべてに適用するにはゲームを再起動してください。VR ModLoaderが必要です。"
+voice_pack_none = "なし"
+voice_pack_off = "VR ModLoaderが必要です"
+
+[zh_hans.new]
+voice_pack = "语音包"
+voice_pack_help = "无（游戏原本的语音），或安装在 mods 文件夹中的语音包之一（Español、Français…）。语音包未配音的台词保持原语音，使用「语音语言」中选择的语言。对此后加载的语音生效；重新启动游戏即可全部生效。需要 VR ModLoader。"
+voice_pack_none = "无"
+voice_pack_off = "需要 VR ModLoader"
+
+[zh_hant.new]
+voice_pack = "語音包"
+voice_pack_help = "無（遊戲原本的語音），或安裝在 mods 資料夾中的語音包之一（Español、Français…）。語音包未配音的台詞保持原語音，使用「語音語言」中選擇的語言。對此後載入的語音生效；重新啟動遊戲即可全部生效。需要 VR ModLoader。"
+voice_pack_none = "無"
+voice_pack_off = "需要 VR ModLoader"

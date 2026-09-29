@@ -1,0 +1,11 @@
+schema = "example_engine.greetings/1"
+
+# own id "example_engine_data.hello"
+[[greeting]]
+name = "hello"
+text = "Hello from a data mod"
+
+# the full id of another mod's entry: replaces its text (this mod loads after the engine, so it wins)
+[[greeting]]
+name = "example_engine.welcome"
+text = "Welcome, modder"

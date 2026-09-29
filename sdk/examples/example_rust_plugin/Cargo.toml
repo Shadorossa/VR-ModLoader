@@ -16,7 +16,7 @@ evt-plugin-sdk = { path = "../../../crates/evt-plugin-sdk" }
 toml = "0.8"
 
 # Own workspace root: this example lives inside the repository but is NOT a member of the main workspace
-# (the root Cargo.toml only takes crates/* and app/src-tauri), so `cargo build` at the repo root ignores it.
+# (the root Cargo.toml lists its members), so `cargo build` at the repo root ignores it.
 [workspace]
 
 [profile.release]

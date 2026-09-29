@@ -197,9 +197,8 @@ pub(crate) fn hook(host: &Host, s: &Sig, steal: usize, detour: *const (), next: 
 /// Folders `(mod id, <mod>\rules)` of every active mod that uses the engine, in load order, then the legacy folder.
 fn rule_sources(host: &Host, cfg: &MatchEngineCfg) -> Vec<(String, PathBuf)> {
     let mut v = Vec::new();
-    for m in host.mods() {
-        let manifest = std::fs::read_to_string(m.dir.join("mod.toml")).unwrap_or_default();
-        if assign::uses_match_engine(&host.mod_id, &m.id, &manifest) {
+    for m in vr_framework::host::active_mods(host) {
+        if vr_framework::discover::mod_uses_engine("match_engine", &host.mod_id, &m) {
             v.push((m.id.clone(), m.dir.join(crate::RULES_DIR)));
         }
     }

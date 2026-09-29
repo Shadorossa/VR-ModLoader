@@ -11,6 +11,7 @@ This folder is everything you need to write a mod for **VR-ModLoader**, the `win
 | `examples/example_lua_only` | a mod that only ships a Lua patch (logs a line on the title menu) |
 | `examples/example_rust_plugin` | a native plugin in Rust (`crates/evt-plugin-sdk`): log, config, Lua command, chained hook |
 | `examples/example_c_plugin` | the same plugin in C with `evt_plugin.h` (`build.bat` / CMake) |
+| `examples/example_engine` | an **engine** on the VR-Framework (`crates/vr-framework`): reads `<mod>\example\*.toml` of the mods that require it, merges them, serves one generated file (guide: `crates/vr-framework/README.md`) |
 
 The Rust SDK crate is `crates/evt-plugin-sdk` in the repository (zero dependencies).
 

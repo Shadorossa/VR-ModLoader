@@ -1,6 +1,4 @@
-//! `evt_loader\config.toml` `[modules]` switches, written the way the app writes them
-//! (`app/src-tauri/src/loader.rs`: `apply_project_modules` / `set_module_in`; the app crate is not a library, so the
-//! line rules are repeated here: same output for the same input).
+//! `evt_loader\config.toml` `[modules]` switches, written line by line (comments and the other keys are kept).
 
 /// `name = true|false` lines of `evt_loader_modules.toml` (`#` comments), in file order.
 pub fn parse_module_list(text: &str) -> Vec<(String, bool)> {

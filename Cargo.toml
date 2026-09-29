@@ -14,6 +14,7 @@ members = [
     "crates/vr-index",
     "crates/vr-loader",
     "crates/vr-gamefiles",
+    "crates/vr-framework",
     "crates/vr-modloader-app",
     "crates/plugins/audio_engine",
     "crates/plugins/clean_hud",

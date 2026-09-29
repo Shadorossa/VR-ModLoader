@@ -3,7 +3,7 @@
 //! Port of the built-in loader module `prematch` (`crates/vr-loader/src/prematch/mod.rs`) with the same patch, the same
 //! decision and the same log lines; the built-in yields when this plugin is loaded, because the mod
 //! `provides = ["prematch"]` (docs/app/modloader-plugins.md). The rest of the mod is Lua patches + interface files
-//! (research/mods/clean_hud, docs/app/modloader-split.md §6).
+//! of the Clean HUD mod.
 //!
 //! `game::soccerscene::BattleSettingFlow` (update `0x1436F50`) **state 6** waits for the VS menu to close, sets the
 //! camera up and then opens the pre-kick-off team editor (`soccer_formation_menu`) only when the match info flag

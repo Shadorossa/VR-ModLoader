@@ -8,7 +8,11 @@
 //!   `evt_loader\cache\audio_engine`, served with the ModLoader's `file_serve`.
 //! * [`sheet`]: the `sound_queue_sheet` merge (`[[bank]]` + the new banks); [`build::bgm_config`]: new BGM ids and
 //!   redirects.
-//! * [`framework`]: the generic pieces (mod discovery, overlay winner, merge rule, cache) meant for `vr-framework`.
+//! * [`framework`]: the generic pieces (mod discovery, overlay winner, merge rule, cache), from the shared
+//!   `vr-framework` crate.
+//!
+//! * [`voice_row`]: the «Pack de voces» row of Opciones > «Ajustes del juego» (settings list row + texts built at the
+//!   early phase and served; its Lua is `lua/setting_menu/110_voice_pack.lua` of the mod).
 //!
 //! The same build runs at pack time with the `audio_build` tool (`src/bin/audio_build.rs`, the fast path: a mod that
 //! ships its built banks is not rebuilt at boot). Voice packs are still served by the ModLoader's `mods` module.
@@ -21,6 +25,7 @@ pub mod framework;
 pub mod index;
 pub mod sheet;
 pub mod source;
+pub mod voice_row;
 
 pub use framework::ModDir;
 use serde::{Deserialize, Serialize};
@@ -34,6 +39,20 @@ pub struct Cfg {
     pub armed_voice: ArmedVoiceCfg,
     pub queue_sheet: QueueSheetCfg,
     pub build: BuildCfg,
+    pub voice_row: VoiceRowCfg,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[serde(default)]
+pub struct VoiceRowCfg {
+    /// Add the «Pack de voces» row to Opciones > «Ajustes del juego» (settings list row + its texts, served at boot).
+    pub enabled: bool,
+}
+
+impl Default for VoiceRowCfg {
+    fn default() -> Self {
+        VoiceRowCfg { enabled: true }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
@@ -250,8 +269,8 @@ mod tests {
         assert_eq!(bytes.len(), sheet::SLOT_SIZE);
         std::fs::write(&r.target, &bytes).unwrap();
         assert!(boot_merge(&game, "audio_engine", &me, &mods).unwrap().write.is_none());
-        let (mimod, _) = sheet::merge(&retail, &[sheet::BankReq { name: "evt_fwa_se".into(), group: sheet::Group::Global, voice: None, source: "x".into() }]).unwrap();
-        write(&game.join(sheet_rel()), &mimod.to_bytes().unwrap());
+        let (other, _) = sheet::merge(&retail, &[sheet::BankReq { name: "evt_fwa_se".into(), group: sheet::Group::Global, voice: None, source: "x".into() }]).unwrap();
+        write(&game.join(sheet_rel()), &other.to_bytes().unwrap());
         let r = boot_merge(&game, "audio_engine", &me, &mods).unwrap();
         assert!(r.base.starts_with("game data"));
         assert_eq!(r.report.present, vec![("fwa_sfx".to_string(), "evt_fwa_se".to_string())]);

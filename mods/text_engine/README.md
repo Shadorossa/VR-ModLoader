@@ -160,29 +160,20 @@ intptr_t evt_text_get(const char *key, uint32_t id,           // key NULL = by i
 
 Call them from your `evt_plugin_init` or later (the text engine loads before any mod that requires it).
 
-## When do texts show? (read this once)
+## When do texts show?
 
-The ModLoader decides which files it serves to the game (and their sizes) before any plugin runs. The text engine
-therefore serves each merged table from a file of its own folder (`text_engine\files\data\common\text\<lang>\...`)
-that it rewrites at start, keeping its size:
+At every start, before the game reads any file, the engine merges the texts of every active mod, writes the merged
+tables to `evt_loader\cache\text_engine\data\common\text\<lang>\...` and asks the ModLoader to serve them
+(`file_serve`): **every change shows at that same start**, the first one included. Nothing to prepare, no extra
+restart. The merged tables are cached (`evt_loader\cache\text_engine\manifest.json`): when nothing changed, the start
+costs a few milliseconds.
 
-* **Changing texts of a mod that already had texts**: shows at the next start (like any mod change).
-* **First start with a new text mod** (or a mod that touches a table no other mod touched): the engine creates the
-  file at that start, so the texts show from the **start after**. The log says:
-  `WARN text_engine: N new text file(s) created at this start (...): ... restart the game once`.
-  To skip that restart, run the tool once with the game closed after installing text mods:
-
-  ```
-  evt-text-engine prepare "<game folder>"
-  ```
-
-* Mods you install but leave disabled get their files prepared too, so enabling one in the Mods menu needs one
-  restart only.
-* Each file keeps some free room (`headroom_kib`, at least 64 KiB or 1/8 of the table). If a later change does not fit,
-  the previous texts stay and the log has an `ERROR ... does not fit`: close the game and run `evt-text-engine prepare`.
-
-The merged tables are cached (`evt_loader\cache\text_engine\manifest.json`): when nothing changed, the start costs a
-few milliseconds.
+Older ModLoader without `file_serve`: the engine falls back to fixed-size files in its own folder
+(`text_engine\files\data\common\text\...`, rewritten in place): a text mod touching a new table then shows from the
+**start after** (log: `WARN ... new text file(s) created at this start ... restart the game once`), and a change that
+does not fit the file logs `ERROR ... does not fit`. Update the ModLoader, or run
+`evt-text-engine prepare --slots "<game folder>"` with the game closed. With a current ModLoader those old files are
+deleted on their own at the first start.
 
 Checking a mod's files without the game: `evt-text-engine check "<mod folder>"` (warnings, new keys and their ids).
 
@@ -194,8 +185,8 @@ Checking a mod's files without the game: `evt-text-engine check "<mod folder>"` 
 [mods.text_engine]
 enabled = true          # merge and serve the mods' texts
 lang = "en"             # language of CMND_EVT_TEXT_GET when none is given
-headroom_kib = 64       # minimum free room of a new served text file
-prepare_inactive = true # prepare files for installed mods that are disabled
+headroom_kib = 64       # old ModLoader only: minimum free room of a new text file
+prepare_inactive = true # old ModLoader only: prepare files for installed mods that are disabled
 ```
 
 ## Log lines (`evt_loader\loader.log`)
@@ -203,17 +194,17 @@ prepare_inactive = true # prepare files for installed mods that are disabled
 ```
 INFO  text_engine: text/chara_text: 9 changed, 0 added in all languages by my_mod
 INFO  text_engine: text/menu_text: 0 changed, 9 added in all languages by my_mod
-INFO  text_engine: 18 merged text file(s) served: de/chara_text, de/menu_text, ...
-INFO  text_engine: 1 mod(s) with texts (my_mod); 1 new text key(s); merge from the cache in 3 ms
+INFO  text_engine: 18 merged text file(s): de/chara_text, de/menu_text, ...
+INFO  text_engine: 1 mod(s) with texts (my_mod); 1 new text key(s); merge from the cache; 18 text file(s) served in 3 ms
 WARN  text_engine: text conflict: menu_text[0x9C3E2A11#0]: mod_a = "A", mod_b = "B" (winner: mod_b) in en
 WARN  text_engine: mod_b: replace menu_text:12345: no text 0x00003039#0 in text/<lang>/menu_text of all languages (skipped)
-INFO  mods: data/common/text/en/menu_text.cfg.bin served from text_engine (mods/text_engine/files/..., cpk_list loose record)
+INFO  text_engine: file_serve data/common/text/en/menu_text.cfg.bin <- ...\evt_loader\cache\text_engine\data\common\text\en\menu_text.cfg.bin (... B)
 ```
 
 ## Limits
 
-* A mod that ships a whole text file (`files\data\common\text\...`) and loads after the text engine wins that file
-  (the log warns): move its texts to `text\*.toml`.
+* A mod that ships a whole text file (`files\data\common\text\...`): the text engine merges over it and serves the
+  result (a ModLoader without `file_serve`: if it loads after the text engine, its file wins and the log warns).
 * Rows can be changed and added, not removed.
 * Event and NPC dialogue files work by `table` (`event/ev01_00010:...`, `map/w10_npc_text:...`); voice / speaker data
   of dialogue lines (`*_map` files) is not handled.

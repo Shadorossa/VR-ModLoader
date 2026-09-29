@@ -13,8 +13,9 @@ $root = Resolve-Path (Join-Path $PSScriptRoot "..\..")
 Set-Location $root
 if (-not (Test-Path $Dll)) { throw "$Dll not found: build the loader first (cargo build --release -p vr-loader)" }
 if ($Version -eq "") {
-    $m = Select-String -Path "crates\vr-loader\src\lib.rs" -Pattern 'MODLOADER_VERSION: &str = "([^"]+)"'
-    if (-not $m) { throw "MODLOADER_VERSION not found in crates\vr-loader\src\lib.rs; pass -Version" }
+    # the ModLoader version = the package version of crates\vr-loader (embedded in the DLL as EVT_MODLOADER_VERSION=)
+    $m = Select-String -Path "crates\vr-loader\Cargo.toml" -Pattern '^version = "([^"]+)"' | Select-Object -First 1
+    if (-not $m) { throw "version not found in crates\vr-loader\Cargo.toml; pass -Version" }
     $Version = $m.Matches[0].Groups[1].Value
 }
 $stage = Join-Path $env:TEMP ("vrml_payload_" + [guid]::NewGuid().ToString("N"))
